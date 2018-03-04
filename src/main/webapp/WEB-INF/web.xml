@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>Stakeholder Managment TI</display-name>
+
+	<context-param>
+		<description>Vaadin production mode</description>
+		<param-name>productionMode</param-name>
+		<param-value>${productionMode}</param-value>
+	</context-param>
+	
+	<!-- Spring -->
+    <context-param>
+        <description>Spring context file</description>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:/META-INF/spring/applicationContext.xml</param-value>
+    </context-param>
+    
+       <!-- Spring listeners -->
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>	
+    
+	<servlet>
+		<servlet-name>ImServlet</servlet-name>
+		<servlet-class>cl.koritsu.im.ImServlet</servlet-class>
+		<init-param>
+			<param-name>beanName</param-name>
+			<param-value>imUI</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ui</param-name>
+			<param-value>cl.koritsu.im.ImUI</param-value>
+		</init-param>
+		<init-param>
+			<param-name>widgetset</param-name>
+			<param-value>cl.koritsu.im.ImWidgetSet</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	 <!-- Spring Security -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
