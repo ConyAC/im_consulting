@@ -138,6 +138,7 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 
     private Table drawTableFichas() {
     	Table tableFichas = new Table();
+    	tableFichas.setWidth("100%");
 
     	tableFichas.addContainerProperty("ID Respondente", String.class, null);
     	tableFichas.addContainerProperty("Stakeholder",  String.class, null);

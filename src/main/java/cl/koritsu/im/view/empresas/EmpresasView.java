@@ -155,6 +155,7 @@ public class EmpresasView extends CssLayout implements View {
 
     private Table drawTableEmpresas() {
     	Table tableEmpresas = new Table();
+    	tableEmpresas.setWidth("100%");
 
     	tableEmpresas.addContainerProperty("RUT", String.class, null);
     	tableEmpresas.addContainerProperty("Razón Social",  String.class, null);

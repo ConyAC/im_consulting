@@ -88,22 +88,22 @@ public final class DashboardView extends Panel implements View,
         sparks.setWidth("100%");
         Responsive.makeResponsive(sparks);
 
-        SparklineChart s = new SparklineChart("Sol. Creadas", "K", "",
+        SparklineChart s = new SparklineChart("Enc. Creadas", "M", "",
                // DummyDataGenerator.chartColors[0],
         		22, 20, 80);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Monto Esperado", "M UF", "",
+        s = new SparklineChart("Mejora en reputación", "", "",
                 //DummyDataGenerator.chartColors[2],
                 8, 89, 150);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Monto Facturado", " M UF", "",
+        s = new SparklineChart("Mejora Simulada", "", "",
         		//DummyDataGenerator.chartColors[3],
                 10, 30, 120);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Tiempo promedio de visita", " días", "",
+        s = new SparklineChart("Tiempo promedio de encuestas", " días", "",
         		//DummyDataGenerator.chartColors[5],
                 50, 34, 100);
         sparks.addComponent(s);
@@ -161,8 +161,8 @@ public final class DashboardView extends Panel implements View,
     }
 
     private Component buildNotes() {
-        TextArea notes = new TextArea("Notas");
-        notes.setValue("Esta semana deben considerar to:\n· Se esperan 5 tasaciones la proxima semana de itau\n· La Fran tienen pendiente 6 visaciones");
+        TextArea notes = new TextArea("Notas respuetaldos Última encuesta");
+        notes.setValue("Esta semana deben considerar:\n· Se esperan terminar la encuesta de riesgos el lunes\n· El próximo semestre se espera aumentar con un 5% la admiración de los clientes.");
         notes.setSizeFull();
         notes.addStyleName(ValoTheme.TEXTAREA_BORDERLESS);
         Component panel = createContentWrapper(notes);

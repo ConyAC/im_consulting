@@ -162,6 +162,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 
     private Table drawTableEncuestas() {
     	Table tableEncuestas = new Table();
+    	tableEncuestas.setWidth("100%");
 
     	tableEncuestas.addContainerProperty("Nombre", String.class, null);
     	tableEncuestas.addContainerProperty("Área Patrocinadora",  String.class, null);
