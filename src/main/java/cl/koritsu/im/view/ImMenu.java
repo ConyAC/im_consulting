@@ -39,7 +39,8 @@ public final class ImMenu extends CustomComponent {
     private Label reportsBadge;
     private Label administrationBadge;
     private Label verTasacionesBadge;
-    private Label ingresarTasacionBadge;
+    private Label empresasBadge;
+    private Label estudiosBadge;
     private MenuItem settingsItem;
 
     public ImMenu() {
@@ -137,6 +138,24 @@ public final class ImMenu extends CustomComponent {
 	                notificationsBadge.setId(NOTIFICATIONS_BADGE_ID);
 	                menuItemComponent = buildBadgeWrapper(menuItemComponent,
 	                        notificationsBadge);
+	                
+		            menuItemsLayout.addComponent(menuItemComponent);
+	            }
+	            
+	            if (view == ImViewType.EMPRESAS) {
+	                empresasBadge = new Label();
+	                empresasBadge.setId(STYLE_VISIBLE);
+	                menuItemComponent = buildBadgeWrapper(menuItemComponent,
+	                		empresasBadge);
+	                
+		            menuItemsLayout.addComponent(menuItemComponent);
+	            }
+	            
+	            if (view == ImViewType.ESTUDIOS) {
+	            	estudiosBadge = new Label();
+	            	estudiosBadge.setId(STYLE_VISIBLE);
+	                menuItemComponent = buildBadgeWrapper(menuItemComponent,
+	                		estudiosBadge);
 	                
 		            menuItemsLayout.addComponent(menuItemComponent);
 	            }

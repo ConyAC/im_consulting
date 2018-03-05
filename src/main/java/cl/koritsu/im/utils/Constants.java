@@ -87,5 +87,22 @@ public final class Constants {
 
 	};
 
+	public static final String[] REGIONES = {
+		"Arica y Parinacota",
+		"Tarapacá",
+		"Antofagasta",
+		"Atacama",
+		"Coquimbo",
+		"Valparaíso",
+		"Del Libertador Gral. Bernardo O'Higgins",
+		"Del Maule",
+		"Del Biobío",
+		"De La Araucanía",
+		"De Los Ríos",
+		"De Los Lagos",
+		"Aysén Del Gral. Carlos Ibañez Del Campo",
+		"Magallanes Y De La Antártica Chilena",
+		"Metropolitana De Santiago"
+	};
 
 }

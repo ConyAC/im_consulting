@@ -6,12 +6,16 @@ import com.vaadin.server.Resource;
 
 import cl.koritsu.im.view.admin.AdministrationView;
 import cl.koritsu.im.view.dashboard.DashboardView;
+import cl.koritsu.im.view.empresas.EmpresasView;
+import cl.koritsu.im.view.empresas.EncuestasEmpresaView;
 
 
 public enum ImViewType {
     DASHBOARD(DashboardView.NAME/*"reportería"*/, DashboardView.class, FontAwesome.PIE_CHART, true), 
-    ADMINISTRATION(AdministrationView.NAME/*"Administración"*/, AdministrationView.class, FontAwesome.GEAR, false);
-
+    ADMINISTRATION(AdministrationView.NAME/*"Administración"*/, AdministrationView.class, FontAwesome.GEAR, false),
+    EMPRESAS(EmpresasView.NAME/*"Empresas"*/, EmpresasView.class, FontAwesome.BUILDING, false),
+    ESTUDIOS(EncuestasEmpresaView.NAME/*"Encuestas"*/, EncuestasEmpresaView.class, FontAwesome.FILE, false);
+    
     private final String viewName;
     private final Class<? extends View> viewClass;
     private final Resource icon;
