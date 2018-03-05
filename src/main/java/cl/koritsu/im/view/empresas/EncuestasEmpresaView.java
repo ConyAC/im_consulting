@@ -244,13 +244,14 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 		window.center();
 		
 		Accordion accor = new Accordion();
+		accor.addStyleName(ValoTheme.ACCORDION_BORDERLESS);
 //		accor.setHeight(100.0f, Unit.PERCENTAGE);
 //		accor.setWidth(60.0f, Unit.PERCENTAGE);
 		
         VerticalLayout layout = new VerticalLayout();
         layout.setMargin(true);
         CssLayout group = new CssLayout();
-        //group.addStyleName("v-component-group");
+        group.addStyleName("v-component-group");
          
         group.addComponent(uploadFile());
         layout.addComponent(group);
@@ -258,7 +259,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         VerticalLayout layout2 = new VerticalLayout();
         layout2.setMargin(true);
         CssLayout group2 = new CssLayout();
-        //group2.addStyleName("v-component-group");
+        group2.addStyleName("v-component-group");
          
         group2.addComponent(uploadFile());
         layout2.addComponent(group2);
@@ -266,7 +267,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         VerticalLayout layout3 = new VerticalLayout();
         layout3.setMargin(true);
         CssLayout group3 = new CssLayout();
-        //group3.addStyleName("v-component-group");
+        group3.addStyleName("v-component-group");
          
         group3.addComponent(uploadFile());
         layout3.addComponent(group3);
@@ -274,7 +275,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         VerticalLayout layout4 = new VerticalLayout();
         layout3.setMargin(true);
         CssLayout group4 = new CssLayout();
-        //group4.addStyleName("v-component-group");
+        group4.addStyleName("v-component-group");
          
         group4.addComponent(uploadFile());
         layout4.addComponent(group4);
