@@ -127,7 +127,6 @@ public class LoginView extends VerticalLayout implements View {
         password.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
 
         signin = new Button("Ingresar");
-        signin.addStyleName(ValoTheme.BUTTON_PRIMARY);
         signin.setClickShortcut(KeyCode.ENTER);
         signin.focus();
 

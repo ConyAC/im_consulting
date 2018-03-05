@@ -125,15 +125,15 @@ public final class ImUI extends UI implements ErrorHandler {
 	// updateContent();
 	// }
 	//
-	// @Subscribe
-	// public void userLoggedOut(final UserLoggedOutEvent event) {
-	// // When the user logs out, current VaadinSession gets closed and the
-	// // page gets reloaded on the login screen. Do notice the this doesn't
-	// // invalidate the current HttpSession.
-	// VaadinSession.getCurrent().setAttribute(Constants.SESSION_USUARIO, null);
-	// VaadinSession.getCurrent().close();
-	// Page.getCurrent().reload();
-	// }
+//	 @Subscribe
+	 public void userLoggedOut() {
+		 // When the user logs out, current VaadinSession gets closed and the
+		 // page gets reloaded on the login screen. Do notice the this doesn't
+		 // invalidate the current HttpSession.
+		 VaadinSession.getCurrent().setAttribute(Constants.SESSION_USUARIO, null);
+		 VaadinSession.getCurrent().close();
+		 Page.getCurrent().reload();
+	 }
 	//
 	// @Subscribe
 	// public void closeOpenWindows(final CloseOpenWindowsEvent event) {
