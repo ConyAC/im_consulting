@@ -224,14 +224,18 @@
 
   .viewheader {
     padding-bottom: $view-padding;
+    padding-top: $view-padding;
+    padding-left: $view-padding;
     width: 100%;
-    text-align: right;
     white-space: normal;
+    background: #aa1130;
+    font-size: 10px;
 
-    .v-slot-h1 {
-      float: left;
-    }
-
+ 	.v-slot-h1 {
+      	top: 50px;
+		position: absolute;
+      }
+      
     .h1 {
       white-space: normal;
     }
@@ -241,7 +245,6 @@
       text-align: left;
 
       .v-slot-h1 {
-        float: none;
       }
 
       .h1 {

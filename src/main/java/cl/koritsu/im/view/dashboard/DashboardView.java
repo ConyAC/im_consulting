@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import org.springframework.context.annotation.Scope;
 
+
 //import com.google.common.eventbus.Subscribe;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
@@ -11,11 +12,13 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
@@ -112,6 +115,12 @@ public final class DashboardView extends Panel implements View,
         HorizontalLayout header = new HorizontalLayout();
         header.addStyleName("viewheader");
         header.setSpacing(true);
+        
+        Image logo = new Image();
+        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setHeight("76px");
+        logo.setWidth("70px");
+        header.addComponent(logo);
 
         titleLabel = new Label("Dashboard");
         titleLabel.setId(TITLE_ID);

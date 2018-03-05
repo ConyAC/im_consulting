@@ -14,16 +14,17 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
-import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Accordion;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Accordion;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
@@ -79,7 +80,13 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         header.setSpacing(true);
         Responsive.makeResponsive(header);
 
-        Label title = new Label("Encuestas");
+        Image logo = new Image();
+        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setHeight("76px");
+        logo.setWidth("70px");
+        header.addComponent(logo);
+        
+        Label title = new Label("COEVOLUTION IM CONSULTING > Encuestas");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -172,11 +179,11 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
+				UI.getCurrent().getNavigator().navigateTo(EncuestaEmpresaEdit.NAME);
 			}
 		});
     	hl.addComponent(btnEditar);
-    	Button btnFichas = new Button(null,FontAwesome.FILE);
+    	Button btnFichas = new Button(null,FontAwesome.FILE_O);
     	btnFichas.setDescription("Fichas");
     	btnFichas.addClickListener(new Button.ClickListener() {
 			
@@ -185,15 +192,15 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 			}
 		});
     	hl.addComponent(btnFichas);
-    	Button btnCargar = new Button(null,FontAwesome.UPLOAD);
-    	btnCargar.setDescription("Cargar");
-    	btnCargar.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {				
-				buildCarga();
-			}
-		});
-    	hl.addComponent(btnCargar);
+//    	Button btnCargar = new Button(null,FontAwesome.UPLOAD);
+//    	btnCargar.setDescription("Cargar");
+//    	btnCargar.addClickListener(new Button.ClickListener() {
+//			
+//			public void buttonClick(ClickEvent event) {				
+//				buildCarga();
+//			}
+//		});
+//    	hl.addComponent(btnCargar);
     	Button btnResultado = new Button(null,FontAwesome.SIMPLYBUILT);
     	btnResultado.setDescription("Resultado/Simulación");
     	btnResultado.addClickListener(new Button.ClickListener() {
