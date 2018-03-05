@@ -19,6 +19,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 
+import cl.koritsu.im.ImUI;
 import cl.koritsu.im.domain.Usuario;
 import cl.koritsu.im.domain.enums.Permiso;
 import cl.koritsu.im.utils.SecurityHelper;
@@ -103,6 +104,7 @@ public final class ImMenu extends CustomComponent {
         settingsItem.addItem("Salir", new Command() {
             public void menuSelected(final MenuItem selectedItem) {
 //                ValuedEventBus.post(new UserLoggedOutEvent());
+            	((ImUI)UI.getCurrent()).userLoggedOut();
             }
         });
         return settings;
