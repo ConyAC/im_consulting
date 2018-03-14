@@ -18,6 +18,7 @@ $v-component-group-spacing: 6px;
 
 
 @import "../valo/valo";
+@import "../base/base";
 @import "common";
 @import "views/login";
 @import "views/dashboardview";
@@ -46,6 +47,7 @@ $valo-menu-background-color: #414B56;
 
 @mixin dashboard {
   @include valo;
+  @include base-treetable;
   @include dashboard-common;
   @include dashboard-login-view;
   @include dashboard-dashboard-view;

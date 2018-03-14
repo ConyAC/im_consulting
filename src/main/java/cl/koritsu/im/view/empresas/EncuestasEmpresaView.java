@@ -207,7 +207,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	btnResultado.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Resultado");
+				UI.getCurrent().getNavigator().navigateTo(RespuestaEncuesta.NAME);
 			}
 		});
     	hl.addComponent(btnResultado);
