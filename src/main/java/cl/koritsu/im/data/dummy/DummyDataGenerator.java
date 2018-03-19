@@ -1,7 +1,12 @@
 package cl.koritsu.im.data.dummy;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+
+import cl.koritsu.im.domain.Pregunta;
+import cl.koritsu.im.domain.Segmento;
+import cl.koritsu.im.domain.Stakeholder;
+import cl.koritsu.im.domain.SubSegmento;
 
 public abstract class DummyDataGenerator {
 
@@ -127,6 +132,161 @@ public abstract class DummyDataGenerator {
         }
 
         return values;
+    }
+    public static List<Stakeholder> getStakeHolder(){
+    	List<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+    	
+    	Stakeholder stakeholder = new Stakeholder(); stakeholder.setNombre("Asociaciones");stakeholder.setId(1L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Autoridades");stakeholder.setId(2L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Clase Política");stakeholder.setId(3L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Cliente");stakeholder.setId(4L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Colaboradores");stakeholder.setId(5L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Competidores");stakeholder.setId(6L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Comunidades");stakeholder.setId(7L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Cuidadanos");stakeholder.setId(8L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Inversionistas");stakeholder.setId(9L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Investigación/Educación");stakeholder.setId(10L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Líderes de opinión");stakeholder.setId(11L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("ONG's");stakeholder.setId(12L);
+    	stakeholders.add(stakeholder);
+    	stakeholder = new Stakeholder(); stakeholder.setNombre("Proveedor");stakeholder.setId(13L);
+    	stakeholders.add(stakeholder);
+
+    	return stakeholders;
+    }
+    
+    public static List<Pregunta> getPreguntas(){
+    	List<Pregunta> preguntas = new ArrayList<Pregunta>();
+    
+    	Pregunta pregunta = new Pregunta(); pregunta.setPregunta("Conocimiento");pregunta.setId(1L);
+    	preguntas.add(pregunta);
+    	pregunta = new Pregunta(); pregunta.setPregunta("Relevancia");pregunta.setId(2L);
+    	preguntas.add(pregunta);
+    	pregunta = new Pregunta(); pregunta.setPregunta("Actitud");pregunta.setId(3L);
+    	preguntas.add(pregunta);
+    	pregunta = new Pregunta(); pregunta.setPregunta("Recomendación");pregunta.setId(4L);
+    	preguntas.add(pregunta);
+    	pregunta = new Pregunta(); pregunta.setPregunta("Esfuerzo");pregunta.setId(5L);
+    	preguntas.add(pregunta);
+    	pregunta = new Pregunta(); pregunta.setPregunta("Renovación/Recompra");pregunta.setId(6L);
+    	preguntas.add(pregunta);
+    	
+    	return preguntas;
+    }
+    
+    public static List<Segmento> getSegmentos(){
+    	List<Segmento> segmentos = new ArrayList<Segmento>();
+    	
+    	Segmento segmento = new Segmento(); segmento.setNombre("A. Empresariales");segmento.setId(1L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Gremiales");segmento.setId(2L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Industriales");segmento.setId(3L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Profesionales");segmento.setId(4L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Gobierno central");segmento.setId(5L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Locales");segmento.setId(6L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("A. Regionales");segmento.setId(7L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("CP. Diputados");segmento.setId(8L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("CP. Líderes de partidos políticos");segmento.setId(9L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("CP. Senadores");segmento.setId(10L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Cliente medio");segmento.setId(11L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Cliente prioritario");segmento.setId(12L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Cliente secundario");segmento.setId(13L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Distribuidores/Retailers");segmento.setId(14L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Prospectos");segmento.setId(15L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Ejecutivos y Adm.");segmento.setId(16L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Gerencias");segmento.setId(17L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Operativos");segmento.setId(18L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Sindicatos");segmento.setId(19L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("C. Subcontratados");segmento.setId(20L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Competidores");segmento.setId(21L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Comunidad 3");segmento.setId(22L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Comunidad 1");segmento.setId(23L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Comunidad 2");segmento.setId(24L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Cuidadanos");segmento.setId(25L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("I. Directores");segmento.setId(26L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("I. Accionistas Empresa");segmento.setId(27L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("I. Accionistas Individuales");segmento.setId(28L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("I. Dueños");segmento.setId(29L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Centros de estudio e investigación");segmento.setId(30L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Institutos");segmento.setId(31L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Universidades");segmento.setId(32L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("Líderes de opinión");segmento.setId(33L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("ONG's");segmento.setId(34L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("P. Crítico");segmento.setId(35L);
+    	segmentos.add(segmento);
+    	segmento = new Segmento(); segmento.setNombre("P. No crítico");segmento.setId(36L);
+    	segmentos.add(segmento);
+    	
+    	return segmentos;
+    }
+    
+    public static List<SubSegmento> getSubsegmentos(){
+    	List<SubSegmento> subsegmentos = new ArrayList<SubSegmento>();
+    	
+    	SubSegmento subsegmento = new SubSegmento(); subsegmento.setNombre("A. Empresariales");subsegmento.setId(1L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Gremiales");subsegmento.setId(2L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Industriales");subsegmento.setId(3L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Profesionales");subsegmento.setId(4L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Gobierno central");subsegmento.setId(5L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Locales");subsegmento.setId(6L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Regionales");subsegmento.setId(7L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("CP. Diputados");subsegmento.setId(8L);
+    	subsegmentos.add(subsegmento);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("CP. Líderes de partidos políticos");subsegmento.setId(9L);
+    	subsegmentos.add(subsegmento);
+    	
+    	return subsegmentos;
     }
 /*
     public static Color[] chartColors = new Color[] {
