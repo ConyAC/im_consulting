@@ -300,7 +300,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);   
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Editar Encuesta");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Ficha Respondente");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
