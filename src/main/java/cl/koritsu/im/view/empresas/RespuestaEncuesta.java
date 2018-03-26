@@ -26,6 +26,10 @@ import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.domain.Segmento;
+import cl.koritsu.im.domain.Stakeholder;
+import cl.koritsu.im.domain.SubSegmento;
 import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
@@ -38,7 +42,6 @@ public class RespuestaEncuesta extends CssLayout implements View {
 	
     Table tbFichas;
     Panel vlayout;
-
     
 //    @Autowired
 //    ValuedService service;
@@ -64,10 +67,27 @@ public class RespuestaEncuesta extends CssLayout implements View {
 		glRoot.setMargin(true);
 		glRoot.setWidth("100%");
 		
-		glRoot.addComponents(new ComboBox("Estudios"));
-		glRoot.addComponents(new ComboBox("Stakeholder"));
-		glRoot.addComponents(new ComboBox("Segmento"));
-		glRoot.addComponents(new ComboBox("Sub-segmento"));
+		
+		ComboBox cbEstudios = new ComboBox("Estudios");
+		cbEstudios.addItem("Reputación");
+		cbEstudios.addItem("Riesgos");
+		cbEstudios.addItem("Importancia");
+		glRoot.addComponents(cbEstudios);
+		
+		ComboBox cbStakeholder = new ComboBox("Stakeholder");
+		for(Stakeholder sh : DummyDataGenerator.getStakeHolder())
+			cbStakeholder.addItem(sh.getNombre());
+		glRoot.addComponents(cbStakeholder);
+		
+		ComboBox cbSegmento = new ComboBox("Segmento");
+		for(Segmento sh : DummyDataGenerator.getSegmentos())
+			cbSegmento.addItem(sh.getNombre());
+		glRoot.addComponents(cbSegmento);
+		
+		ComboBox cbSubsegmento = new ComboBox("Sub-segmento");
+		for(SubSegmento sh : DummyDataGenerator.getSubsegmentos())
+			cbSubsegmento.addItem(sh.getNombre());
+		glRoot.addComponents(cbSubsegmento);
 		
 		glRoot.addComponents(new Button("Buscar",FontAwesome.SEARCH));
 		glRoot.addComponents(new Button("Graficar",FontAwesome.AREA_CHART));
