@@ -121,10 +121,12 @@ public class LoginView extends VerticalLayout implements View {
         final TextField username = new TextField("Usuario");
         username.setIcon(FontAwesome.USER);
         username.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
+        username.setValue("admin@admin.com");
 
         final PasswordField password = new PasswordField("Contraseña");
         password.setIcon(FontAwesome.LOCK);
         password.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
+        password.setValue("123456");
 
         signin = new Button("Ingresar");
         signin.setClickShortcut(KeyCode.ENTER);

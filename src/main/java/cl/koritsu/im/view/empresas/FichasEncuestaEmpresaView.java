@@ -4,8 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -21,8 +19,12 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -86,16 +88,17 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	cbStakeholder.addItems("Cliente", "Colaborador", "Inversionista", "Proveedor");
+    	cbStakeholder.addItems(DummyDataGenerator.getStakeHolder());
  	    hl.addComponent(cbStakeholder);   
 	    
 	    ComboBox cbSegmento = new ComboBox();
 	    cbSegmento.setCaption("Segmento");
-	    cbSegmento.addItems("Cliente Medio", "Cliente Secundario", "Cliente Prioritario");
+	    cbSegmento.addItems(DummyDataGenerator.getSegmentos());
 	    hl.addComponent(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Sub-Segmento");
+	    cbSub.addItems(DummyDataGenerator.getSubsegmentos());
 	    hl.addComponent(cbSub);
 	    
 	    ComboBox cbCriticidad = new ComboBox();
@@ -152,12 +155,12 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	
-    	Button btnEditar = new Button(null,FontAwesome.EDIT);
-    	btnEditar.setDescription("Editar");
+    	Button btnEditar = new Button(null,FontAwesome.BOOK);
+    	btnEditar.setDescription("Ver Ficha");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
+				UI.getCurrent().getNavigator().navigateTo(FichaRespondenteEncuestaView.NAME);
 			}
 		});
     	hl.addComponent(btnEditar);
