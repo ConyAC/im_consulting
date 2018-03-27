@@ -44,6 +44,7 @@ import cl.koritsu.im.view.MainView;
 import cl.koritsu.im.view.MainView2;
 import cl.koritsu.im.view.admin.AdministrationView;
 import cl.koritsu.im.view.dashboard.DashboardView;
+import cl.koritsu.im.view.empresas.EmpresasView;
 
 @org.springframework.stereotype.Component
 @Scope("prototype")
@@ -105,7 +106,7 @@ public final class ImUI extends UI implements ErrorHandler {
 			removeStyleName("loginview");
 			String state = getNavigator().getState();
 			if (state != null && state.trim().length() == 0)
-				getNavigator().navigateTo(DashboardView.NAME);
+				getNavigator().navigateTo(EmpresasView.NAME);
 			else
 				getNavigator().navigateTo(getNavigator().getState());
 		} else {

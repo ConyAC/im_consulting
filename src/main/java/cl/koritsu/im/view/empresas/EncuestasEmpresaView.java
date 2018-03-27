@@ -229,9 +229,107 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 			}
 		});
     	hl.addComponent(btnImportancia);
+    	
+    	HorizontalLayout hl2 = new HorizontalLayout();
+    	hl2.setSpacing(true);    	
+    	Button btnEditar2 = new Button(null,FontAwesome.EDIT);
+    	btnEditar2.setDescription("Editar");
+    	btnEditar2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(EncuestaEmpresaEdit.NAME);
+			}
+		});
+    	hl2.addComponent(btnEditar2);
+    	Button btnFichas2 = new Button(null,FontAwesome.FILE_O);
+    	btnFichas2.setDescription("Fichas");
+    	btnFichas2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(FichasEncuestaEmpresaView.NAME);
+			}
+		});
+    	hl2.addComponent(btnFichas2);
+    	Button btnResultado2 = new Button(null,FontAwesome.SIMPLYBUILT);
+    	btnResultado2.setDescription("Resultado/Simulación");
+    	btnResultado2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(RespuestaEncuestaView.NAME);
+			}
+		});
+    	hl2.addComponent(btnResultado2);
+    	Button btnAfinidad2 = new Button(null,FontAwesome.SHARE_ALT);
+    	btnAfinidad2.setDescription("Afinidad");
+    	btnAfinidad2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click Afinidad");
+			}
+		});
+    	hl2.addComponent(btnAfinidad2);
+    	Button btnImportancia2 = new Button(null,FontAwesome.TACHOMETER);
+    	btnImportancia2.setDescription("Importancia S.");
+    	btnImportancia2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				buildImportancia();
+			}
+		});
+    	hl2.addComponent(btnImportancia2);
+    	
+    	HorizontalLayout hl3 = new HorizontalLayout();
+    	hl3.setSpacing(true);    	
+    	Button btnEditar3 = new Button(null,FontAwesome.EDIT);
+    	btnEditar3.setDescription("Editar");
+    	btnEditar3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(EncuestaEmpresaEdit.NAME);
+			}
+		});
+    	hl3.addComponent(btnEditar3);
+    	Button btnFichas3 = new Button(null,FontAwesome.FILE_O);
+    	btnFichas3.setDescription("Fichas");
+    	btnFichas3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(FichasEncuestaEmpresaView.NAME);
+			}
+		});
+    	hl3.addComponent(btnFichas3);
+    	Button btnResultado3 = new Button(null,FontAwesome.SIMPLYBUILT);
+    	btnResultado3.setDescription("Resultado/Simulación");
+    	btnResultado3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(RespuestaEncuestaView.NAME);
+			}
+		});
+    	hl3.addComponent(btnResultado3);
+    	Button btnAfinidad3 = new Button(null,FontAwesome.SHARE_ALT);
+    	btnAfinidad3.setDescription("Afinidad");
+    	btnAfinidad3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click Afinidad");
+			}
+		});
+    	hl3.addComponent(btnAfinidad3);
+    	Button btnImportancia3 = new Button(null,FontAwesome.TACHOMETER);
+    	btnImportancia3.setDescription("Importancia S.");
+    	btnImportancia3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				buildImportancia();
+			}
+		});
+    	hl3.addComponent(btnImportancia3);
     	// Add a few other rows using shorthand addItem()
     	tableEncuestas.addItem(new Object[]{"Encuesta inicio de Enero", "Gerencia Estudios", "02/01/2018", "18/02/2018", "Activa", "23", hl}, 1);
-
+    	tableEncuestas.addItem(new Object[]{"Encuesta termino de Febrero", "Gerencia Estudios", "25/02/2018", "28/02/2018", "Activa", "45", hl2}, 2);
+    	tableEncuestas.addItem(new Object[]{"Encuesta Marzo", "Gerencia de Riesgos", "01/03/2018", "27/03/2018", "Activa", "34", hl3}, 3);
+    	
     	// Show exactly the currently contained rows (items)
     	tableEncuestas.setPageLength(tableEncuestas.size());
     	

@@ -174,7 +174,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
         btnCancelar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Cancelar");
+				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
 			}
 		});
         footer.addComponent(btnCancelar);       

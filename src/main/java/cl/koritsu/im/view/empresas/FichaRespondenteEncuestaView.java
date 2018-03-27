@@ -95,11 +95,13 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		ComboBox cbCriticidad = new ComboBox("Criticidad");
 		for(String sh : DummyDataGenerator.getCriticidades())
 			cbCriticidad.addItem(sh);
+		cbCriticidad.setValue(DummyDataGenerator.getCriticidades().get(1));
 		glRoot.addComponent(cbCriticidad,0,4);
 		
 		ComboBox cbActitud = new ComboBox("Actitud");
 		for(String sh : DummyDataGenerator.getActitudes())
 			cbActitud.addItem(sh);
+		cbActitud.setValue(DummyDataGenerator.getActitudes().get(1));
 		glRoot.addComponent(cbActitud,0,5);
 		
 		TextArea taObservacion = new TextArea("Observacion");
@@ -136,9 +138,10 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		table.addContainerProperty("Acción", Button.class, null);
 		
 		
-		table.addItem(new Object[]{"Respondente 1", "","", "","", "","", "","",new Button(FontAwesome.EDIT)}, 0);
-		table.addItem(new Object[]{"Escenario 1", "1-9","Gerente General", "a@a.com","1233232", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 1);
-		table.addItem(new Object[]{"Escenario 2", "1-8","Gerente General", "a@a.com","1233232", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 2);
+		table.addItem(new Object[]{"Respondente 1", "1-4","Gerente Comercial", "respondente@a.com","", "","", "","",new Button(FontAwesome.EDIT)}, 0);
+		table.addItem(new Object[]{"Contacto 1", "1-9","Gerente General", "a@a.com","667884344", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 1);
+		table.addItem(new Object[]{"Contacto 2", "1-8","Gerente Comercial", "a@a.com","33423232", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 2);
+		table.addItem(new Object[]{"Contacto 3", "1-7","Gerente RRHH", "a@a.com","22323555", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 3);
 		
 		glRoot.addComponent(table,0,8,1,8);
 		glRoot.setRowExpandRatio(8, 1.0f);
@@ -229,15 +232,15 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 
     	// Create the tree nodes and set the hierarchy
     	ttable.addItem(new Object[]{"Modelo Riesgos",  "4%"}, 0);
-    	ttable.addItem(new Object[]{"R1",  "4%"}, 1);
-    	ttable.addItem(new Object[]{"R2",  "4%"}, 2);
-    	ttable.addItem(new Object[]{"R3",  "4%"}, 3);
-    	ttable.addItem(new Object[]{"R4",  "4%"}, 4);
-    	ttable.addItem(new Object[]{"R5",  "4%"}, 5);
-    	ttable.addItem(new Object[]{"R6",  "4%"}, 6);
-    	ttable.addItem(new Object[]{"R7",  "4%"}, 7);
-    	ttable.addItem(new Object[]{"R8",  "4%"}, 8);
-    	ttable.addItem(new Object[]{"R9",  "4%"}, 9);
+    	ttable.addItem(new Object[]{"R1",  "4,23"}, 1);
+    	ttable.addItem(new Object[]{"R2",  "2,45"}, 2);
+    	ttable.addItem(new Object[]{"R3",  "2,50"}, 3);
+    	ttable.addItem(new Object[]{"R4",  "1,67"}, 4);
+    	ttable.addItem(new Object[]{"R5",  "3,56"}, 5);
+    	ttable.addItem(new Object[]{"R6",  "2,34"}, 6);
+    	ttable.addItem(new Object[]{"R7",  "4,02"}, 7);
+    	ttable.addItem(new Object[]{"R8",  "3,56"}, 8);
+    	ttable.addItem(new Object[]{"R9",  "2,45"}, 9);
     	
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
