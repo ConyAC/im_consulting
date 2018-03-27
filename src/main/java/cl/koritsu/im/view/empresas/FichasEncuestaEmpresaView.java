@@ -103,12 +103,12 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 	    
 	    ComboBox cbCriticidad = new ComboBox();
 	    cbCriticidad.setCaption("Criticidad");
-	    cbCriticidad.addItems("Blackout", "Muy Critico", "Critico","Neutro","Baja Criticidad");
+	    cbCriticidad.addItems(DummyDataGenerator.getCriticidades());
 	    hl.addComponent(cbCriticidad);
 	    
 	    ComboBox cbActitud = new ComboBox();
 	    cbActitud.setCaption("Actitud Contacto");
-	    cbActitud.addItems("Problematico", "No Problematico");
+	    cbActitud.addItems(DummyDataGenerator.getActitudes());
 	    hl.addComponent(cbActitud);	  
 	    
 	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);

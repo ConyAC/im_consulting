@@ -1,6 +1,8 @@
 package cl.koritsu.im.data.dummy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import cl.koritsu.im.domain.Pregunta;
@@ -294,4 +296,12 @@ public abstract class DummyDataGenerator {
             new SolidColor("#98DF58"), new SolidColor("#F9DD51"),
             new SolidColor("#F09042"), new SolidColor("#EC6464") };
             **/
+
+	public static List<String> getCriticidades() {
+		return Arrays.asList("Blackout", "Muy Critico", "Critico","Neutro","Baja Criticidad");
+	}
+
+	public static List<String> getActitudes() {
+		return Arrays.asList("Problematico", "No Problematico");
+	}
 }
