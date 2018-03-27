@@ -216,7 +216,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	btnAfinidad.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Afinidad");
+				UI.getCurrent().getNavigator().navigateTo(AfinidadEncuestaEmpresaView.NAME);
 			}
 		});
     	hl.addComponent(btnAfinidad);
