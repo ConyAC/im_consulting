@@ -169,7 +169,6 @@ public class EmpresasView extends CssLayout implements View {
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
-    	
     	Button btnEditar = new Button(null,FontAwesome.EDIT);
     	btnEditar.setDescription("Editar");
     	btnEditar.addClickListener(new Button.ClickListener() {
@@ -206,8 +205,88 @@ public class EmpresasView extends CssLayout implements View {
 			}
 		});
     	hl.addComponent(btnDesactivar);
+    	
+    	HorizontalLayout hl2 = new HorizontalLayout();
+    	hl2.setSpacing(true);    	
+    	Button btnEditar2 = new Button(null,FontAwesome.EDIT);
+    	btnEditar2.setDescription("Editar");
+    	btnEditar2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click editar");
+			}
+		});
+    	hl2.addComponent(btnEditar2);
+    	Button btnEstudios2 = new Button(null,FontAwesome.FILE);
+    	btnEstudios2.setDescription("Estudios");
+    	btnEstudios2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
+			}
+		});
+    	hl2.addComponent(btnEstudios2);
+    	Button btnUsuarios2 = new Button(null,FontAwesome.USER);
+    	btnUsuarios2.setDescription("Usuarios");
+    	btnUsuarios2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click usuarios");
+			}
+		});
+    	hl2.addComponent(btnUsuarios2);
+    	Button btnDesactivar2 = new Button(null,FontAwesome.REMOVE);
+    	btnDesactivar2.setDescription("Desactivar");
+    	btnDesactivar2.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click desactivar");
+			}
+		});
+    	hl2.addComponent(btnDesactivar2);
+    	
+    	HorizontalLayout hl3 = new HorizontalLayout();
+    	hl3.setSpacing(true);    	
+    	Button btnEditar3 = new Button(null,FontAwesome.EDIT);
+    	btnEditar3.setDescription("Editar");
+    	btnEditar3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click editar");
+			}
+		});
+    	hl3.addComponent(btnEditar3);
+    	Button btnEstudios3 = new Button(null,FontAwesome.FILE);
+    	btnEstudios3.setDescription("Estudios");
+    	btnEstudios3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
+			}
+		});
+    	hl3.addComponent(btnEstudios3);
+    	Button btnUsuarios3 = new Button(null,FontAwesome.USER);
+    	btnUsuarios3.setDescription("Usuarios");
+    	btnUsuarios3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click usuarios");
+			}
+		});
+    	hl3.addComponent(btnUsuarios3);
+    	Button btnDesactivar3 = new Button(null,FontAwesome.REMOVE);
+    	btnDesactivar3.setDescription("Desactivar");
+    	btnDesactivar3.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click desactivar");
+			}
+		});
+    	hl3.addComponent(btnDesactivar3);
     	// Add a few other rows using shorthand addItem()
     	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Empresa SA", "Textil", "Juan Santander", "Gerente General", "jsantander@empresa.cl","234543123","Av. Apoquindo 233", hl}, 1);
+    	tableEmpresas.addItem(new Object[]{"80.000.344-0", "Company SA", "Automotriz", "Paolo Medina", "Gerente Comercial", "pmedina@empresa.cl","34656544","Av. Alameda 783", hl2}, 2);
+    	tableEmpresas.addItem(new Object[]{"76.574.874-3", "Jr SA", "Farmaceutica", "Sandra Fox", "Gerente General", "sfox@empresa.cl","234543123","Av. Las Condes 230", hl3}, 3);
 
     	// Show exactly the currently contained rows (items)
     	tableEmpresas.setPageLength(tableEmpresas.size());

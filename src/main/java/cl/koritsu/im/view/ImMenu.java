@@ -135,14 +135,14 @@ public final class ImMenu extends CustomComponent {
 	        for (final ImViewType view : ImViewType.values()) {
 	            Component menuItemComponent = new ValoMenuItemButton(view);
 
-	            if (view == ImViewType.DASHBOARD) {
-	                notificationsBadge = new Label();
-	                notificationsBadge.setId(NOTIFICATIONS_BADGE_ID);
-	                menuItemComponent = buildBadgeWrapper(menuItemComponent,
-	                        notificationsBadge);
-	                
-		            menuItemsLayout.addComponent(menuItemComponent);
-	            }
+//	            if (view == ImViewType.DASHBOARD) {
+//	                notificationsBadge = new Label();
+//	                notificationsBadge.setId(NOTIFICATIONS_BADGE_ID);
+//	                menuItemComponent = buildBadgeWrapper(menuItemComponent,
+//	                        notificationsBadge);
+//	                
+//		            menuItemsLayout.addComponent(menuItemComponent);
+//	            }
 	            
 	            if (view == ImViewType.EMPRESAS) {
 	                empresasBadge = new Label();
