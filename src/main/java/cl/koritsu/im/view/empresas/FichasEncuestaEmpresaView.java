@@ -24,6 +24,9 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.domain.Segmento;
+import cl.koritsu.im.domain.Stakeholder;
+import cl.koritsu.im.domain.SubSegmento;
 import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
@@ -88,17 +91,19 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	cbStakeholder.addItems(DummyDataGenerator.getStakeHolder());
+    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
+    		cbStakeholder.addItems(s.getNombre());
  	    hl.addComponent(cbStakeholder);   
 	    
-	    ComboBox cbSegmento = new ComboBox();
-	    cbSegmento.setCaption("Segmento");
-	    cbSegmento.addItems(DummyDataGenerator.getSegmentos());
-	    hl.addComponent(cbSegmento);
+ 	    ComboBox cbSegmento = new ComboBox("Segmento");
+		for(Segmento sh : DummyDataGenerator.getSegmentos())
+			cbSegmento.addItem(sh.getNombre());
+		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Sub-Segmento");
-	    cbSub.addItems(DummyDataGenerator.getSubsegmentos());
+	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
+	    	cbSub.addItems(sb.getNombre());
 	    hl.addComponent(cbSub);
 	    
 	    ComboBox cbCriticidad = new ComboBox();
@@ -166,7 +171,7 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
     	hl.addComponent(btnEditar);
     	
     	// Add a few other rows using shorthand addItem()
-    	tableFichas.addItem(new Object[]{"1", "Cliente", "Cliente prioritario", "C1", "Critico", "No problemático","Observación ingresa...", hl}, 1);
+    	tableFichas.addItem(new Object[]{"1", "Cliente", "Cliente prioritario", "C1", "Critico", "No problemático","Respondente ingresado para...", hl}, 1);
 
     	// Show exactly the currently contained rows (items)
     	tableFichas.setPageLength(tableFichas.size());

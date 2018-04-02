@@ -268,23 +268,23 @@ public abstract class DummyDataGenerator {
     public static List<SubSegmento> getSubsegmentos(){
     	List<SubSegmento> subsegmentos = new ArrayList<SubSegmento>();
     	
-    	SubSegmento subsegmento = new SubSegmento(); subsegmento.setNombre("A. Empresariales");subsegmento.setId(1L);
+    	SubSegmento subsegmento = new SubSegmento(); subsegmento.setNombre("Juntas vecinales");subsegmento.setId(1L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Gremiales");subsegmento.setId(2L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Alcaldes");subsegmento.setId(2L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Industriales");subsegmento.setId(3L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Consejales");subsegmento.setId(3L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Profesionales");subsegmento.setId(4L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Otros Gobierno Municipal");subsegmento.setId(4L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Gobierno central");subsegmento.setId(5L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Gobierno Regional");subsegmento.setId(5L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Locales");subsegmento.setId(6L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("SEREMIS");subsegmento.setId(6L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("A. Regionales");subsegmento.setId(7L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Ministerios");subsegmento.setId(7L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("CP. Diputados");subsegmento.setId(8L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Subsecretarías");subsegmento.setId(8L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("CP. Líderes de partidos políticos");subsegmento.setId(9L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Presidencia");subsegmento.setId(9L);
     	subsegmentos.add(subsegmento);
     	
     	return subsegmentos;

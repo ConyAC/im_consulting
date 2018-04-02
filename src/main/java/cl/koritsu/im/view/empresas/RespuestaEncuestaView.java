@@ -135,21 +135,21 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("Valor 2016", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Modelo Afinidad(IA)", new CheckBox(), "4%", "6%","7%"}, 0);
-    	ttable.addItem(new Object[]{"Escenario 1", new CheckBox(), "4%", "6%","7%"}, 1);
-    	ttable.addItem(new Object[]{"Escenario 2", new CheckBox(), "4%", "6%","7%"}, 2);
-    	ttable.addItem(new Object[]{"Escenario 3", new CheckBox(), "4%", "6%","7%"}, 3);
-    	ttable.addItem(new Object[]{"Escenario Promedio", new CheckBox(), "4%", "6%","7%"}, 4);
+    	ttable.addItem(new Object[]{"Modelo Afinidad(IA)", new CheckBox(), "", "",""}, 0);
+    	ttable.addItem(new Object[]{"Escenario 1", new CheckBox(), "73%", "76%","77%"}, 1);
+    	ttable.addItem(new Object[]{"Escenario 2", new CheckBox(), "84%", "86%","87%"}, 2);
+    	ttable.addItem(new Object[]{"Escenario 3", new CheckBox(), "94%", "96%","97%"}, 3);
+    	ttable.addItem(new Object[]{"Escenario Promedio", new CheckBox(), "74%", "86%","97%"}, 4);
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
     	ttable.setParent(3, 0);
     	ttable.setParent(4, 0);
     	
-    	ttable.addItem(new Object[]{"Modelo Importancia(II)", new CheckBox(), "4%", "6%","7%"}, 5);
-    	ttable.addItem(new Object[]{"Escenario 1", new CheckBox(), "4%", "6%","7%"}, 6);
-    	ttable.addItem(new Object[]{"Escenario 2", new CheckBox(), "4%", "6%","7%"}, 7);
-    	ttable.addItem(new Object[]{"Escenario 3", new CheckBox(), "4%", "6%","7%"}, 8);
-    	ttable.addItem(new Object[]{"Escenario Promedio", new CheckBox(), "4%", "6%","7%"}, 9);
+    	ttable.addItem(new Object[]{"Modelo Importancia(II)", new CheckBox(), "", "",""}, 5);
+    	ttable.addItem(new Object[]{"Escenario 1", new CheckBox(), "45%", "66%","77%"}, 6);
+    	ttable.addItem(new Object[]{"Escenario 2", new CheckBox(), "41%", "62%","73%"}, 7);
+    	ttable.addItem(new Object[]{"Escenario 3", new CheckBox(), "46%", "64%","72%"}, 8);
+    	ttable.addItem(new Object[]{"Escenario Promedio", new CheckBox(), "49%", "68%","75%"}, 9);
     	ttable.setParent(6, 5);
     	ttable.setParent(7, 5);
     	ttable.setParent(8, 5);
@@ -195,16 +195,22 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("Resultado", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Modelo Riesgos", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 0);
-    	ttable.addItem(new Object[]{"R1", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 1);
-    	ttable.addItem(new Object[]{"R2", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 2);
-    	ttable.addItem(new Object[]{"R3", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 3);
-    	ttable.addItem(new Object[]{"R4", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 4);
-    	ttable.addItem(new Object[]{"R5", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 5);
-    	ttable.addItem(new Object[]{"R6", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 6);
-    	ttable.addItem(new Object[]{"R7", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 7);
-    	ttable.addItem(new Object[]{"R8", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 8);
-    	ttable.addItem(new Object[]{"R9", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 9);
+    	ttable.addItem(new Object[]{"Modelo Riesgos", new CheckBox(), "", "","", new TextField(),""}, 0);
+    	ttable.addItem(new Object[]{"R1", new CheckBox(), "32%", "36%","37%", new TextField(),""}, 1);
+    	ttable.addItem(new Object[]{"R2", new CheckBox(), "7%", "6%","7%", new TextField(),""}, 2);
+    	ttable.addItem(new Object[]{"R3", new CheckBox(), "3%", "6%","7%", new TextField(),""}, 3);
+    	ttable.addItem(new Object[]{"R4", new CheckBox(), "18%", "16%","17%", new TextField(),""}, 4);
+    	ttable.addItem(new Object[]{"R5", new CheckBox(), "58%", "56%","57%", new TextField(),""}, 5);
+    	ttable.addItem(new Object[]{"R6", new CheckBox(), "8%", "6%","7%", new TextField(),""}, 6);
+    	ttable.addItem(new Object[]{"R7", new CheckBox(), "2%", "6%","7%", new TextField(),""}, 7);
+    	ttable.addItem(new Object[]{"R8", new CheckBox(), "19%", "16%","17%", new TextField(),""}, 8);
+    	ttable.addItem(new Object[]{"R9", new CheckBox(), "52%", "56%","57%", new TextField(),""}, 9);
+    	ttable.addItem(new Object[]{"R10", new CheckBox(), "36%", "36%","37%", new TextField(),""}, 10);
+    	ttable.addItem(new Object[]{"R11", new CheckBox(), "2%", "6%","7%", new TextField(),""},11);
+    	ttable.addItem(new Object[]{"R12", new CheckBox(), "35%", "36%","37%", new TextField(),""}, 12);
+    	ttable.addItem(new Object[]{"R13", new CheckBox(), "8%", "6%","7%", new TextField(),""},13);
+    	ttable.addItem(new Object[]{"R14", new CheckBox(), "5%", "6%","7%", new TextField(),""}, 14);
+    	ttable.addItem(new Object[]{"R15", new CheckBox(), "13%", "16%","17%", new TextField(),""}, 15);
     	
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -215,6 +221,12 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(7, 0);
     	ttable.setParent(8, 0);
     	ttable.setParent(9, 0);
+    	ttable.setParent(10, 0);
+    	ttable.setParent(11, 0);
+    	ttable.setParent(12, 0);
+    	ttable.setParent(13, 0);
+    	ttable.setParent(14, 0);
+    	ttable.setParent(15, 0);
     	
 //    	ttable.setPageLength(ttable.getItemIds().size());
     	
@@ -244,20 +256,20 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setSizeFull();
     	ttable.addContainerProperty("Indice/Pregunta", String.class, null);
     	ttable.addContainerProperty("Graficar", CheckBox.class, null);
-    	ttable.addContainerProperty("Valor 2018", String.class, null);
-    	ttable.addContainerProperty("Valor 2017", String.class, null);
-    	ttable.addContainerProperty("Valor 2016", String.class, null);
+    	ttable.addContainerProperty("Valor 2018\nDesempeño/Importancia", String.class, null);
+    	ttable.addContainerProperty("Valor 2017\nDesempeño/Importancia", String.class, null);
+    	ttable.addContainerProperty("Valor 2016\nDesempeño/Importancia", String.class, null);
     	ttable.addContainerProperty("Simulador", TextField.class, null);
     	ttable.addContainerProperty("Resultado", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Modelo Reputación", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 0);
-    	ttable.addItem(new Object[]{"Conocimiento", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 1);
-    	ttable.addItem(new Object[]{"Relevancia", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 2);
-    	ttable.addItem(new Object[]{"Actitud", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 3);
-    	ttable.addItem(new Object[]{"Recomendación", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 10);
-    	ttable.addItem(new Object[]{"Esfuerzo", new CheckBox(), "4%", "6%","7%", new TextField(),""},11);
-    	ttable.addItem(new Object[]{"Renovación/Recompra", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 12);
+    	ttable.addItem(new Object[]{"Modelo Reputación", new CheckBox(), "", "","", new TextField(),""}, 0);
+    	ttable.addItem(new Object[]{"Conocimiento", new CheckBox(), "91%", "90%","87%", new TextField(),""}, 1);
+    	ttable.addItem(new Object[]{"Relevancia", new CheckBox(), "83%", "80%","87%", new TextField(),""}, 2);
+    	ttable.addItem(new Object[]{"Actitud", new CheckBox(), "38%", "39%","47%", new TextField(),""}, 3);
+    	ttable.addItem(new Object[]{"Recomendación", new CheckBox(), "18%", "23%","17%", new TextField(),""}, 10);
+    	ttable.addItem(new Object[]{"Esfuerzo", new CheckBox(), "6%", "3%","2%", new TextField(),""},11);
+    	ttable.addItem(new Object[]{"Renovación/Recompra", new CheckBox(), "9%", "7%","7%", new TextField(),""}, 12);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -266,14 +278,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(11, 0);
     	ttable.setParent(12, 0);
     	
-    	ttable.addItem(new Object[]{"Indice de Reputación (IRC)", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 4);
-    	ttable.addItem(new Object[]{"Atributos Emocionales", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 5);
+    	ttable.addItem(new Object[]{"Indice de Reputación (IRC)", new CheckBox(), "", "","", new TextField(),""}, 4);
+    	ttable.addItem(new Object[]{"Atributos Emocionales", new CheckBox(), "", "","", new TextField(),""}, 5);
     	ttable.setParent(5, 4);
-    	ttable.addItem(new Object[]{"Estima", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 6);
-    	ttable.addItem(new Object[]{"Confianza", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 7);
-    	ttable.addItem(new Object[]{"Admiración", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 8);
-    	ttable.addItem(new Object[]{"Identificación", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 13);
-    	ttable.addItem(new Object[]{"Empatía", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 14);
+    	ttable.addItem(new Object[]{"Estima", new CheckBox(), "26%/81%", "36%/71%","28%/88%", new TextField(),""}, 6);
+    	ttable.addItem(new Object[]{"Confianza", new CheckBox(), "21%/78%", "31%/88%","56%/78%", new TextField(),""}, 7);
+    	ttable.addItem(new Object[]{"Admiración", new CheckBox(), "21%/79%", "21%/79%","21%/79%", new TextField(),""}, 8);
+    	ttable.addItem(new Object[]{"Identificación", new CheckBox(), "25%/78%", "25%/78%","25%/78%", new TextField(),""}, 13);
+    	ttable.addItem(new Object[]{"Empatía", new CheckBox(), "24%/79", "20%/79","24%/70", new TextField(),""}, 14);
 
     	ttable.setParent(6, 5);
     	ttable.setParent(7, 5);
@@ -281,50 +293,50 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(13, 5);
     	ttable.setParent(14, 5);
     	
-    	ttable.addItem(new Object[]{"Atributos Racionales", new CheckBox(), "4%", "6%","7%", new TextField(),""}, 9);
+    	ttable.addItem(new Object[]{"Atributos Racionales", new CheckBox(), "", "","", new TextField(),""}, 9);
     	
     	ttable.setParent(9, 4);
     	
     	int i = 15;
     	
-    	ttable.addItem(new Object[]{"D. Emocional General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Rentabilidad", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Solvencia", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Crecimiento", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Valor de mercado", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. Económico General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Calidad", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Precio", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Atención al cliente", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Satisfacción", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Innovación", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. Servicio General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Talento", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Seguridad laboral", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Bienestar", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Compensaciones", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Igualdad", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Meritocracia", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. Colaboradores General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Proveedores", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Transparencia", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Ética", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Anticorrupción", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Respeto", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. Gobernabilidad General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Líderes", new CheckBox(), "4%", "6%","7%", new TextField(),""},i++);
-    	ttable.addItem(new Object[]{"Liderazgo justo", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Gestión", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Visión", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Comunicación", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. Liderazgo General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Responsable Medio Ambiente", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Ahorro energético", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Compromiso comunidad", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Compromiso Chile", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Inclusión", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"Buenas causas", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
-    	ttable.addItem(new Object[]{"D. RSE General", new CheckBox(), "4%", "6%","7%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Emocional General", new CheckBox(), "14%/78%", "14%/78%","14%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Rentabilidad", new CheckBox(), "90%/49%", "90%/49%","90%/49%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Solvencia", new CheckBox(), "90%/49%", "90%/49%","90%/49%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Crecimiento", new CheckBox(), "94%/48%", "94%/48%","94%/48%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Valor de mercado", new CheckBox(), "94%/50%", "94%/50%","94%/50%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Económico General", new CheckBox(), "91%/49%", "91%/49%","91%/49%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Calidad", new CheckBox(), "27%/84%", "27%/84%","27%/84%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Precio", new CheckBox(), "34%/83%", "34%/83%","34%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Atención al cliente", new CheckBox(), "29%/83%", "29%/83%","29%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Satisfacción", new CheckBox(), "30%/83%", "30%/83%","30%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Innovación", new CheckBox(), "22%/83%", "22%/83%","22%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Servicio General", new CheckBox(), "26%/84%", "26%/84%","26%/84%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Talento", new CheckBox(), "60%/78%", "60%/78%","60%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Seguridad laboral", new CheckBox(), "60%/78%", "60%/78%","60%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Bienestar", new CheckBox(), "63%/77%", "63%/77%","63%/77%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Compensaciones", new CheckBox(), "61%/77%", "61%/77%","61%/77%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Igualdad", new CheckBox(), "66%/78%", "66%/78%","66%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Meritocracia", new CheckBox(), "61%/78%", "61%/78%","61%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Colaboradores General", new CheckBox(), "61%/78%", "61%/78%","61%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Proveedores", new CheckBox(), "93%/78%", "93%/78%","93%/78%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Transparencia", new CheckBox(), "77%/89%", "77%/89%","77%/89%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Ética", new CheckBox(), "84%/89%", "84%/89%","84%/89%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Anticorrupción", new CheckBox(), "82%/89%", "82%/89%","82%/89%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Respeto", new CheckBox(), "81%/90%", "81%/90%","81%/90%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Gobernabilidad General", new CheckBox(), "84%/90%", "84%/90%","84%/90%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Líderes", new CheckBox(), "79%/83%", "79%/83%","79%/83%", new TextField(),""},i++);
+    	ttable.addItem(new Object[]{"Liderazgo justo", new CheckBox(), "81%/84%", "81%/84%","81%/84%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Gestión", new CheckBox(), "72%/84%", "72%/84%","72%/84%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Visión", new CheckBox(), "80%/86%", "80%/86%","80%/86%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Comunicación", new CheckBox(), "76%/90%", "76%/90%","76%/90%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. Liderazgo General", new CheckBox(), "77%/85%", "77%/85%","77%/85%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Responsable Medio Ambiente", new CheckBox(), "34%/82%", "34%/82%","34%/82%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Ahorro energético", new CheckBox(), "24%/83%", "24%/83%","24%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Compromiso comunidad", new CheckBox(), "36%/82%", "36%/82%","36%/82%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Compromiso Chile", new CheckBox(), "34%/82%", "34%/82%","34%/82%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Inclusión", new CheckBox(), "36%/83%", "36%/83%","36%/83%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"Buenas causas", new CheckBox(), "31%/82%", "31%/82%","31%/82%", new TextField(),""}, i++);
+    	ttable.addItem(new Object[]{"D. RSE General", new CheckBox(), "24%/83%", "24%/83%","24%/83%", new TextField(),""}, i++);
     	
     	int j = 15;
     	

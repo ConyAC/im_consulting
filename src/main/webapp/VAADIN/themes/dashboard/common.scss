@@ -318,4 +318,19 @@
       border-radius: 0;
     }
   }
+  
+	.v-Notification{
+		background : #aa1130 !important;
+	}
+	.v-Notification .v-Notification-caption{
+		color : white !important;
+	}
+	
+	.v-tabsheet-tabitemcell .v-tabsheet-tabitem-selected .v-caption.v-caption{
+		color : white !important;
+	}
+	
+	.v-tabsheet-tabitemcell .v-caption:hover{
+		color : white !important;
+	}
 }

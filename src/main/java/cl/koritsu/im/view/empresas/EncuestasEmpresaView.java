@@ -9,6 +9,10 @@ import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Scope;
 
 import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.domain.Segmento;
+import cl.koritsu.im.domain.Stakeholder;
+import cl.koritsu.im.domain.SubSegmento;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -462,17 +466,20 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	cbStakeholder.addItems("Cliente", "Colaborador", "Inversionista", "Proveedor");
- 	    hl.addComponent(cbStakeholder);   
+    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
+    		cbStakeholder.addItems(s.getNombre());
+ 	    hl.addComponent(cbStakeholder);
 	    
-	    ComboBox cbSegmento = new ComboBox();
-	    cbSegmento.setCaption("Segmento");
-	    cbSegmento.addItems("Cliente Medio", "Cliente Secundario", "Cliente Prioritario");
-	    hl.addComponent(cbSegmento);
+ 	    ComboBox cbSegmento = new ComboBox("Segmento");
+		for(Segmento sh : DummyDataGenerator.getSegmentos())
+			cbSegmento.addItem(sh.getNombre());
+		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Sub-Segmento");
-	    hl.addComponent(cbSub);	   
+	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
+	    	cbSub.addItems(sb.getNombre());
+	    hl.addComponent(cbSub);
 		
 	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
