@@ -187,36 +187,20 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("Indice/Pregunta", String.class, null);
     	ttable.addContainerProperty("Importancia", String.class, null);
 
-    	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Modelo Afinidad", ""}, 0);
-    	ttable.addItem(new Object[]{"Escenario 1", "65"}, 1);
-    	ttable.addItem(new Object[]{"Escenario 2",  "97"}, 2);
-    	ttable.addItem(new Object[]{"Escenario 3",  "180"}, 3);
-    	ttable.addItem(new Object[]{"Escenario Promedio","130,44"}, 4);
+    	// Create the tree nodes and set the hierarchy   	
+    	ttable.addItem(new Object[]{"Modelo Importancia(II)",  ""}, 0);
+    	ttable.addItem(new Object[]{"Escenario 1",  "43%"}, 1);
+    	ttable.addItem(new Object[]{"Escenario 2", "39%"}, 2);
+    	ttable.addItem(new Object[]{"Escenario 3",  "52%"}, 3);
+    	ttable.addItem(new Object[]{"Escenario Promedio", "49%"}, 4);
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
     	ttable.setParent(3, 0);
     	ttable.setParent(4, 0);
     	
-    	
-    	ttable.addItem(new Object[]{"Modelo Importancia(II)",  ""}, 5);
-    	ttable.addItem(new Object[]{"Escenario 1",  "43%"}, 6);
-    	ttable.addItem(new Object[]{"Escenario 2", "39%"}, 7);
-    	ttable.addItem(new Object[]{"Escenario 3",  "52%"}, 8);
-    	ttable.addItem(new Object[]{"Escenario Promedio", "49%"}, 9);
-    	ttable.setParent(6, 5);
-    	ttable.setParent(7, 5);
-    	ttable.setParent(8, 5);
-    	ttable.setParent(9, 5);
-    	
 //    	ttable.setPageLength(ttable.getItemIds().size());
     	
-    	ComboBox categoria = new ComboBox();
-    	categoria.setNullSelectionAllowed(false);
-    	categoria.addItem("Stakeholder");
-    	categoria.addItem("Medio");    	categoria.select("Stakeholder");
-    	
-		vl.addComponents(categoria,ttable);
+		vl.addComponents(ttable);
 		vl.setExpandRatio(ttable, 1.0f);
 		return vl;
 	}
@@ -282,11 +266,11 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	// Create the tree nodes and set the hierarchy
     	ttable.addItem(new Object[]{"Modelo Reputación",  "", ""}, 0);
     	ttable.addItem(new Object[]{"Conocimiento",  "7", ""}, 1);
-    	ttable.addItem(new Object[]{"Relevancia",  "7", ""}, 2);
-    	ttable.addItem(new Object[]{"Actitud",  "7", ""}, 3);
-    	ttable.addItem(new Object[]{"Recomendación",  "NA", ""}, 10);
-    	ttable.addItem(new Object[]{"Esfuerzo",  "NA", ""},11);
-    	ttable.addItem(new Object[]{"Renovación/Recompra",  "NA", ""}, 12);
+    	ttable.addItem(new Object[]{"Relevancia",  "6", ""}, 2);
+    	ttable.addItem(new Object[]{"Actitud",  "5", ""}, 3);
+    	ttable.addItem(new Object[]{"Recomendación",  "7", ""}, 10);
+    	ttable.addItem(new Object[]{"Esfuerzo",  "6", ""},11);
+    	ttable.addItem(new Object[]{"Renovación/Recompra",  "5", ""}, 12);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -295,107 +279,110 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(11, 0);
     	ttable.setParent(12, 0);
     	
-    	ttable.addItem(new Object[]{"Indice de Reputación (IRC)",  "6,66", ""}, 4);
+    	ttable.addItem(new Object[]{"Indice de Reputación (IRC)",  "5,48", ""}, 4);
     	ttable.addItem(new Object[]{"Atributos Emocionales",  "", ""}, 5);
     	ttable.setParent(5, 4);
-    	ttable.addItem(new Object[]{"Estima",  "7", "1"}, 6);
-    	ttable.addItem(new Object[]{"Confianza",  "7", "3"}, 7);
-    	ttable.addItem(new Object[]{"Admiración",  "7", "1"}, 8);
-    	ttable.addItem(new Object[]{"Identificación",  "7", "3"}, 13);
-    	ttable.addItem(new Object[]{"Empatía",  "7", "3"}, 14);
+    	ttable.addItem(new Object[]{"D. Emocional General",  "6", "4"}, 15);
+    	ttable.setParent(15, 5);
+    	ttable.addItem(new Object[]{"Estima",  "5", "3"}, 6);
+    	ttable.addItem(new Object[]{"Confianza",  "4", "5"}, 7);
+    	ttable.addItem(new Object[]{"Admiración",  "5", "5"}, 8);
+    	ttable.addItem(new Object[]{"Identificación",  "4", "3"}, 13);
+    	ttable.addItem(new Object[]{"Empatía",  "6", "3"}, 14);
 
-    	ttable.setParent(6, 5);
-    	ttable.setParent(7, 5);
-    	ttable.setParent(8, 5);
-    	ttable.setParent(13, 5);
-    	ttable.setParent(14, 5);
+    	ttable.setParent(6, 15);
+    	ttable.setParent(7, 15);
+    	ttable.setParent(8, 15);
+    	ttable.setParent(13, 15);
+    	ttable.setParent(14, 15);
     	
-    	ttable.addItem(new Object[]{"Atributos Racionales",  "", ""}, 9);
-    	
+    	ttable.addItem(new Object[]{"Atributos Racionales",  "", ""}, 9);    	
     	ttable.setParent(9, 4);
+    	ttable.addItem(new Object[]{"D. Económico General",  "7", "1"}, 16);
+    	ttable.setParent(16, 9);    	
+    	ttable.addItem(new Object[]{"Rentabilidad",  "6", "3"}, 17);
+    	ttable.addItem(new Object[]{"Solvencia",  "7", "3"}, 18);
+    	ttable.addItem(new Object[]{"Crecimiento",  "6", "2"}, 19);
+    	ttable.addItem(new Object[]{"Valor de mercado",  "6", "3"}, 20);
     	
-    	int i = 15;
+    	ttable.setParent(17, 16);
+    	ttable.setParent(18, 16);
+    	ttable.setParent(19, 16);
+    	ttable.setParent(20, 16);
     	
-    	ttable.addItem(new Object[]{"D. Emocional General",  "7", "3"}, i++);
-    	ttable.addItem(new Object[]{"Rentabilidad",  "6", "4"}, i++);
-    	ttable.addItem(new Object[]{"Solvencia",  "6", "5"}, i++);
-    	ttable.addItem(new Object[]{"Crecimiento",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Valor de mercado",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"D. Económico General",  "6", "4"}, i++);
-    	ttable.addItem(new Object[]{"Calidad",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Precio",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Atención al cliente",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Satisfacción",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Innovación",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"D. Servicio General",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Talento",  "5", "4"}, i++);
-    	ttable.addItem(new Object[]{"Seguridad laboral",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Bienestar",  "6", "5"}, i++);
-    	ttable.addItem(new Object[]{"Compensaciones",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Igualdad",  "6", "4"}, i++);
-    	ttable.addItem(new Object[]{"Meritocracia",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"D. Colaboradores General",  "6", "4"}, i++);
-    	ttable.addItem(new Object[]{"Proveedores",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Transparencia",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Ética",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Anticorrupción",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Respeto",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"D. Gobernabilidad General",  "7", "4"}, i++);
-    	ttable.addItem(new Object[]{"Líderes",  "6", "4"},i++);
-    	ttable.addItem(new Object[]{"Liderazgo justo",  "6", "5"}, i++);
-    	ttable.addItem(new Object[]{"Gestión",  "6", "5"}, i++);
-    	ttable.addItem(new Object[]{"Visión",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Comunicación",  "6", "5"}, i++);
-    	ttable.addItem(new Object[]{"D. Liderazgo General",  "7", "5"}, i++);
-    	ttable.addItem(new Object[]{"Responsable Medio Ambiente",  "7", "1"}, i++);
-    	ttable.addItem(new Object[]{"Ahorro energético",  "7", "1"}, i++);
-    	ttable.addItem(new Object[]{"Compromiso comunidad",  "7", "2"}, i++);
-    	ttable.addItem(new Object[]{"Compromiso Chile",  "7", "1"}, i++);
-    	ttable.addItem(new Object[]{"Inclusión",  "7", "2"}, i++);
-    	ttable.addItem(new Object[]{"Buenas causas",  "6", "1"}, i++);
-    	ttable.addItem(new Object[]{"D. RSE General",  "7", "2"}, i++);
+    	ttable.addItem(new Object[]{"D. Servicio General",  "4", "4"}, 21);
+    	ttable.setParent(21, 9);    	
+    	ttable.addItem(new Object[]{"Calidad",  "3", "5"}, 22);
+    	ttable.addItem(new Object[]{"Precio",  "3", "4"}, 23);
+    	ttable.addItem(new Object[]{"Atención al cliente",  "3", "4"}, 24);
+    	ttable.addItem(new Object[]{"Satisfacción",  "3", "5"}, 25);
+    	ttable.addItem(new Object[]{"Innovación",  "3", "4"}, 26);
     	
-    	int j = 15;
+    	ttable.setParent(22, 21);
+    	ttable.setParent(23, 21);
+    	ttable.setParent(24, 21);
+    	ttable.setParent(25, 21);
+    	ttable.setParent(26, 21);
     	
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
-    	ttable.setParent(j++, 9);
+    	ttable.addItem(new Object[]{"D. Colaboradores General",  "5", "4"}, 27);
+    	ttable.setParent(27, 9);    	
+    	ttable.addItem(new Object[]{"Talento",  "6", "4"}, 28);
+    	ttable.addItem(new Object[]{"Seguridad laboral",  "5", "4"}, 29);
+    	ttable.addItem(new Object[]{"Bienestar",  "6", "3"}, 30);
+    	ttable.addItem(new Object[]{"Compensaciones",  "5", "4"}, 31);
+    	ttable.addItem(new Object[]{"Igualdad",  "6", "3"}, 32);
+    	ttable.addItem(new Object[]{"Meritocracia",  "6", "3"}, 33);
     	
+    	ttable.setParent(28, 27);
+    	ttable.setParent(29, 27);
+    	ttable.setParent(30, 27);
+    	ttable.setParent(31, 27);
+    	ttable.setParent(32, 27);
+    	ttable.setParent(33, 27);
+    	
+    	ttable.addItem(new Object[]{"D. Gobernabilidad General",  "6", "4"}, 34);
+    	ttable.setParent(34, 9);    	
+    	ttable.addItem(new Object[]{"Proveedores",  "7", "4"},35);
+    	ttable.addItem(new Object[]{"Transparencia",  "6", "4"}, 36);
+    	ttable.addItem(new Object[]{"Ética",  "6", "4"},37);
+    	ttable.addItem(new Object[]{"Anticorrupción",  "6", "5"},38);
+    	ttable.addItem(new Object[]{"Respeto",  "6", "4"}, 39);
+    	
+    	ttable.setParent(35, 34);
+    	ttable.setParent(36, 34);
+    	ttable.setParent(37, 34);
+    	ttable.setParent(38, 34);
+    	ttable.setParent(39, 34);
+    	
+    	ttable.addItem(new Object[]{"D. Liderazgo General",  "6", "4"}, 40);
+    	ttable.setParent(40, 9);    	
+    	ttable.addItem(new Object[]{"Líderes",  "7", "4"},41);
+    	ttable.addItem(new Object[]{"Liderazgo justo",  "6", "4"}, 42);
+    	ttable.addItem(new Object[]{"Gestión",  "7", "4"}, 43);
+    	ttable.addItem(new Object[]{"Visión",  "7", "5"}, 44);
+    	ttable.addItem(new Object[]{"Comunicación",  "6", "5"}, 45);
+    	
+    	ttable.setParent(41, 40);
+    	ttable.setParent(42, 40);
+    	ttable.setParent(43, 40);
+    	ttable.setParent(44, 40);
+    	ttable.setParent(45, 40);
+    	
+    	ttable.addItem(new Object[]{"D. RSE General",  "5", "5"}, 46);
+    	ttable.setParent(46, 9);    	
+    	ttable.addItem(new Object[]{"Responsable Medio Ambiente",  "7", "5"}, 47);
+    	ttable.addItem(new Object[]{"Ahorro energético",  "7", "5"}, 48);
+    	ttable.addItem(new Object[]{"Compromiso comunidad",  "7", "5"}, 49);
+    	ttable.addItem(new Object[]{"Compromiso Chile",  "5", "4"}, 50);
+    	ttable.addItem(new Object[]{"Inclusión",  "7", "4"}, 51);
+    	ttable.addItem(new Object[]{"Buenas causas",  "4", "5"}, 52);
+    	
+    	ttable.setParent(47, 46);
+    	ttable.setParent(48, 46);
+    	ttable.setParent(49, 46);
+    	ttable.setParent(50, 46);
+    	ttable.setParent(51, 46);
+    	ttable.setParent(52, 46);
 		
 		vl.addComponents(ttable);
 		return vl;
