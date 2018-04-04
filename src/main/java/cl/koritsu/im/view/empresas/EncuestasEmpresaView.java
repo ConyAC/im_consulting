@@ -48,7 +48,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @VaadinView(value = EncuestasEmpresaView.NAME, cached = true)
 public class EncuestasEmpresaView extends CssLayout implements View {
 
-	public static final String NAME = "encuestas";
+	public static final String NAME = "surveys";
 	
     Table tbEncuestas;
     String fullpath;
@@ -90,7 +90,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Encuestas");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Surveys");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -105,43 +105,43 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	hl.setMargin(true);
 	    
 	    TextField tfNombre = new TextField();
-	    tfNombre.setCaption("Nombre");
+	    tfNombre.setCaption("Name");
 	    hl.addComponent(tfNombre);
 	    
 	    ComboBox cbTipoEstudio = new ComboBox();
-	    cbTipoEstudio.setCaption("Tipo Estudio");
+	    cbTipoEstudio.setCaption("Survey Tipe");
 	    cbTipoEstudio.addItems("Gerencia Marketing", "Gerencia Estudios o Investigación de Mercados", "Gerencia de Relaciones Corporativas", "Gerencia de Riesgos");
 	    hl.addComponent(cbTipoEstudio);
 	    
 	    ComboBox cbEstado = new ComboBox();
-	    cbEstado.setCaption("Estado");
-	    cbEstado.addItems("Activa", "Inactiva");
+	    cbEstado.setCaption("State");
+	    cbEstado.addItems("Active", "Inactive");
 	    hl.addComponent(cbEstado);
 	    
 	    DateField dtDesde = new DateField();
-	    dtDesde.setCaption("Trabajo de campo desde");
+	    dtDesde.setCaption("Field work from…");
 	    hl.addComponent(dtDesde);
 	    
 	    DateField dtHasta = new DateField();
-	    dtHasta.setCaption("Trabajo de campo hasta");
+	    dtHasta.setCaption("Field work to…");
 	    hl.addComponent(dtHasta);
 	    
-	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
+	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
 
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Buscar");
+				Notification.show("click Search");
 			}
 		});
 		hl.addComponent(btnFiltrar);
 		
-		Button btnAregar = new Button("Agregar",FontAwesome.CHECK);
+		Button btnAregar = new Button("Add",FontAwesome.CHECK);
 		btnAregar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Agregar");
+				Notification.show("click Add");
 			}
 		});
 		
@@ -168,19 +168,19 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	Table tableEncuestas = new Table();
     	tableEncuestas.setWidth("100%");
 
-    	tableEncuestas.addContainerProperty("Nombre", String.class, null);
-    	tableEncuestas.addContainerProperty("Área Patrocinadora",  String.class, null);
-    	tableEncuestas.addContainerProperty("Fecha inicio \ntrabajo de campo",  String.class, null);
-    	tableEncuestas.addContainerProperty("Fecha cierre \ntrabajo de campo",  String.class, null);
-    	tableEncuestas.addContainerProperty("Estado",  String.class, null);
-    	tableEncuestas.addContainerProperty("N° Respondentes",  String.class, null);
-    	tableEncuestas.addContainerProperty("Acciones",  HorizontalLayout.class, null);
+    	tableEncuestas.addContainerProperty("Name", String.class, null);
+    	tableEncuestas.addContainerProperty("Sponsor Area",  String.class, null);
+    	tableEncuestas.addContainerProperty("Initial date\nfield work",  String.class, null);
+    	tableEncuestas.addContainerProperty("End date\nfield work",  String.class, null);
+    	tableEncuestas.addContainerProperty("State",  String.class, null);
+    	tableEncuestas.addContainerProperty("Respondents Number",  String.class, null);
+    	tableEncuestas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	
     	Button btnEditar = new Button(null,FontAwesome.EDIT);
-    	btnEditar.setDescription("Editar");
+    	btnEditar.setDescription("Edit");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -374,8 +374,10 @@ public class EncuestasEmpresaView extends CssLayout implements View {
  	    hl.addComponent(cbStakeholder);
 	    
  	    ComboBox cbSegmento = new ComboBox("Segmento");
-		for(Segmento sh : DummyDataGenerator.getSegmentos())
-			cbSegmento.addItem(sh.getNombre());
+//		for(Segmento sh : DummyDataGenerator.getSegmentos())
+//			cbSegmento.addItem(sh.getNombre());
+ 	   for(String sh : DummyDataGenerator.getSegmentosUS())
+			cbSegmento.addItem(sh);
 		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();

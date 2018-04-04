@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Scope;
 
 import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
 import cl.koritsu.im.utils.Constants;
 
 import com.vaadin.navigator.View;
@@ -33,7 +34,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @VaadinView(value = EmpresasView.NAME, cached = true)
 public class EmpresasView extends CssLayout implements View {
 
-	public static final String NAME = "empresas";
+	public static final String NAME = "companies";
 	
     Table tbEmpresas;
 
@@ -73,7 +74,7 @@ public class EmpresasView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Empresas");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Companies");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -88,18 +89,18 @@ public class EmpresasView extends CssLayout implements View {
     	hl.setMargin(true);
 	    
 	    TextField rut = new TextField();
-	    rut.setCaption("RUT");
+	    rut.setCaption("Social Security Number");
 	    hl.addComponent(rut);
 	    
 	    ComboBox cbRazon = new ComboBox();
-	    cbRazon.setCaption("Nombre o Razón Social");
-	    cbRazon.addItems("Empresa SA", "Empresa1", "Empresa2", "Empresa3");
+	    cbRazon.setCaption("Name");
+	    cbRazon.addItems("Company SA", "Company1", "Company2", "Company3");
 	    hl.addComponent(cbRazon);
 	    
-	    ComboBox cbIndustria = new ComboBox();
-	    cbIndustria.setCaption("Industria");
-	    cbIndustria.addItems("Automovilística", "Informática", "Farmaceutica", "Textil");
-	    hl.addComponent(cbIndustria);
+	    ComboBox cbIndustria = new ComboBox("Insdustry");
+		for(String sh : DummyDataGenerator.getIndustrias())
+			cbIndustria.addItem(sh);
+		hl.addComponent(cbIndustria);	  
 	    
 	    /*
 	     * Se comenta por motivo de presentación
@@ -118,22 +119,22 @@ public class EmpresasView extends CssLayout implements View {
 		}
 	    hl.addComponent(cbComuna);*/
 	    
-	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
+	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
 
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click filtro");
+				Notification.show("click Search");
 			}
 		});
 		hl.addComponent(btnFiltrar);
 		
-		Button btnAregar = new Button("Agregar",FontAwesome.CHECK);
+		Button btnAregar = new Button("Add",FontAwesome.CHECK);
 		btnAregar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click filtro");
+				;Notification.show("click Add");
 			}
 		});
 		
@@ -160,29 +161,29 @@ public class EmpresasView extends CssLayout implements View {
     	Table tableEmpresas = new Table();
     	tableEmpresas.setWidth("100%");
 
-    	tableEmpresas.addContainerProperty("RUT", String.class, null);
-    	tableEmpresas.addContainerProperty("Razón Social",  String.class, null);
-    	tableEmpresas.addContainerProperty("Industria",  String.class, null);
-    	tableEmpresas.addContainerProperty("C. Principal",  String.class, null);
-    	tableEmpresas.addContainerProperty("Cargo",  String.class, null);
-    	tableEmpresas.addContainerProperty("Correo Electrónico",  String.class, null);
-    	tableEmpresas.addContainerProperty("Teléfono",  String.class, null);
-    	tableEmpresas.addContainerProperty("Dirección",  String.class, null);
-    	tableEmpresas.addContainerProperty("Acciones",  HorizontalLayout.class, null);
+    	tableEmpresas.addContainerProperty("Social Security Number", String.class, null);
+    	tableEmpresas.addContainerProperty("Name",  String.class, null);
+    	tableEmpresas.addContainerProperty("Insdustry",  String.class, null);
+    	tableEmpresas.addContainerProperty("Principal",  String.class, null);
+    	tableEmpresas.addContainerProperty("Position",  String.class, null);
+    	tableEmpresas.addContainerProperty("Email",  String.class, null);
+    	tableEmpresas.addContainerProperty("Phone",  String.class, null);
+    	tableEmpresas.addContainerProperty("Address",  String.class, null);
+    	tableEmpresas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	Button btnEditar = new Button(null,FontAwesome.EDIT);
-    	btnEditar.setDescription("Editar");
+    	btnEditar.setDescription("Edit");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
+				Notification.show("click Edit");
 			}
 		});
     	hl.addComponent(btnEditar);
     	Button btnEstudios = new Button(null,FontAwesome.FILE);
-    	btnEstudios.setDescription("Estudios");
+    	btnEstudios.setDescription("Studies");
     	btnEstudios.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -191,20 +192,20 @@ public class EmpresasView extends CssLayout implements View {
 		});
     	hl.addComponent(btnEstudios);
     	Button btnUsuarios = new Button(null,FontAwesome.USER);
-    	btnUsuarios.setDescription("Usuarios");
+    	btnUsuarios.setDescription("Users");
     	btnUsuarios.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click usuarios");
+				Notification.show("click Users");
 			}
 		});
     	hl.addComponent(btnUsuarios);
     	Button btnDesactivar = new Button(null,FontAwesome.REMOVE);
-    	btnDesactivar.setDescription("Desactivar");
+    	btnDesactivar.setDescription("Deactivate");
     	btnDesactivar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click desactivar");
+				Notification.show("click Deactivate");
 			}
 		});
     	hl.addComponent(btnDesactivar);

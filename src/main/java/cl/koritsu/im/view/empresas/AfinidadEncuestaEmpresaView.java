@@ -4,6 +4,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -19,10 +22,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.domain.Segmento;
-import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -49,25 +48,24 @@ public static final String NAME = "afinidad";
 		glRoot.setMargin(true);
 		glRoot.setSizeFull();
 		
-		ComboBox cbRespondenteId = new ComboBox("1. Escenario de Riesgo");
-		cbRespondenteId.addItem("General");
-		cbRespondenteId.select("General");
-		cbRespondenteId.addItem("Escenario 1");
-		cbRespondenteId.addItem("Escenario 2");
-		cbRespondenteId.addItem("Escenario 3");
+		ComboBox cbRespondenteId = new ComboBox("1. Risk Scenario");
+		cbRespondenteId.addItem("Average Scenario");
+		cbRespondenteId.select("Average Scenario");
+		cbRespondenteId.addItem("Scenario 1");
+		cbRespondenteId.addItem("Scenario 2");
+		cbRespondenteId.addItem("Scenario 3");
 		glRoot.addComponent(cbRespondenteId,0,0);
 		
-		ComboBox cbStakeholder = new ComboBox("2. Stakeholder o Medio");
+		ComboBox cbStakeholder = new ComboBox("2. Agents");
 		cbStakeholder.addItem("Stakeholder");
-		cbStakeholder.addItem("Medio");
+		cbStakeholder.addItem("Media");
 		cbStakeholder.select("Stakeholder");
 			
 		glRoot.addComponent(cbStakeholder,0,1);
 		
-		ComboBox cbSegmento = new ComboBox("3. Nodo (Segmento o Subsegmento)");
-		for(Segmento sh : DummyDataGenerator.getSegmentos()) {
-			cbSegmento.addItem(sh.getNombre()); 
-		}
+		ComboBox cbSegmento = new ComboBox("3. Hub to highlight and center");
+		for(String sh : DummyDataGenerator.getSegmentosUS())
+			cbSegmento.addItem(sh);
 		glRoot.addComponent(cbSegmento,0,2);
 				
 		//tab con los grafos
@@ -104,7 +102,7 @@ public static final String NAME = "afinidad";
         logo.setWidth("70px");
         header.addComponent(logo);   
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Ficha Respondente");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Respondent Form");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);

@@ -75,7 +75,7 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);   
         
-        Label title = new Label("COEVOLUTION IM CONSULTING Fichas > Fichas Encuesta");
+        Label title = new Label("COEVOLUTION IM CONSULTING Fichas > Respondent Form");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -95,34 +95,36 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
     		cbStakeholder.addItems(s.getNombre());
  	    hl.addComponent(cbStakeholder);   
 	    
- 	    ComboBox cbSegmento = new ComboBox("Segmento");
-		for(Segmento sh : DummyDataGenerator.getSegmentos())
-			cbSegmento.addItem(sh.getNombre());
+ 	    ComboBox cbSegmento = new ComboBox("Segment");
+//		for(Segmento sh : DummyDataGenerator.getSegmentos())
+//			cbSegmento.addItem(sh.getNombre());
+ 	   for(String sh : DummyDataGenerator.getSegmentosUS())
+			cbSegmento.addItem(sh);
 		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
-	    cbSub.setCaption("Sub-Segmento");
+	    cbSub.setCaption("Subsegment");
 	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
 	    	cbSub.addItems(sb.getNombre());
 	    hl.addComponent(cbSub);
 	    
 	    ComboBox cbCriticidad = new ComboBox();
-	    cbCriticidad.setCaption("Criticidad");
+	    cbCriticidad.setCaption("Criticality");
 	    cbCriticidad.addItems(DummyDataGenerator.getCriticidades());
 	    hl.addComponent(cbCriticidad);
 	    
 	    ComboBox cbActitud = new ComboBox();
-	    cbActitud.setCaption("Actitud Contacto");
+	    cbActitud.setCaption("Personal contact attitude");
 	    cbActitud.addItems(DummyDataGenerator.getActitudes());
 	    hl.addComponent(cbActitud);	  
 	    
-	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
+	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
 
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Buscar");
+				Notification.show("click Search");
 			}
 		});
 		hl.addComponent(btnFiltrar);
@@ -148,20 +150,20 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
     	Table tableFichas = new Table();
     	tableFichas.setWidth("100%");
 
-    	tableFichas.addContainerProperty("ID Respondente", String.class, null);
+    	tableFichas.addContainerProperty("ID Respondent", String.class, null);
     	tableFichas.addContainerProperty("Stakeholder",  String.class, null);
-    	tableFichas.addContainerProperty("Segmento",  String.class, null);
-    	tableFichas.addContainerProperty("Sub-Segmento",  String.class, null);
-    	tableFichas.addContainerProperty("Criticidad",  String.class, null);
-    	tableFichas.addContainerProperty("Actitud Contacto",  String.class, null);
-    	tableFichas.addContainerProperty("Observación",  String.class, null);
-    	tableFichas.addContainerProperty("Acciones",  HorizontalLayout.class, null);
+    	tableFichas.addContainerProperty("Segment",  String.class, null);
+    	tableFichas.addContainerProperty("Subsegment",  String.class, null);
+    	tableFichas.addContainerProperty("Criticality",  String.class, null);
+    	tableFichas.addContainerProperty("Personal contact attitude",  String.class, null);
+    	tableFichas.addContainerProperty("Observation",  String.class, null);
+    	tableFichas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	
     	Button btnEditar = new Button(null,FontAwesome.BOOK);
-    	btnEditar.setDescription("Ver Ficha");
+    	btnEditar.setDescription("See file");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {

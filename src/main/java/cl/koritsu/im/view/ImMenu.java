@@ -101,7 +101,7 @@ public final class ImMenu extends CustomComponent {
 //            }
 //        });
         
-        settingsItem.addItem("Salir", new Command() {
+        settingsItem.addItem("Exit", new Command() {
             public void menuSelected(final MenuItem selectedItem) {
 //                ValuedEventBus.post(new UserLoggedOutEvent());
             	((ImUI)UI.getCurrent()).userLoggedOut();

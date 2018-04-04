@@ -303,4 +303,67 @@ public abstract class DummyDataGenerator {
 	public static List<String> getActitudes() {
 		return Arrays.asList("Problematico", "No Problematico");
 	}
+	
+	public static List<String> getIndustrias() {
+		return Arrays.asList("Aerospace & Defense",
+				"Agriculture",
+				"Automotive & Assembly",
+				"Capital Projects & Infrastructure",
+				"Chemicals",
+				"Consumer Packaged Goods",
+				"Electric Power & Natural Gas",
+				"Financial Services",
+				"Healthcare Systems & Services",
+				"High Tech",
+				"Media & Entertainment",
+				"Metals & Mining",
+				"Oil & Gas",
+				"Paper & Forest Products",
+				"Pharmaceuticals & Medical Products",
+				"Private Equity & Principal Investors",
+				"Public Sector",
+				"Retail",
+				"Semiconductors",
+				"Social Sector",
+				"Telecommunications",
+				"Travel, Transport & Logistics");
+	}
+	
+	public static List<String> getSegmentosUS() {
+		return Arrays.asList("Business Comunity Asociations",
+				"Trade Unions",
+				"Industrial Asociations",
+				"Professional Asociations",
+				"Federal Government ",
+				"Local Government",
+				"Regional Government",
+				"Representative",
+				"Political Parties Leaders",
+				"Senators",
+				"Average Customer",
+				"Priority Customer",
+				"Nonpriority Customer",
+				"Distributors/Retailers",
+				"Prospects",
+				"KAM and back office supporters",
+				"Managers",
+				"Operational personnel",
+				"Unions",
+				"Third party personnel",
+				"Competitors",
+				"Community 1",
+				"Community 2",
+				"Community 3",
+				"Citizens",
+				"Board Directors",
+				"Shareholders",
+				"Investors",
+				"R&D centers",
+				"Institutes",
+				"Universities",
+				"Opinion Leaders",
+				"NGO's",
+				"Critical suppliers",
+				"Non critical suppliers");
+}
 }
