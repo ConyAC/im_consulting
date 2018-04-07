@@ -6,9 +6,6 @@ import org.springframework.context.annotation.Scope;
 
 import ru.xpoft.vaadin.VaadinView;
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.domain.Segmento;
-import cl.koritsu.im.domain.Stakeholder;
-import cl.koritsu.im.domain.SubSegmento;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -66,28 +63,24 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		glRoot.addComponent(cbRespondenteId,0,0);
 		
 		TextField tfStakeholder = new TextField("Stakeholder");
-		for(Stakeholder sh : DummyDataGenerator.getStakeHolder()) {
-			tfStakeholder.setValue(sh.getNombre());
-			break;
+		for(String sh : DummyDataGenerator.getStakeHolderUS()){
+			tfStakeholder.setValue(sh);
+    		break;
 		}
 		tfStakeholder.setReadOnly(true);
 			
 		glRoot.addComponent(tfStakeholder,0,1);
 		
 		TextField tfSegmento = new TextField("Segment");
-//		for(Segmento sh : DummyDataGenerator.getSegmentos()) {
-//			tfSegmento.setValue(sh.getNombre()); 
-//			break;
-//		}
 		tfSegmento.setValue(DummyDataGenerator.getSegmentosUS().get(1));
 		tfSegmento.setReadOnly(true);
 		glRoot.addComponent(tfSegmento,0,2);
 		
 		TextField tfSubsegmento = new TextField("Subsegment");
-		for(SubSegmento sh : DummyDataGenerator.getSubsegmentos()) {
-			tfSubsegmento.setValue(sh.getNombre());
-			break;
-		}
+		 for(String sh : DummyDataGenerator.getSubsegmentosUS()){
+			 tfSubsegmento.setValue(sh);
+			 break;
+		 }
 
 		tfSubsegmento.setReadOnly(true);
 		glRoot.addComponent(tfSubsegmento,0,3);
@@ -99,13 +92,13 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		glRoot.addComponent(cbCriticidad,0,4);
 		
 		ComboBox cbActitud = new ComboBox("Actitude");
-		for(String sh : DummyDataGenerator.getActitudes())
+		for(String sh : DummyDataGenerator.getActitudesUS())
 			cbActitud.addItem(sh);
-		cbActitud.setValue(DummyDataGenerator.getActitudes().get(1));
+		cbActitud.setValue(DummyDataGenerator.getActitudesUS().get(1));
 		glRoot.addComponent(cbActitud,0,5);
 		
 		TextArea taObservacion = new TextArea("Observation");
-		taObservacion.setValue("Respondente ingresado para Encuesta inicio de Enero, área patrocinadora Gerencia Estudios.");
+		taObservacion.setValue("Respondent admitted for the beginning of January survey, sponsoring area Management Studies.");
 		glRoot.addComponent(taObservacion,0,6);
 		
 		
@@ -128,7 +121,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		Table table = new Table();
 		table.setSizeFull();
 		table.addContainerProperty("Name", String.class, null);
-		table.addContainerProperty("RUT", String.class, null);
+		table.addContainerProperty("Social number", String.class, null);
 		table.addContainerProperty("Position", String.class, null);
 		table.addContainerProperty("Email", String.class, null);
 		table.addContainerProperty("Phone", String.class, null);
@@ -139,10 +132,10 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		table.addContainerProperty("Actions", Button.class, null);
 		
 		
-		table.addItem(new Object[]{"Respondente 1", "1-4","Gerente Comercial", "respondente@a.com","", "","", "","",new Button(FontAwesome.EDIT)}, 0);
-		table.addItem(new Object[]{"Contacto 1", "1-9","Gerente General", "a@a.com","667884344", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 1);
-		table.addItem(new Object[]{"Contacto 2", "1-8","Gerente Comercial", "a@a.com","33423232", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 2);
-		table.addItem(new Object[]{"Contacto 3", "1-7","Gerente RRHH", "a@a.com","22323555", "Aprobador","Innovador", "Neutral","En profundidad",new Button(FontAwesome.EDIT)}, 3);
+		table.addItem(new Object[]{"Respondent 1", "1-4","Commercial Manager", "respondent@a.com","", "","", "","",new Button(FontAwesome.EDIT)}, 0);
+		table.addItem(new Object[]{"Contact 1", "1-9","General Manager", "a@a.com","667884344", "Approver","Innovative", "Neutral","In deep",new Button(FontAwesome.EDIT)}, 1);
+		table.addItem(new Object[]{"Contact 2", "1-8","Commercial Manager", "a@a.com","33423232", "Approver","Innovative", "Neutral","In deep",new Button(FontAwesome.EDIT)}, 2);
+		table.addItem(new Object[]{"Contact 3", "1-7","General Manager", "a@a.com","22323555", "Approver","Innovative", "Neutral","In deep",new Button(FontAwesome.EDIT)}, 3);
 		
 		glRoot.addComponent(table,0,8,1,8);
 		glRoot.setRowExpandRatio(8, 1.0f);
@@ -265,13 +258,14 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("Important", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Reputation Model",  "", ""}, 0);
+    	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", ""}, 0);
     	ttable.addItem(new Object[]{"Knowledge",  "7", ""}, 1);
     	ttable.addItem(new Object[]{"Relevance",  "6", ""}, 2);
     	ttable.addItem(new Object[]{"Personal Regard",  "5", ""}, 3);
     	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "7", ""}, 10);
     	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6", ""},11);
     	ttable.addItem(new Object[]{"Renewal/Repurchase",  "5", ""}, 12);
+    	ttable.addItem(new Object[]{"Differentiation ",  "", ""}, 53);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -279,6 +273,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(10, 0);
     	ttable.setParent(11, 0);
     	ttable.setParent(12, 0);
+    	ttable.setParent(53, 0);
     	
     	ttable.addItem(new Object[]{"Corporate Reputation Index (IRC)",  "5,48", ""}, 4);
     	ttable.addItem(new Object[]{"Emotional Dimensions",  "6", "4"}, 15);

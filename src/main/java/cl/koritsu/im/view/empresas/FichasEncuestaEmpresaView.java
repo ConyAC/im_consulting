@@ -4,6 +4,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -22,12 +25,6 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.domain.Segmento;
-import cl.koritsu.im.domain.Stakeholder;
-import cl.koritsu.im.domain.SubSegmento;
-import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -91,31 +88,26 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
-    		cbStakeholder.addItems(s.getNombre());
+    	cbStakeholder.addItems(DummyDataGenerator.getStakeHolderUS());
  	    hl.addComponent(cbStakeholder);   
 	    
  	    ComboBox cbSegmento = new ComboBox("Segment");
-//		for(Segmento sh : DummyDataGenerator.getSegmentos())
-//			cbSegmento.addItem(sh.getNombre());
- 	   for(String sh : DummyDataGenerator.getSegmentosUS())
-			cbSegmento.addItem(sh);
+ 	   cbSegmento.addItems(DummyDataGenerator.getSegmentosUS());
 		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Subsegment");
-	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
-	    	cbSub.addItems(sb.getNombre());
+	    cbSub.addItems(DummyDataGenerator.getSubsegmentosUS());
 	    hl.addComponent(cbSub);
 	    
 	    ComboBox cbCriticidad = new ComboBox();
 	    cbCriticidad.setCaption("Criticality");
-	    cbCriticidad.addItems(DummyDataGenerator.getCriticidades());
+	    cbCriticidad.addItems(DummyDataGenerator.getCriticidadUS());
 	    hl.addComponent(cbCriticidad);
 	    
 	    ComboBox cbActitud = new ComboBox();
 	    cbActitud.setCaption("Personal contact attitude");
-	    cbActitud.addItems(DummyDataGenerator.getActitudes());
+	    cbActitud.addItems(DummyDataGenerator.getActitudesUS());
 	    hl.addComponent(cbActitud);	  
 	    
 	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
@@ -173,7 +165,7 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
     	hl.addComponent(btnEditar);
     	
     	// Add a few other rows using shorthand addItem()
-    	tableFichas.addItem(new Object[]{"1", "Cliente", "Cliente prioritario", "C1", "Critico", "No problemático","Respondente ingresado para...", hl}, 1);
+    	tableFichas.addItem(new Object[]{"1", "Customer", "Priority Customer", "Councilors", "Critical", "Non Problematic","Respondent entered for...", hl}, 1);
 
     	// Show exactly the currently contained rows (items)
     	tableFichas.setPageLength(tableFichas.size());

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.vaadin.dialogs.ConfirmDialog;
 
 import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -152,7 +153,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			{
 				setSpacing(true);
 				ComboBox cbPatrocinador = new ComboBox();
-			    cbPatrocinador.addItems("Gerencia Marketing", "Gerencia Estudios o Investigación de Mercados", "Gerencia de Relaciones Corporativas", "Gerencia de Riesgos");
+			    cbPatrocinador.addItems(DummyDataGenerator.getTipoEstudioUS());
 			    addComponent(cbPatrocinador);
 			}
 		});
@@ -231,8 +232,8 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
     	btnEliminar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				ConfirmDialog.show(UI.getCurrent(), "Confirmar Acción:", "¿Está seguro de eliminar el riesgo seleccionado?",
-						"Eliminar", "Cancelar", new ConfirmDialog.Listener() {
+				ConfirmDialog.show(UI.getCurrent(), "Confirm Action:", "You are sure to eliminate the selected risk?",
+						"Delete", "Cancel", new ConfirmDialog.Listener() {
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
 							Notification.show("Pregunta sobre riesgo eliminada");

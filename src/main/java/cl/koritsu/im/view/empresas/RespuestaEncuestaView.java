@@ -4,13 +4,15 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -25,12 +27,6 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.domain.Segmento;
-import cl.koritsu.im.domain.Stakeholder;
-import cl.koritsu.im.domain.SubSegmento;
-import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -66,20 +62,15 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		glRoot.addComponents(cbEstudios);
 		
 		ComboBox cbStakeholder = new ComboBox("Stakeholder");
-		for(Stakeholder sh : DummyDataGenerator.getStakeHolder())
-			cbStakeholder.addItem(sh.getNombre());
+		cbStakeholder.addItems(DummyDataGenerator.getStakeHolderUS());
 		glRoot.addComponents(cbStakeholder);
 		
 		ComboBox cbSegmento = new ComboBox("Segment");
-//		for(Segmento sh : DummyDataGenerator.getSegmentos())
-//			cbSegmento.addItem(sh.getNombre());
-		 for(String sh : DummyDataGenerator.getSegmentosUS())
-			cbSegmento.addItem(sh);
+		cbSegmento.addItems(DummyDataGenerator.getSegmentosUS());
 		glRoot.addComponents(cbSegmento);
 		
 		ComboBox cbSubsegmento = new ComboBox("Subsegment");
-		for(SubSegmento sh : DummyDataGenerator.getSubsegmentos())
-			cbSubsegmento.addItem(sh.getNombre());
+		cbSubsegmento.addItems(DummyDataGenerator.getSubsegmentosUS());
 		glRoot.addComponents(cbSubsegmento);
 		
 		glRoot.addComponents(new Button("Search",FontAwesome.SEARCH));
@@ -265,13 +256,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("Simulated Result", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Reputation Model",  "", "","", new TextField(),""}, 0);
+    	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", "","", new TextField(),""}, 0);
     	ttable.addItem(new Object[]{"Knowledge",  "91%", "","", new TextField(),""}, 1);
     	ttable.addItem(new Object[]{"Relevance",  "83%", "","%", new TextField(),""}, 2);
     	ttable.addItem(new Object[]{"Personal Regard",  "38%", "","", new TextField(),""}, 3);
     	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "18%", "","", new TextField(),""}, 10);
     	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6%", "","", new TextField(),""},11);
     	ttable.addItem(new Object[]{"Renewal/Repurchase",  "9%", "","", new TextField(),""}, 12);
+    	ttable.addItem(new Object[]{"Differentiation",  "", "","", new TextField(),""}, 53);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -279,6 +271,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(10, 0);
     	ttable.setParent(11, 0);
     	ttable.setParent(12, 0);
+    	ttable.setParent(53, 0);
     	
     	ttable.addItem(new Object[]{"Corporate Reputation Index (IRC)",  "", "","", new TextField(),""}, 4);
     	ttable.addItem(new Object[]{"Emotional Dimensions",  "", "","", new TextField(),""}, 5);

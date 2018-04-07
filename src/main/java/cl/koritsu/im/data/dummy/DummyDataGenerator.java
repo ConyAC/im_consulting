@@ -365,5 +365,50 @@ public abstract class DummyDataGenerator {
 				"NGO's",
 				"Critical suppliers",
 				"Non critical suppliers");
-}
+	}
+	
+	public static List<String> getStakeHolderUS(){
+		return Arrays.asList("Asociations",
+				"Authorities",
+				"Politicians",
+				"Customer",
+				"Employees",
+				"Competitors",
+				"Communities",
+				"Citizens",
+				"Investors",
+				"Research/Education",
+				"Opinion Leaders",
+				"NGO's",
+				"Suppliers");
+	}
+	
+	public static List<String> getSubsegmentosUS(){
+		return Arrays.asList("Neighborhood meetings",
+				"Mayors",
+				"Councilors",
+				"Others in Local Government",
+				"Regional Government Authorities",
+				"SEREMIS",
+				"Ministers",
+				"Subministers",
+				"Presidency");
+	}
+	
+	public static List<String> getCriticidadUS(){
+		return Arrays.asList("Critical",
+				"Very critical",
+				"Neutral",
+				"Low criticality",
+				"Non critical",
+				"Black out");
+	}
+	
+	public static List<String> getActitudesUS() {
+		return Arrays.asList("Problematic", "Non Problematic");
+	}
+	
+	public static List<String> getTipoEstudioUS() {
+		return Arrays.asList("Marketing Management", "Studies or Market Research Management","Corporate Relations Management","Risk Management");
+	}
 }

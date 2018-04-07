@@ -110,7 +110,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    
 	    ComboBox cbTipoEstudio = new ComboBox();
 	    cbTipoEstudio.setCaption("Survey Tipe");
-	    cbTipoEstudio.addItems("Gerencia Marketing", "Gerencia Estudios o Investigación de Mercados", "Gerencia de Relaciones Corporativas", "Gerencia de Riesgos");
+	    cbTipoEstudio.addItems(DummyDataGenerator.getTipoEstudioUS());
 	    hl.addComponent(cbTipoEstudio);
 	    
 	    ComboBox cbEstado = new ComboBox();
@@ -235,7 +235,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	hl.addComponent(btnImportancia);*/
 
     	// Add a few other rows using shorthand addItem()
-    	tableEncuestas.addItem(new Object[]{"Encuesta inicio de Enero", "Gerencia Estudios", "02/01/2018", "18/02/2018", "Activa", "23", hl}, 1);
+    	tableEncuestas.addItem(new Object[]{"Survy 1 - Ilustrative", "Reseach Area", "02/01/2018", "18/02/2018", "Active", "400", hl}, 1);
     	
     	// Show exactly the currently contained rows (items)
     	tableEncuestas.setPageLength(tableEncuestas.size());
@@ -369,8 +369,10 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
-    		cbStakeholder.addItems(s.getNombre());
+    	for(String sh : DummyDataGenerator.getStakeHolderUS())
+    		cbStakeholder.addItem(sh);
+//    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
+//    		cbStakeholder.addItems(s.getNombre());
  	    hl.addComponent(cbStakeholder);
 	    
  	    ComboBox cbSegmento = new ComboBox("Segmento");
@@ -382,8 +384,10 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Sub-Segmento");
-	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
-	    	cbSub.addItems(sb.getNombre());
+//	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
+//	    	cbSub.addItems(sb.getNombre());
+	    for(String sh : DummyDataGenerator.getSubsegmentosUS())
+	    	cbSub.addItem(sh);
 	    hl.addComponent(cbSub);
 		
 	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);

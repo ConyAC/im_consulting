@@ -97,7 +97,7 @@ public class EmpresasView extends CssLayout implements View {
 	    cbRazon.addItems("Company SA", "Company1", "Company2", "Company3");
 	    hl.addComponent(cbRazon);
 	    
-	    ComboBox cbIndustria = new ComboBox("Insdustry");
+	    ComboBox cbIndustria = new ComboBox("Industry");
 		for(String sh : DummyDataGenerator.getIndustrias())
 			cbIndustria.addItem(sh);
 		hl.addComponent(cbIndustria);	  
@@ -163,7 +163,7 @@ public class EmpresasView extends CssLayout implements View {
 
     	tableEmpresas.addContainerProperty("Social Security Number", String.class, null);
     	tableEmpresas.addContainerProperty("Name",  String.class, null);
-    	tableEmpresas.addContainerProperty("Insdustry",  String.class, null);
+    	tableEmpresas.addContainerProperty("Industry",  String.class, null);
     	tableEmpresas.addContainerProperty("Principal",  String.class, null);
     	tableEmpresas.addContainerProperty("Position",  String.class, null);
     	tableEmpresas.addContainerProperty("Email",  String.class, null);
@@ -211,7 +211,7 @@ public class EmpresasView extends CssLayout implements View {
     	hl.addComponent(btnDesactivar);
     	
     	// Add a few other rows using shorthand addItem()
-    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Empresa SA", "Textil", "Juan Santander", "Gerente General", "jsantander@empresa.cl","234543123","Av. Apoquindo 233", hl}, 1);
+    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Shell Global", "Reseach Area", "Ben van Beurden", "Chief Executive Officer (CEO)", ""," +31 70 377 9111","Carel van Bylandtlaan 16, 2596 HR The Hague, The Netherlands", hl}, 1);
 
     	// Show exactly the currently contained rows (items)
     	tableEmpresas.setPageLength(tableEmpresas.size());
