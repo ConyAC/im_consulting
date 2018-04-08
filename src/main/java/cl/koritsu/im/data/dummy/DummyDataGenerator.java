@@ -815,4 +815,20 @@ public abstract class DummyDataGenerator {
 				new Respondente(399L,"Suppliers","Non critical suppliers","","Critical","Non Problematic"," "),
 				new Respondente(400L,"Suppliers","Non critical suppliers","","Low criticality","Problematic"," "));
 	}
+
+	public static List<String> getStakeholderPorcentajeImportanciaString() {
+		return Arrays.asList("4%","7%","2%","44%","6%","6%","14%","6%","4%","2%","2%","1%","2%");
+	}
+	public static List<Double> getStakeholderPorcentajeImportanciaDouble() {
+		return Arrays.asList(4d,7d,2d,44d,6d,6d,14d,6d,4d,2d,2d,1d,2d);
+	}
+
+	public static List<String> getStakeholderPonderadoImportanciaString() {
+		return Arrays.asList("9%","11%","10%","9%","11%","8%","4%","4%","5%","4%","5%","19%","1%");
+	}
+	
+	public static List<Double> getStakeholderPonderadoImportanciaDouble() {
+		return Arrays.asList(9d,11d,10d,9d,11d,8d,4d,4d,5d,4d,5d,19d,1d);
+	}
+	
 }
