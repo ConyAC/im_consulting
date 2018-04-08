@@ -333,4 +333,8 @@
 	.v-tabsheet-tabitemcell .v-caption:hover{
 		color : white !important;
 	}
+	
+	.treetable-resultado .v-table-caption-container, .v-table-header-drag{
+		border-left: 0px solid #303739 !important;
+	}
 }
