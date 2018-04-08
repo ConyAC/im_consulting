@@ -4,9 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -25,8 +22,13 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -73,10 +75,34 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		cbSubsegmento.addItems(DummyDataGenerator.getSubsegmentosUS());
 		glRoot.addComponents(cbSubsegmento);
 		
-		glRoot.addComponents(new Button("Search",FontAwesome.SEARCH));
-		glRoot.addComponents(new Button("Chart",FontAwesome.AREA_CHART));
+
+		final TabSheet tab = buildTab();
 		
-		TabSheet tab = buildTab();
+		glRoot.addComponents(new Button("Search",FontAwesome.SEARCH));
+		glRoot.addComponents(new Button("Chart",FontAwesome.AREA_CHART) {
+			{
+				addClickListener(new ClickListener() {
+					
+					@Override
+					public void buttonClick(ClickEvent event) {
+						//dependiendo de la pestaña activa, pide el grafico de un modelo u otro
+						MODELO modelo = MODELO.REPUTACION;
+						int position = tab.getTabPosition( tab.getTab( tab.getSelectedTab() ) );
+						if( position == 0 ) {
+							modelo = MODELO.REPUTACION;
+						}else if (position == 1 ) {
+							modelo = MODELO.RIESGO;
+						}else {
+							modelo = MODELO.IMPORTANCIA;
+						}
+							
+						RespuestaChartWindows resp = new RespuestaChartWindows(modelo);
+						UI.getCurrent().addWindow(resp);
+					}
+				});
+			}
+		});
+		
 		
 		glRoot.addComponent(tab,0,1,5,1);
 		glRoot.setRowExpandRatio(1, 1.0f);
