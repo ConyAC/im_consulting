@@ -4,12 +4,18 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -24,11 +30,8 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
-
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
-import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -51,7 +54,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
         
         addComponent(buildToolbar());
      	
-     	GridLayout glRoot = new GridLayout(6,10);
+     	GridLayout glRoot = new GridLayout(7,10);
      	glRoot.setSpacing(true);
 		glRoot.setMargin(true);
 		glRoot.setSizeFull();
@@ -98,6 +101,18 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 							
 						RespuestaChartWindows resp = new RespuestaChartWindows(modelo);
 						UI.getCurrent().addWindow(resp);
+					}
+				});
+			}
+		});
+		
+		glRoot.addComponents(new Button("Calculate",FontAwesome.CALCULATOR) {
+			{
+				addClickListener(new ClickListener() {
+					
+					@Override
+					public void buttonClick(ClickEvent event) {
+						buildCalcular();
 					}
 				});
 			}
@@ -211,25 +226,25 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("2017 Value", String.class, null);
     	ttable.addContainerProperty("2016 Value", String.class, null);
     	ttable.addContainerProperty("Simulate", TextField.class, null);
-    	ttable.addContainerProperty("Simulated Result", String.class, null);
+ //   	ttable.addContainerProperty("Simulated Result", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Risk Model/Index",  "", "","", new TextField(),""}, 0);
-    	ttable.addItem(new Object[]{"Risk 1",  "32%", "","", new TextField(),""}, 1);
-    	ttable.addItem(new Object[]{"Risk 2",  "7%", "","", new TextField(),""}, 2);
-    	ttable.addItem(new Object[]{"Risk 3",  "3%", "","", new TextField(),""}, 3);
-    	ttable.addItem(new Object[]{"Risk 4",  "18%", "","", new TextField(),""}, 4);
-    	ttable.addItem(new Object[]{"Risk 5",  "58%", "","", new TextField(),""}, 5);
-    	ttable.addItem(new Object[]{"Risk 6",  "8%", "","", new TextField(),""}, 6);
-    	ttable.addItem(new Object[]{"Risk 7",  "2%", "","", new TextField(),""}, 7);
-    	ttable.addItem(new Object[]{"Risk 8",  "19%", "","", new TextField(),""}, 8);
-    	ttable.addItem(new Object[]{"Risk 9",  "52%", "","", new TextField(),""}, 9);
-    	ttable.addItem(new Object[]{"Risk 10",  "36%", "","", new TextField(),""}, 10);
-    	ttable.addItem(new Object[]{"Risk 11",  "2%", "","", new TextField(),""},11);
-    	ttable.addItem(new Object[]{"Risk 12",  "35%", "","", new TextField(),""}, 12);
-    	ttable.addItem(new Object[]{"Risk 13",  "8%", "","", new TextField(),""},13);
-    	ttable.addItem(new Object[]{"Risk 14",  "5%", "","", new TextField(),""}, 14);
-    	ttable.addItem(new Object[]{"Risk 15",  "13%", "","", new TextField(),""}, 15);
+    	ttable.addItem(new Object[]{"Risk Model/Index",  "", "","", new TextField()}, 0);
+    	ttable.addItem(new Object[]{"Risk 1",  "32%", "","", new TextField()}, 1);
+    	ttable.addItem(new Object[]{"Risk 2",  "7%", "","", new TextField()}, 2);
+    	ttable.addItem(new Object[]{"Risk 3",  "3%", "","", new TextField()}, 3);
+    	ttable.addItem(new Object[]{"Risk 4",  "18%", "","", new TextField()}, 4);
+    	ttable.addItem(new Object[]{"Risk 5",  "58%", "","", new TextField()}, 5);
+    	ttable.addItem(new Object[]{"Risk 6",  "8%", "","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Risk 7",  "2%", "","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Risk 8",  "19%", "","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Risk 9",  "52%", "","", new TextField()}, 9);
+    	ttable.addItem(new Object[]{"Risk 10",  "36%", "","", new TextField()}, 10);
+    	ttable.addItem(new Object[]{"Risk 11",  "2%", "","", new TextField()},11);
+    	ttable.addItem(new Object[]{"Risk 12",  "35%", "","", new TextField()}, 12);
+    	ttable.addItem(new Object[]{"Risk 13",  "8%", "","", new TextField()},13);
+    	ttable.addItem(new Object[]{"Risk 14",  "5%", "","", new TextField()}, 14);
+    	ttable.addItem(new Object[]{"Risk 15",  "13%", "","", new TextField()}, 15);
     	
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -282,17 +297,17 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("2017 Value \nResult&nbsp;/&nbsp;Important", String.class, null);
     	ttable.addContainerProperty("2016 Value \nResult&nbsp;/&nbsp;Important", String.class, null);
     	ttable.addContainerProperty("Simulate", TextField.class, null);
-    	ttable.addContainerProperty("Simulated Result", String.class, null);
+ //   	ttable.addContainerProperty("Simulated Result", String.class, null);
 
     	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", "","", new TextField(),""}, 0);
-    	ttable.addItem(new Object[]{"Knowledge",  "91%", "","", new TextField(),""}, 1);
-    	ttable.addItem(new Object[]{"Relevance",  "83%", "","", new TextField(),""}, 2);
-    	ttable.addItem(new Object[]{"Personal Regard",  "38%", "","", new TextField(),""}, 3);
-    	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "18%", "","", new TextField(),""}, 10);
-    	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6%", "","", new TextField(),""},11);
-    	ttable.addItem(new Object[]{"Renewal/Repurchase",  "9%", "","", new TextField(),""}, 12);
-    	ttable.addItem(new Object[]{"Differentiation",  "", "","", new TextField(),""}, 53);
+    	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", "","", new TextField()}, 0);
+    	ttable.addItem(new Object[]{"Knowledge",  "91%", "","", new TextField()}, 1);
+    	ttable.addItem(new Object[]{"Relevance",  "83%", "","", new TextField()}, 2);
+    	ttable.addItem(new Object[]{"Personal Regard",  "38%", "","", new TextField()}, 3);
+    	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "18%", "","", new TextField()}, 10);
+    	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6%", "","", new TextField()},11);
+    	ttable.addItem(new Object[]{"Renewal/Repurchase",  "9%", "","", new TextField()}, 12);
+    	ttable.addItem(new Object[]{"Differentiation",  "", "","", new TextField()}, 53);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -302,14 +317,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(12, 0);
     	ttable.setParent(53, 0);
     	
-    	ttable.addItem(new Object[]{"Corporate Reputation Index (IRC)",  "", "","", new TextField(),""}, 4);
-    	ttable.addItem(new Object[]{"Emotional Dimensions",  "16% / 50%", "","", new TextField(),""}, 5);
+    	ttable.addItem(new Object[]{"Corporate Reputation Index (IRC)",  "", "","", new TextField()}, 4);
+    	ttable.addItem(new Object[]{"Emotional Dimensions",  "16% / 50%", "","", new TextField()}, 5);
     	ttable.setParent(5, 4);
-    	ttable.addItem(new Object[]{"Esteem",  "28% / 20%", "","", new TextField(),""}, 6);
-    	ttable.addItem(new Object[]{"Trust",  "21% / 20%", "","", new TextField(),""}, 7);
-    	ttable.addItem(new Object[]{"Admiration",  "22% / 20%", "","", new TextField(),""}, 8);
-    	ttable.addItem(new Object[]{"Identification",  "24% / 20%", "","", new TextField(),""}, 13);
-    	ttable.addItem(new Object[]{"Empathy",  "25% / 20%", "","", new TextField(),""}, 14);
+    	ttable.addItem(new Object[]{"Esteem",  "28% / 20%", "","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Trust",  "21% / 20%", "","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Admiration",  "22% / 20%", "","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Identification",  "24% / 20%", "","", new TextField()}, 13);
+    	ttable.addItem(new Object[]{"Empathy",  "25% / 20%", "","", new TextField()}, 14);
 
     	ttable.setParent(6, 5);
     	ttable.setParent(7, 5);
@@ -317,27 +332,27 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(13, 5);
     	ttable.setParent(14, 5);
     	
-    	ttable.addItem(new Object[]{"Rational Dimensions",  "", "","", new TextField(),""}, 9);    	
+    	ttable.addItem(new Object[]{"Rational Dimensions",  "", "","", new TextField()}, 9);    	
     	ttable.setParent(9, 4);
-     	ttable.addItem(new Object[]{"Economic dimension",  "92% / 10%", "","", new TextField(),""}, 16);
+     	ttable.addItem(new Object[]{"Economic dimension",  "92% / 10%", "","", new TextField()}, 16);
      	ttable.setParent(16, 9);   
-    	ttable.addItem(new Object[]{"Profitability",  "91% / 25%", "","", new TextField(),""}, 17);
-    	ttable.addItem(new Object[]{"Solvency",  "91% / 25%", "","", new TextField(),""}, 18);
-    	ttable.addItem(new Object[]{"Growth",  "94% / 25%", "","", new TextField(),""}, 19);
-    	ttable.addItem(new Object[]{"Market Cap",  "93% / 26%", "","", new TextField(),""}, 20);
+    	ttable.addItem(new Object[]{"Profitability",  "91% / 25%", "","", new TextField()}, 17);
+    	ttable.addItem(new Object[]{"Solvency",  "91% / 25%", "","", new TextField()}, 18);
+    	ttable.addItem(new Object[]{"Growth",  "94% / 25%", "","", new TextField()}, 19);
+    	ttable.addItem(new Object[]{"Market Cap",  "93% / 26%", "","", new TextField()}, 20);
     	
        	ttable.setParent(17, 16);
     	ttable.setParent(18, 16);
     	ttable.setParent(19, 16);
     	ttable.setParent(20, 16);    	
     	
-    	ttable.addItem(new Object[]{"Service Dimensions",  "29% / 18%", "","", new TextField(),""}, 21);
+    	ttable.addItem(new Object[]{"Service Dimensions",  "29% / 18%", "","", new TextField()}, 21);
     	ttable.setParent(21, 9); 
-    	ttable.addItem(new Object[]{"Quality",  "29% / 20%", "","", new TextField(),""}, 22);
-    	ttable.addItem(new Object[]{"Price",  "36% / 20%", "","", new TextField(),""}, 23);
-    	ttable.addItem(new Object[]{"Customer Service",  "30% / 20%", "","", new TextField(),""}, 24);
-    	ttable.addItem(new Object[]{"Custormer Satisfaction",  "32% / 20%", "","", new TextField(),""}, 25);
-    	ttable.addItem(new Object[]{"Innovation",  "24% / 20%", "","", new TextField(),""}, 26);
+    	ttable.addItem(new Object[]{"Quality",  "29% / 20%", "","", new TextField()}, 22);
+    	ttable.addItem(new Object[]{"Price",  "36% / 20%", "","", new TextField()}, 23);
+    	ttable.addItem(new Object[]{"Customer Service",  "30% / 20%", "","", new TextField()}, 24);
+    	ttable.addItem(new Object[]{"Custormer Satisfaction",  "32% / 20%", "","", new TextField()}, 25);
+    	ttable.addItem(new Object[]{"Innovation",  "24% / 20%", "","", new TextField()}, 26);
     	
     	ttable.setParent(22, 21);
     	ttable.setParent(23, 21);
@@ -346,14 +361,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(26, 21);
     	
     	
-    	ttable.addItem(new Object[]{"People Dimensions",  "58% / 17%", "","", new TextField(),""}, 27);
+    	ttable.addItem(new Object[]{"People Dimensions",  "58% / 17%", "","", new TextField()}, 27);
     	ttable.setParent(27, 9); 
-    	ttable.addItem(new Object[]{"Talent",  "56% / 17%", "","", new TextField(),""}, 28);
-    	ttable.addItem(new Object[]{"Job stability",  "56% / 17%", "","", new TextField(),""}, 29);
-    	ttable.addItem(new Object[]{"Wellness",  "61% / 17%", "","", new TextField(),""}, 30);
-    	ttable.addItem(new Object[]{"Personal incentives and compensation",  "58% / 17%", "","", new TextField(),""}, 31);
-    	ttable.addItem(new Object[]{"Equality",  "64% / 17%", "","", new TextField(),""}, 32);
-    	ttable.addItem(new Object[]{"Meritocracy",  "59% / 17%", "","", new TextField(),""}, 33);
+    	ttable.addItem(new Object[]{"Talent",  "56% / 17%", "","", new TextField()}, 28);
+    	ttable.addItem(new Object[]{"Job stability",  "56% / 17%", "","", new TextField()}, 29);
+    	ttable.addItem(new Object[]{"Wellness",  "61% / 17%", "","", new TextField()}, 30);
+    	ttable.addItem(new Object[]{"Personal incentives and compensation",  "58% / 17%", "","", new TextField()}, 31);
+    	ttable.addItem(new Object[]{"Equality",  "64% / 17%", "","", new TextField()}, 32);
+    	ttable.addItem(new Object[]{"Meritocracy",  "59% / 17%", "","", new TextField()}, 33);
     	
     	ttable.setParent(28, 27);
     	ttable.setParent(29, 27);
@@ -362,13 +377,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernability Dimensions",  "84% / 19%", "","", new TextField(),""}, 34);
+    	ttable.addItem(new Object[]{"Gobernability Dimensions",  "84% / 19%", "","", new TextField()}, 34);
     	ttable.setParent(34, 9);
-    	ttable.addItem(new Object[]{"Supplier Quality",  "90% / 18%", "","", new TextField(),""}, 35);
-    	ttable.addItem(new Object[]{"Transparency",  "76% / 20%", "","", new TextField(),""}, 36);
-    	ttable.addItem(new Object[]{"Ethics",  "84% / 20%", "","", new TextField(),""}, 37);
-    	ttable.addItem(new Object[]{"Antibribery",  "80% / 20%", "","", new TextField(),""}, 38);
-    	ttable.addItem(new Object[]{"Respect",  "80% / 21%", "","", new TextField(),""}, 39);
+    	ttable.addItem(new Object[]{"Supplier Quality",  "90% / 18%", "","", new TextField()}, 35);
+    	ttable.addItem(new Object[]{"Transparency",  "76% / 20%", "","", new TextField()}, 36);
+    	ttable.addItem(new Object[]{"Ethics",  "84% / 20%", "","", new TextField()}, 37);
+    	ttable.addItem(new Object[]{"Antibribery",  "80% / 20%", "","", new TextField()}, 38);
+    	ttable.addItem(new Object[]{"Respect",  "80% / 21%", "","", new TextField()}, 39);
     	
     	ttable.setParent(35, 34);
     	ttable.setParent(36, 34);
@@ -376,13 +391,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(38, 34);
     	ttable.setParent(39, 34);
     	
-    	ttable.addItem(new Object[]{"Leadership Dimension",  "79% / 18%", "","", new TextField(),""}, 40);
+    	ttable.addItem(new Object[]{"Leadership Dimension",  "79% / 18%", "","", new TextField()}, 40);
     	ttable.setParent(40, 9);
-    	ttable.addItem(new Object[]{"Leadership",  "80% / 20%", "","", new TextField(),""},41);
-    	ttable.addItem(new Object[]{"Faireness",  "79% / 20%", "","", new TextField(),""}, 42);
-    	ttable.addItem(new Object[]{"Management",  "71% / 20%", "","", new TextField(),""}, 43);
-    	ttable.addItem(new Object[]{"Vision",  "78% / 20%", "","", new TextField(),""}, 44);
-    	ttable.addItem(new Object[]{"Comunications",  "77% / 21%", "","", new TextField(),""}, 45);
+    	ttable.addItem(new Object[]{"Leadership",  "80% / 20%", "","", new TextField()},41);
+    	ttable.addItem(new Object[]{"Faireness",  "79% / 20%", "","", new TextField()}, 42);
+    	ttable.addItem(new Object[]{"Management",  "71% / 20%", "","", new TextField()}, 43);
+    	ttable.addItem(new Object[]{"Vision",  "78% / 20%", "","", new TextField()}, 44);
+    	ttable.addItem(new Object[]{"Comunications",  "77% / 21%", "","", new TextField()}, 45);
     	
     	ttable.setParent(41, 40);
     	ttable.setParent(42, 40);
@@ -390,14 +405,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(44, 40);
     	ttable.setParent(45, 40);
     	
-    	ttable.addItem(new Object[]{"Socially Responsible Dimensions",  "22% / 18%", "","", new TextField(),""}, 46);
+    	ttable.addItem(new Object[]{"Socially Responsible Dimensions",  "22% / 18%", "","", new TextField()}, 46);
     	ttable.setParent(46, 9);
-    	ttable.addItem(new Object[]{"Environment Friendly",  "33% / 17%", "","", new TextField(),""}, 47);
-    	ttable.addItem(new Object[]{"Energy Savings",  "26% / 17%", "","", new TextField(),""}, 48);
-    	ttable.addItem(new Object[]{"Comunity Engagement",  "35% / 17%", "","", new TextField(),""}, 49);
-    	ttable.addItem(new Object[]{"Country Engagement",  "33% / 17%", "","", new TextField(),""}, 50);
-    	ttable.addItem(new Object[]{"Inclusion",  "36% / 17%", "","", new TextField(),""}, 51);
-    	ttable.addItem(new Object[]{"Good Causes",  "30% / 17%", "","", new TextField(),""}, 52);
+    	ttable.addItem(new Object[]{"Environment Friendly",  "33% / 17%", "","", new TextField()}, 47);
+    	ttable.addItem(new Object[]{"Energy Savings",  "26% / 17%", "","", new TextField()}, 48);
+    	ttable.addItem(new Object[]{"Comunity Engagement",  "35% / 17%", "","", new TextField()}, 49);
+    	ttable.addItem(new Object[]{"Country Engagement",  "33% / 17%", "","", new TextField()}, 50);
+    	ttable.addItem(new Object[]{"Inclusion",  "36% / 17%", "","", new TextField()}, 51);
+    	ttable.addItem(new Object[]{"Good Causes",  "30% / 17%", "","", new TextField()}, 52);
     	
     	ttable.setParent(47, 46);
     	ttable.setParent(48, 46);
@@ -444,7 +459,61 @@ public class RespuestaEncuestaView extends CssLayout implements View {
         return header;
     }
     
-    public void enter(final ViewChangeEvent event) {
+	private Window buildCalcular(){    
+    	final Window window = new Window("Simulated Result");
+		VerticalLayout vl = new VerticalLayout();
+		vl.setMargin(true);
+		vl.setSpacing(true);
+		
+		window.setModal(true);
+		window.setResizable(false);
+		window.setWidth("450px");
+		window.setHeight("500px");
+		window.center();
+		
+		Table table = new Table();
+		table.setWidth("100%");
+		table.addContainerProperty("Citizens",  String.class, null);
+		table.addContainerProperty("Final", String.class, null);
+    	
+    	table.addItem(new Object[]{"IRE", "16%"}, 1);
+    	table.addItem(new Object[]{"IRR", "9%"}, 2);
+    	table.addItem(new Object[]{"IRC", "13%"}, 3);
+    	table.setPageLength(table.size());
+    	
+    	Table table2 = new Table();
+    	table2.setWidth("100%");
+		table2.addContainerProperty("General/Total",  String.class, null);
+		table2.addContainerProperty("Final", String.class, null);
+    	
+    	table2.addItem(new Object[]{"IRE", "34%"}, 1);
+    	table2.addItem(new Object[]{"IRR", "61%"}, 2);
+    	table2.addItem(new Object[]{"IRC", "45%"}, 3);
+    	table2.setPageLength(table.size());
+
+		vl.addComponent(table);
+		vl.addComponent(table2);
+		
+		Button btnCerrar = new Button("Close",FontAwesome.CLOSE);
+		btnCerrar.setDescription("Close");
+		btnCerrar.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().removeWindow(window);
+			}
+		});
+		
+		vl.addComponent(btnCerrar);
+		vl.setComponentAlignment(btnCerrar, Alignment.BOTTOM_RIGHT);
+		
+		window.setContent(vl);
+		
+		UI.getCurrent().addWindow(window);
+		
+		return window;
+    }
+	
+	public void enter(final ViewChangeEvent event) {
 
     }
 }
