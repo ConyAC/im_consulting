@@ -10,8 +10,13 @@ import com.byteowls.vaadin.chartjs.config.PieChartConfig;
 import com.byteowls.vaadin.chartjs.data.BubbleDataset;
 import com.byteowls.vaadin.chartjs.data.Dataset;
 import com.byteowls.vaadin.chartjs.data.PieDataset;
+import com.byteowls.vaadin.chartjs.options.Position;
+import com.byteowls.vaadin.chartjs.options.scale.Axis;
+import com.byteowls.vaadin.chartjs.options.scale.BaseScale;
+import com.byteowls.vaadin.chartjs.options.scale.DefaultScale;
+import com.byteowls.vaadin.chartjs.options.scale.LinearScale;
+import com.byteowls.vaadin.chartjs.options.zoom.XYMode;
 import com.byteowls.vaadin.chartjs.utils.ColorUtils;
-import com.google.gwt.event.dom.client.GestureStartHandler;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
@@ -102,20 +107,79 @@ public class RespuestaChartWindows extends Window {
 		BubbleChartConfig config = new BubbleChartConfig();
 		for (String string : DummyDataGenerator.getStakeHolderUS()) {
 			config.data()
-			.addDataset(new BubbleDataset().label(string))
-			.and();
+			.addDataset(new BubbleDataset().label(string));
 		}
-		config.options().responsive(true).title()
-				.display(true).text("G2 Stak").and().done();
 		
-		List<Double> riesgos = Arrays.asList(1d);
-		List<Double> irc = Arrays.asList(1d);
+		config.options()
+				.responsive(true)
+				.title().fontColor("#fff").display(true).text("G2 Stak")
+				.and()
+				.zoom().mode(XYMode.XY)
+				.and()
+				.scales().add(Axis.Y, 
+						new DefaultScale()
+								.display(true)
+								.ticks()
+									.display(true)
+									.fontColor("#ffff")
+									.and()
+								.scaleLabel()
+									.display(true)
+									.labelString("I. Riesgo")
+									.fontColor("#ffff")
+							.and())
+				.add(Axis.X, 
+						new DefaultScale()
+								.display(true)
+								.ticks()
+									.display(true)
+									.fontColor("#ffff")
+									.and()
+								.scaleLabel()
+									.display(true)
+									.labelString("IRC")
+									.fontColor("#ffff")
+							.and())
+				.and()
+				.pan().enabled(true)
+				.and()
+				.done();
+		
+		List<Double> riesgos = Arrays.asList(		
+		19d,
+		21d,
+		19d,
+		19d,
+		20d,
+		19d,
+		20d,
+		19d,
+		20d,
+		24d,
+		19d,
+		28d,
+		19d);
+
+		List<Double> irc = Arrays.asList(
+				80d,
+				60d,
+				79d,
+				35d,
+				45d,
+				49d,
+				27d,
+				8d,
+				93d,
+				41d,
+				49d,
+				45d,
+				64d);
 
 		int index = 0;
 		for (Dataset<?, ?> ds : config.data().getDatasets()) {
 			BubbleDataset lds = (BubbleDataset) ds;
 			lds.backgroundColor(ColorUtils.randomColor(.7));
-				lds.addData(irc.get(index), riesgos.get(index), 1d);
+			lds.addData(irc.get(index), riesgos.get(index), 8d);
 			index++;
 		}
 
@@ -124,7 +188,8 @@ public class RespuestaChartWindows extends Window {
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
 
-		chart.setWidth("60%");
+		chart.setWidth("80%");
+		chart.setHeight("90%");
 		return chart;
 	}
 
@@ -135,17 +200,74 @@ public class RespuestaChartWindows extends Window {
 			.addDataset(new BubbleDataset().label(string))
 			.and();
 		}
-		config.options().responsive(true).title()
-				.display(true).text("G1 Stak").and().done();
+		config.options().responsive(true).title().fontColor("#fff")
+				.display(true).text("G1 Stak")
+				.and()
+				.zoom().mode(XYMode.XY)
+				.and()
+				.scales().add(Axis.Y, 
+						new DefaultScale()
+								.display(true)
+								.ticks()
+									.display(true)
+									.fontColor("#ffff")
+									.and()
+								.scaleLabel()
+									.display(true)
+									.labelString("I. Reputación Corporativa (Racional)")
+									.fontColor("#ffff")
+							.and())
+				.add(Axis.X, 
+						new DefaultScale()
+								.display(true)
+								.ticks()
+									.display(true)
+									.fontColor("#ffff")
+									.and()
+								.scaleLabel()
+									.display(true)
+									.labelString("I. Reputación Corporativa (Emocional)")
+									.fontColor("#ffff")
+							.and())
+				.and()
+				.pan().enabled(true)
+				.and()
+				.done();
 		
-		List<Double> riesgos = Arrays.asList(1d);
-		List<Double> irc = Arrays.asList(1d);
+		List<Double> emocional = Arrays.asList(
+				77d,
+				61d,
+				75d,
+				8d,
+				37d,
+				4d,
+				12d,
+				8d,
+				92d,
+				28d,
+				39d,
+				35d,
+				69d);
+		List<Double> racional = Arrays.asList(
+				83d,
+				60d,
+				83d,
+				63d,
+				54d,
+				96d,
+				43d,
+				8d,
+				93d,
+				55d,
+				60d,
+				55d,
+				60d);
 
 		int index = 0;
 		for (Dataset<?, ?> ds : config.data().getDatasets()) {
 			BubbleDataset lds = (BubbleDataset) ds;
 			lds.backgroundColor(ColorUtils.randomColor(.7));
-				lds.addData(riesgos.get(index), irc.get(index), 1d);
+			lds.addData(emocional.get(index), racional.get(index), 8d);
 			index++;
 		}
 
@@ -154,7 +276,8 @@ public class RespuestaChartWindows extends Window {
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
 
-		chart.setWidth("60%");
+		chart.setWidth("80%");
+		chart.setHeight("90%");
 		return chart;
 	}
 
