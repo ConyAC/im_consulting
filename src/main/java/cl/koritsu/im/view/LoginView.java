@@ -118,17 +118,17 @@ public class LoginView extends VerticalLayout implements View {
         fields.setSpacing(true);
         fields.addStyleName("fields");
 
-        final TextField username = new TextField("Usuario");
+        final TextField username = new TextField("User");
         username.setIcon(FontAwesome.USER);
         username.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         username.setValue("admin@admin.com");
 
-        final PasswordField password = new PasswordField("Contraseña");
+        final PasswordField password = new PasswordField("Password");
         password.setIcon(FontAwesome.LOCK);
         password.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         password.setValue("123456");
 
-        signin = new Button("Ingresar");
+        signin = new Button("Enter");
         signin.setClickShortcut(KeyCode.ENTER);
         signin.focus();
 
@@ -208,7 +208,7 @@ public class LoginView extends VerticalLayout implements View {
         CssLayout labels = new CssLayout();
         labels.addStyleName("labels");
 
-        Label welcome = new Label("Bienvenido");
+        Label welcome = new Label("Welcome");
         welcome.setSizeUndefined();
         welcome.addStyleName(ValoTheme.LABEL_H4);
         welcome.addStyleName(ValoTheme.LABEL_COLORED);

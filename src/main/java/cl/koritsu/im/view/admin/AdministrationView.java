@@ -154,8 +154,8 @@ public class AdministrationView extends CssLayout implements View {
 					Notification.show("Debe seleccionar un usuario para eliminarlo");
 					return;
 				}
-				ConfirmDialog.show(UI.getCurrent(), "Confirmar Acción:", "¿Está seguro de eliminar el usuario seleccionado?",
-						"Eliminar", "Cancelar", new ConfirmDialog.Listener() {
+				ConfirmDialog.show(UI.getCurrent(), "Confirm Action:", "You are sure to delete the selected user?",
+						"Delete", "Cancel", new ConfirmDialog.Listener() {
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
 							if(user.getId() != null ) {

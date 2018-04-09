@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.vaadin.dialogs.ConfirmDialog;
 
 import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -77,7 +78,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		glRoot.setMargin(true);
 		glRoot.setWidth("100%");
 		
-		glRoot.addComponents(new Label("Nombre"));
+		glRoot.addComponents(new Label("Name"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
@@ -87,15 +88,15 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		});
 		glRoot.addComponent(new Label(""));
 		
-		glRoot.addComponents(new Label("Modelos"));
+		glRoot.addComponents(new Label("Models"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
 				OptionGroup og = new OptionGroup();
-				og.addItem("Reputación");
-				og.addItem("Riesgos");
-				og.addItem("Afinidad");
-				og.addItem("Preguntas");
+				og.addItem("Reputation");
+				og.addItem("Risk");
+				og.addItem("Affinty");
+				og.addItem("Other Questions");
 				addComponent(og);
 				
 				og.addValueChangeListener(new ValueChangeListener() {
@@ -110,7 +111,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		});
 		glRoot.addComponent(new Label(""));
 		
-		glRoot.addComponents(new Label("Periodo desde"));
+		glRoot.addComponents(new Label("Time from…"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
@@ -123,7 +124,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		Label lb1 = new Label();
 		glRoot.addComponent(lb1);
 			
-		glRoot.addComponents(new Label("Periodo hasta"));
+		glRoot.addComponents(new Label("Time to…"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
@@ -136,23 +137,23 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		Label lb2 = new Label();
 		glRoot.addComponent(lb2);
 		
-		glRoot.addComponents(new Label("Estado"));
+		glRoot.addComponents(new Label("State"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
 				ComboBox cbEstado = new ComboBox();
-				cbEstado.addItems("Activa", "Inactiva");
+				cbEstado.addItems("Active", "Inactive");
 			    addComponent(cbEstado);
 			}
 		});
 		glRoot.addComponent(new Label(""));
 		
-		glRoot.addComponents(new Label("Área Patrocinadora"));
+		glRoot.addComponents(new Label("Sponsor Area"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
 				setSpacing(true);
 				ComboBox cbPatrocinador = new ComboBox();
-			    cbPatrocinador.addItems("Gerencia Marketing", "Gerencia Estudios o Investigación de Mercados", "Gerencia de Relaciones Corporativas", "Gerencia de Riesgos");
+			    cbPatrocinador.addItems(DummyDataGenerator.getTipoEstudioUS());
 			    addComponent(cbPatrocinador);
 			}
 		});
@@ -161,16 +162,16 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
         HorizontalLayout footer = new HorizontalLayout();
         glRoot.addComponent(footer);
         
-        Button btnGuardar = new Button("Guardar");
+        Button btnGuardar = new Button("Save");
         btnGuardar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Guardar");
+				Notification.show("click Save");
 			}
 		});
         footer.addComponent(btnGuardar);
         
-        Button btnCancelar = new Button("Cancelar");
+        Button btnCancelar = new Button("Cancel");
         btnCancelar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -193,7 +194,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);   
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Editar Encuesta");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Edit Survey");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -231,8 +232,8 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
     	btnEliminar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				ConfirmDialog.show(UI.getCurrent(), "Confirmar Acción:", "¿Está seguro de eliminar el riesgo seleccionado?",
-						"Eliminar", "Cancelar", new ConfirmDialog.Listener() {
+				ConfirmDialog.show(UI.getCurrent(), "Confirm Action:", "You are sure to eliminate the selected risk?",
+						"Delete", "Cancel", new ConfirmDialog.Listener() {
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
 							Notification.show("Pregunta sobre riesgo eliminada");

@@ -48,7 +48,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @VaadinView(value = EncuestasEmpresaView.NAME, cached = true)
 public class EncuestasEmpresaView extends CssLayout implements View {
 
-	public static final String NAME = "encuestas";
+	public static final String NAME = "surveys";
 	
     Table tbEncuestas;
     String fullpath;
@@ -90,7 +90,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Encuestas");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Surveys");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -105,43 +105,43 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	hl.setMargin(true);
 	    
 	    TextField tfNombre = new TextField();
-	    tfNombre.setCaption("Nombre");
+	    tfNombre.setCaption("Name");
 	    hl.addComponent(tfNombre);
 	    
 	    ComboBox cbTipoEstudio = new ComboBox();
-	    cbTipoEstudio.setCaption("Tipo Estudio");
-	    cbTipoEstudio.addItems("Gerencia Marketing", "Gerencia Estudios o Investigación de Mercados", "Gerencia de Relaciones Corporativas", "Gerencia de Riesgos");
+	    cbTipoEstudio.setCaption("Survey Tipe");
+	    cbTipoEstudio.addItems(DummyDataGenerator.getTipoEstudioUS());
 	    hl.addComponent(cbTipoEstudio);
 	    
 	    ComboBox cbEstado = new ComboBox();
-	    cbEstado.setCaption("Estado");
-	    cbEstado.addItems("Activa", "Inactiva");
+	    cbEstado.setCaption("State");
+	    cbEstado.addItems("Active", "Inactive");
 	    hl.addComponent(cbEstado);
 	    
 	    DateField dtDesde = new DateField();
-	    dtDesde.setCaption("Trabajo de campo desde");
+	    dtDesde.setCaption("Field work from…");
 	    hl.addComponent(dtDesde);
 	    
 	    DateField dtHasta = new DateField();
-	    dtHasta.setCaption("Trabajo de campo hasta");
+	    dtHasta.setCaption("Field work to…");
 	    hl.addComponent(dtHasta);
 	    
-	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
+	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
 
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Buscar");
+				Notification.show("click Search");
 			}
 		});
 		hl.addComponent(btnFiltrar);
 		
-		Button btnAregar = new Button("Agregar",FontAwesome.CHECK);
+		Button btnAregar = new Button("Add",FontAwesome.CHECK);
 		btnAregar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Agregar");
+				Notification.show("click Add");
 			}
 		});
 		
@@ -168,19 +168,19 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	Table tableEncuestas = new Table();
     	tableEncuestas.setWidth("100%");
 
-    	tableEncuestas.addContainerProperty("Nombre", String.class, null);
-    	tableEncuestas.addContainerProperty("Área Patrocinadora",  String.class, null);
-    	tableEncuestas.addContainerProperty("Fecha inicio \ntrabajo de campo",  String.class, null);
-    	tableEncuestas.addContainerProperty("Fecha cierre \ntrabajo de campo",  String.class, null);
-    	tableEncuestas.addContainerProperty("Estado",  String.class, null);
-    	tableEncuestas.addContainerProperty("N° Respondentes",  String.class, null);
-    	tableEncuestas.addContainerProperty("Acciones",  HorizontalLayout.class, null);
+    	tableEncuestas.addContainerProperty("Name", String.class, null);
+    	tableEncuestas.addContainerProperty("Sponsor Area",  String.class, null);
+    	tableEncuestas.addContainerProperty("Initial date\nfield work",  String.class, null);
+    	tableEncuestas.addContainerProperty("End date\nfield work",  String.class, null);
+    	tableEncuestas.addContainerProperty("State",  String.class, null);
+    	tableEncuestas.addContainerProperty("Respondents Number",  String.class, null);
+    	tableEncuestas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	
     	Button btnEditar = new Button(null,FontAwesome.EDIT);
-    	btnEditar.setDescription("Editar");
+    	btnEditar.setDescription("Edit");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -224,7 +224,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 			}
 		});
     	hl.addComponent(btnAfinidad);
-    	Button btnImportancia = new Button(null,FontAwesome.TACHOMETER);
+    	/*Button btnImportancia = new Button(null,FontAwesome.TACHOMETER);
     	btnImportancia.setDescription("Importancia S.");
     	btnImportancia.addClickListener(new Button.ClickListener() {
 			
@@ -232,107 +232,10 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 				buildImportancia();
 			}
 		});
-    	hl.addComponent(btnImportancia);
-    	
-    	HorizontalLayout hl2 = new HorizontalLayout();
-    	hl2.setSpacing(true);    	
-    	Button btnEditar2 = new Button(null,FontAwesome.EDIT);
-    	btnEditar2.setDescription("Editar");
-    	btnEditar2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(EncuestaEmpresaEdit.NAME);
-			}
-		});
-    	hl2.addComponent(btnEditar2);
-    	Button btnFichas2 = new Button(null,FontAwesome.FILE_O);
-    	btnFichas2.setDescription("Fichas");
-    	btnFichas2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(FichasEncuestaEmpresaView.NAME);
-			}
-		});
-    	hl2.addComponent(btnFichas2);
-    	Button btnResultado2 = new Button(null,FontAwesome.SIMPLYBUILT);
-    	btnResultado2.setDescription("Resultado/Simulación");
-    	btnResultado2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(RespuestaEncuestaView.NAME);
-			}
-		});
-    	hl2.addComponent(btnResultado2);
-    	Button btnAfinidad2 = new Button(null,FontAwesome.SHARE_ALT);
-    	btnAfinidad2.setDescription("Afinidad");
-    	btnAfinidad2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click Afinidad");
-			}
-		});
-    	hl2.addComponent(btnAfinidad2);
-    	Button btnImportancia2 = new Button(null,FontAwesome.TACHOMETER);
-    	btnImportancia2.setDescription("Importancia S.");
-    	btnImportancia2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				buildImportancia();
-			}
-		});
-    	hl2.addComponent(btnImportancia2);
-    	
-    	HorizontalLayout hl3 = new HorizontalLayout();
-    	hl3.setSpacing(true);    	
-    	Button btnEditar3 = new Button(null,FontAwesome.EDIT);
-    	btnEditar3.setDescription("Editar");
-    	btnEditar3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(EncuestaEmpresaEdit.NAME);
-			}
-		});
-    	hl3.addComponent(btnEditar3);
-    	Button btnFichas3 = new Button(null,FontAwesome.FILE_O);
-    	btnFichas3.setDescription("Fichas");
-    	btnFichas3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(FichasEncuestaEmpresaView.NAME);
-			}
-		});
-    	hl3.addComponent(btnFichas3);
-    	Button btnResultado3 = new Button(null,FontAwesome.SIMPLYBUILT);
-    	btnResultado3.setDescription("Resultado/Simulación");
-    	btnResultado3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(RespuestaEncuestaView.NAME);
-			}
-		});
-    	hl3.addComponent(btnResultado3);
-    	Button btnAfinidad3 = new Button(null,FontAwesome.SHARE_ALT);
-    	btnAfinidad3.setDescription("Afinidad");
-    	btnAfinidad3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click Afinidad");
-			}
-		});
-    	hl3.addComponent(btnAfinidad3);
-    	Button btnImportancia3 = new Button(null,FontAwesome.TACHOMETER);
-    	btnImportancia3.setDescription("Importancia S.");
-    	btnImportancia3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				buildImportancia();
-			}
-		});
-    	hl3.addComponent(btnImportancia3);
+    	hl.addComponent(btnImportancia);*/
+
     	// Add a few other rows using shorthand addItem()
-    	tableEncuestas.addItem(new Object[]{"Encuesta inicio de Enero", "Gerencia Estudios", "02/01/2018", "18/02/2018", "Activa", "23", hl}, 1);
-    	tableEncuestas.addItem(new Object[]{"Encuesta termino de Febrero", "Gerencia Estudios", "25/02/2018", "28/02/2018", "Activa", "45", hl2}, 2);
-    	tableEncuestas.addItem(new Object[]{"Encuesta Marzo", "Gerencia de Riesgos", "01/03/2018", "27/03/2018", "Activa", "34", hl3}, 3);
+    	tableEncuestas.addItem(new Object[]{"Survy 1 - Ilustrative", "Reseach Area", "02/01/2018", "18/02/2018", "Active", "400", hl}, 1);
     	
     	// Show exactly the currently contained rows (items)
     	tableEncuestas.setPageLength(tableEncuestas.size());
@@ -466,19 +369,25 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    
     	ComboBox cbStakeholder = new ComboBox();
     	cbStakeholder.setCaption("Stakeholder");
-    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
-    		cbStakeholder.addItems(s.getNombre());
+    	for(String sh : DummyDataGenerator.getStakeHolderUS())
+    		cbStakeholder.addItem(sh);
+//    	for(Stakeholder s : DummyDataGenerator.getStakeHolder())
+//    		cbStakeholder.addItems(s.getNombre());
  	    hl.addComponent(cbStakeholder);
 	    
  	    ComboBox cbSegmento = new ComboBox("Segmento");
-		for(Segmento sh : DummyDataGenerator.getSegmentos())
-			cbSegmento.addItem(sh.getNombre());
+//		for(Segmento sh : DummyDataGenerator.getSegmentos())
+//			cbSegmento.addItem(sh.getNombre());
+ 	   for(String sh : DummyDataGenerator.getSegmentosUS())
+			cbSegmento.addItem(sh);
 		hl.addComponents(cbSegmento);
 	    
 	    ComboBox cbSub = new ComboBox();
 	    cbSub.setCaption("Sub-Segmento");
-	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
-	    	cbSub.addItems(sb.getNombre());
+//	    for(SubSegmento sb : DummyDataGenerator.getSubsegmentos())
+//	    	cbSub.addItems(sb.getNombre());
+	    for(String sh : DummyDataGenerator.getSubsegmentosUS())
+	    	cbSub.addItem(sh);
 	    hl.addComponent(cbSub);
 		
 	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);

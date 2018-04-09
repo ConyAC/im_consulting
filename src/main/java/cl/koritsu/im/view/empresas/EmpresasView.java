@@ -4,9 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.utils.Constants;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -27,13 +24,16 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import ru.xpoft.vaadin.VaadinView;
+
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(value = EmpresasView.NAME, cached = true)
 public class EmpresasView extends CssLayout implements View {
 
-	public static final String NAME = "empresas";
+	public static final String NAME = "companies";
 	
     Table tbEmpresas;
 
@@ -73,7 +73,7 @@ public class EmpresasView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Empresas");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Companies");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -88,20 +88,23 @@ public class EmpresasView extends CssLayout implements View {
     	hl.setMargin(true);
 	    
 	    TextField rut = new TextField();
-	    rut.setCaption("RUT");
+	    rut.setCaption("Social Security Number");
 	    hl.addComponent(rut);
 	    
 	    ComboBox cbRazon = new ComboBox();
-	    cbRazon.setCaption("Nombre o Razón Social");
-	    cbRazon.addItems("Empresa SA", "Empresa1", "Empresa2", "Empresa3");
+	    cbRazon.setCaption("Name");
+	    cbRazon.addItems("Company SA", "Company1", "Company2", "Company3");
 	    hl.addComponent(cbRazon);
 	    
-	    ComboBox cbIndustria = new ComboBox();
-	    cbIndustria.setCaption("Industria");
-	    cbIndustria.addItems("Automovilística", "Informática", "Farmaceutica", "Textil");
-	    hl.addComponent(cbIndustria);
+	    ComboBox cbIndustria = new ComboBox("Industry");
+		for(String sh : DummyDataGenerator.getIndustrias())
+			cbIndustria.addItem(sh);
+		hl.addComponent(cbIndustria);	  
 	    
-	    ComboBox cbRegion = new ComboBox();
+	    /*
+	     * Se comenta por motivo de presentación
+	     */
+	    /*ComboBox cbRegion = new ComboBox();
 	    cbRegion.setCaption("Región");
 	    for(String b : Constants.REGIONES) {
 	    	cbRegion.addItem(b);
@@ -113,24 +116,24 @@ public class EmpresasView extends CssLayout implements View {
 	    for(String b : Constants.COMUNAS) {
 	    	cbComuna.addItem(b);
 		}
-	    hl.addComponent(cbComuna);
+	    hl.addComponent(cbComuna);*/
 	    
-	    Button btnFiltrar = new Button("Buscar",FontAwesome.SEARCH);
+	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
 
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click filtro");
+				Notification.show("click Search");
 			}
 		});
 		hl.addComponent(btnFiltrar);
 		
-		Button btnAregar = new Button("Agregar",FontAwesome.CHECK);
+		Button btnAregar = new Button("Add",FontAwesome.CHECK);
 		btnAregar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click filtro");
+				;Notification.show("click Add");
 			}
 		});
 		
@@ -155,31 +158,30 @@ public class EmpresasView extends CssLayout implements View {
 
     private Table drawTableEmpresas() {
     	Table tableEmpresas = new Table();
-    	tableEmpresas.setWidth("100%");
 
-    	tableEmpresas.addContainerProperty("RUT", String.class, null);
-    	tableEmpresas.addContainerProperty("Razón Social",  String.class, null);
-    	tableEmpresas.addContainerProperty("Industria",  String.class, null);
-    	tableEmpresas.addContainerProperty("C. Principal",  String.class, null);
-    	tableEmpresas.addContainerProperty("Cargo",  String.class, null);
-    	tableEmpresas.addContainerProperty("Correo Electrónico",  String.class, null);
-    	tableEmpresas.addContainerProperty("Teléfono",  String.class, null);
-    	tableEmpresas.addContainerProperty("Dirección",  String.class, null);
-    	tableEmpresas.addContainerProperty("Acciones",  HorizontalLayout.class, null);
+    	tableEmpresas.addContainerProperty("Social Security Number", String.class, null);
+    	tableEmpresas.addContainerProperty("Name",  String.class, null);
+    	tableEmpresas.addContainerProperty("Industry",  String.class, null);
+    	tableEmpresas.addContainerProperty("Principal",  String.class, null);
+    	tableEmpresas.addContainerProperty("Position",  String.class, null);
+    	tableEmpresas.addContainerProperty("Email",  String.class, null);
+    	tableEmpresas.addContainerProperty("Phone",  String.class, null);
+    	tableEmpresas.addContainerProperty("Address",  String.class, null);
+    	tableEmpresas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
     	hl.setSpacing(true);
     	Button btnEditar = new Button(null,FontAwesome.EDIT);
-    	btnEditar.setDescription("Editar");
+    	btnEditar.setDescription("Edit");
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
+				Notification.show("click Edit");
 			}
 		});
     	hl.addComponent(btnEditar);
     	Button btnEstudios = new Button(null,FontAwesome.FILE);
-    	btnEstudios.setDescription("Estudios");
+    	btnEstudios.setDescription("Studies");
     	btnEstudios.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -188,109 +190,31 @@ public class EmpresasView extends CssLayout implements View {
 		});
     	hl.addComponent(btnEstudios);
     	Button btnUsuarios = new Button(null,FontAwesome.USER);
-    	btnUsuarios.setDescription("Usuarios");
+    	btnUsuarios.setDescription("Users");
     	btnUsuarios.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click usuarios");
+				Notification.show("click Users");
 			}
 		});
     	hl.addComponent(btnUsuarios);
     	Button btnDesactivar = new Button(null,FontAwesome.REMOVE);
-    	btnDesactivar.setDescription("Desactivar");
+    	btnDesactivar.setDescription("Deactivate");
     	btnDesactivar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click desactivar");
+				Notification.show("click Deactivate");
 			}
 		});
     	hl.addComponent(btnDesactivar);
     	
-    	HorizontalLayout hl2 = new HorizontalLayout();
-    	hl2.setSpacing(true);    	
-    	Button btnEditar2 = new Button(null,FontAwesome.EDIT);
-    	btnEditar2.setDescription("Editar");
-    	btnEditar2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
-			}
-		});
-    	hl2.addComponent(btnEditar2);
-    	Button btnEstudios2 = new Button(null,FontAwesome.FILE);
-    	btnEstudios2.setDescription("Estudios");
-    	btnEstudios2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
-			}
-		});
-    	hl2.addComponent(btnEstudios2);
-    	Button btnUsuarios2 = new Button(null,FontAwesome.USER);
-    	btnUsuarios2.setDescription("Usuarios");
-    	btnUsuarios2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click usuarios");
-			}
-		});
-    	hl2.addComponent(btnUsuarios2);
-    	Button btnDesactivar2 = new Button(null,FontAwesome.REMOVE);
-    	btnDesactivar2.setDescription("Desactivar");
-    	btnDesactivar2.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click desactivar");
-			}
-		});
-    	hl2.addComponent(btnDesactivar2);
-    	
-    	HorizontalLayout hl3 = new HorizontalLayout();
-    	hl3.setSpacing(true);    	
-    	Button btnEditar3 = new Button(null,FontAwesome.EDIT);
-    	btnEditar3.setDescription("Editar");
-    	btnEditar3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click editar");
-			}
-		});
-    	hl3.addComponent(btnEditar3);
-    	Button btnEstudios3 = new Button(null,FontAwesome.FILE);
-    	btnEstudios3.setDescription("Estudios");
-    	btnEstudios3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
-			}
-		});
-    	hl3.addComponent(btnEstudios3);
-    	Button btnUsuarios3 = new Button(null,FontAwesome.USER);
-    	btnUsuarios3.setDescription("Usuarios");
-    	btnUsuarios3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click usuarios");
-			}
-		});
-    	hl3.addComponent(btnUsuarios3);
-    	Button btnDesactivar3 = new Button(null,FontAwesome.REMOVE);
-    	btnDesactivar3.setDescription("Desactivar");
-    	btnDesactivar3.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click desactivar");
-			}
-		});
-    	hl3.addComponent(btnDesactivar3);
     	// Add a few other rows using shorthand addItem()
-    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Empresa SA", "Textil", "Juan Santander", "Gerente General", "jsantander@empresa.cl","234543123","Av. Apoquindo 233", hl}, 1);
-    	tableEmpresas.addItem(new Object[]{"80.000.344-0", "Company SA", "Automotriz", "Paolo Medina", "Gerente Comercial", "pmedina@empresa.cl","34656544","Av. Alameda 783", hl2}, 2);
-    	tableEmpresas.addItem(new Object[]{"76.574.874-3", "Jr SA", "Farmaceutica", "Sandra Fox", "Gerente General", "sfox@empresa.cl","234543123","Av. Las Condes 230", hl3}, 3);
+    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Shell Global", "Reseach Area", "Ben van Beurden", "Chief Executive Officer (CEO)", ""," +31 70 377 9111","Carel van Bylandtlaan 16, 2596 HR The Hague, The Netherlands", hl}, 1);
 
     	// Show exactly the currently contained rows (items)
     	tableEmpresas.setPageLength(tableEmpresas.size());
     	
+    	tableEmpresas.setWidth("100%");
     	return tableEmpresas;
 	}
         
