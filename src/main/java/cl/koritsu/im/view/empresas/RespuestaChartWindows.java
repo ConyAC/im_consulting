@@ -297,7 +297,7 @@ public class RespuestaChartWindows extends Window {
 		for (Dataset<?, ?> ds : config.data().getDatasets()) {
 			PieDataset lds = (PieDataset) ds;
 			List<Double> data = DummyDataGenerator.getStakeholderPonderadoImportanciaDouble();
-			List<String> colors = new ArrayList<>();
+			List<String> colors = new ArrayList<String>();
 			for (int i = 0; i < labels.size(); i++) {
 				colors.add(ColorUtils.randomColor(0.7));
 			}
