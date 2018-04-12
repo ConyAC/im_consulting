@@ -48,8 +48,8 @@
 	    {from: 7, to: 4, arrows:'to, from'},
 	    {from: 7, to: 8, arrows:'to, from'},
 	    {from: 7, to: 9, arrows:'to, from'},
-	    {from: 7, to: 10, arrows:'to, from'},	   
 	    {from: 8, to: 9, arrows:'to, from'},
+	    {from: 7, to: 10, arrows:'to, from'},	   
 	    {from: 10, to: 23, arrows:'to, from'},
 	    {from: 10, to: 25, arrows:'to, from'},
 	    {from: 11, to: 13, arrows:'to, from'},
@@ -74,7 +74,7 @@
 	    {from: 20, to: 29, arrows:'to, from'},
 	    {from: 23, to: 22, arrows:'to, from'},
 	    {from: 23, to: 24, arrows:'to, from'},
-	    {from: 23, to: 25, arrows:'to, from'}}
+	    {from: 23, to: 25, arrows:'to, from'}
 	  ]);
 	
 	  // create a network
