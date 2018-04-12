@@ -137,7 +137,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("IRC")
+									.labelString("CRI")
 									.fontColor("#ffff")
 							.and())
 				.and()
@@ -201,7 +201,7 @@ public class RespuestaChartWindows extends Window {
 			.and();
 		}
 		config.options().responsive(true).title().fontColor("#fff")
-				.display(true).text("G1 Stak")
+				.display(true).text("RCI: Emotional vs Rational Dimensions")
 				.and()
 				.zoom().mode(XYMode.XY)
 				.and()
@@ -214,7 +214,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("I. Reputación Corporativa (Racional)")
+									.labelString("Rational Dimensions")
 									.fontColor("#ffff")
 							.and())
 				.add(Axis.X, 
@@ -226,7 +226,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("I. Reputación Corporativa (Emocional)")
+									.labelString("Emotional Dimensions")
 									.fontColor("#ffff")
 							.and())
 				.and()

@@ -159,10 +159,10 @@ public class EmpresasView extends CssLayout implements View {
     private Table drawTableEmpresas() {
     	Table tableEmpresas = new Table();
 
-    	tableEmpresas.addContainerProperty("Social Security Number", String.class, null);
+    	tableEmpresas.addContainerProperty("Company code", String.class, null);
     	tableEmpresas.addContainerProperty("Name",  String.class, null);
     	tableEmpresas.addContainerProperty("Industry",  String.class, null);
-    	tableEmpresas.addContainerProperty("Principal",  String.class, null);
+    	tableEmpresas.addContainerProperty("Contact",  String.class, null);
     	tableEmpresas.addContainerProperty("Position",  String.class, null);
     	tableEmpresas.addContainerProperty("Email",  String.class, null);
     	tableEmpresas.addContainerProperty("Phone",  String.class, null);
@@ -209,7 +209,7 @@ public class EmpresasView extends CssLayout implements View {
     	hl.addComponent(btnDesactivar);
     	
     	// Add a few other rows using shorthand addItem()
-    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Shell Global", "Reseach Area", "Ben van Beurden", "Chief Executive Officer (CEO)", ""," +31 70 377 9111","Carel van Bylandtlaan 16, 2596 HR The Hague, The Netherlands", hl}, 1);
+    	tableEmpresas.addItem(new Object[]{"76.454.344-5", "Shell Global", "Chemicals", "Ben van Beurden", "VP Business Intelligence", ""," +31 70 377 9111","Carel van Bylandtlaan 16, 2596 HR The Hague, The Netherlands", hl}, 1);
 
     	// Show exactly the currently contained rows (items)
     	tableEmpresas.setPageLength(tableEmpresas.size());

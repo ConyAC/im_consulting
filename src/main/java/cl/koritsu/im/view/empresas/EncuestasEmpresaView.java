@@ -114,7 +114,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 	    hl.addComponent(cbTipoEstudio);
 	    
 	    ComboBox cbEstado = new ComboBox();
-	    cbEstado.setCaption("State");
+	    cbEstado.setCaption("Status");
 	    cbEstado.addItems("Active", "Inactive");
 	    hl.addComponent(cbEstado);
 	    
@@ -172,8 +172,8 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	tableEncuestas.addContainerProperty("Sponsor Area",  String.class, null);
     	tableEncuestas.addContainerProperty("Initial date\nfield work",  String.class, null);
     	tableEncuestas.addContainerProperty("End date\nfield work",  String.class, null);
-    	tableEncuestas.addContainerProperty("State",  String.class, null);
-    	tableEncuestas.addContainerProperty("Respondents Number",  String.class, null);
+    	tableEncuestas.addContainerProperty("Status",  String.class, null);
+    	tableEncuestas.addContainerProperty("Sample Number",  String.class, null);
     	tableEncuestas.addContainerProperty("Actions",  HorizontalLayout.class, null);
     	
     	HorizontalLayout hl = new HorizontalLayout();
@@ -189,7 +189,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 		});
     	hl.addComponent(btnEditar);
     	Button btnFichas = new Button(null,FontAwesome.FILE_O);
-    	btnFichas.setDescription("Fichas");
+    	btnFichas.setDescription("Respondents Forms");
     	btnFichas.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -207,7 +207,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 //		});
 //    	hl.addComponent(btnCargar);
     	Button btnResultado = new Button(null,FontAwesome.SIMPLYBUILT);
-    	btnResultado.setDescription("Resultado/Simulación");
+    	btnResultado.setDescription("Results/Simulations");
     	btnResultado.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -216,7 +216,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
 		});
     	hl.addComponent(btnResultado);
     	Button btnAfinidad = new Button(null,FontAwesome.SHARE_ALT);
-    	btnAfinidad.setDescription("Afinidad");
+    	btnAfinidad.setDescription("Affinity");
     	btnAfinidad.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -235,7 +235,7 @@ public class EncuestasEmpresaView extends CssLayout implements View {
     	hl.addComponent(btnImportancia);*/
 
     	// Add a few other rows using shorthand addItem()
-    	tableEncuestas.addItem(new Object[]{"Survy 1 - Ilustrative", "Reseach Area", "02/01/2018", "18/02/2018", "Active", "400", hl}, 1);
+    	tableEncuestas.addItem(new Object[]{"Survey 1 - Example", "Research Area", "02/01/2018", "18/02/2018", "Active", "400", hl}, 1);
     	
     	// Show exactly the currently contained rows (items)
     	tableEncuestas.setPageLength(tableEncuestas.size());

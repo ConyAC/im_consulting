@@ -331,7 +331,7 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getSegmentosUS() {
-		return Arrays.asList("Business Comunity Asociations",
+		return Arrays.asList("Total","Business Comunity Asociations",
 				"Trade Unions",
 				"Industrial Asociations",
 				"Professional Asociations",
@@ -369,7 +369,7 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getStakeHolderUS(){
-		return Arrays.asList("Asociations",
+		return Arrays.asList("Total","Asociations",
 				"Authorities",
 				"Politicians",
 				"Customer",
@@ -385,7 +385,7 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getSubsegmentosUS(){
-		return Arrays.asList("Neighborhood meetings",
+		return Arrays.asList("Total","Neighborhood meetings",
 				"Mayors",
 				"Councilors",
 				"Others in Local Government",
