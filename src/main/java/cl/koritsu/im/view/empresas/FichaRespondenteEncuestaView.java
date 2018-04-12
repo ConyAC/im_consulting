@@ -334,7 +334,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernance Dimensions",  "6", "4"}, 34);
+    	ttable.addItem(new Object[]{"Governance Dimensions",  "6", "4"}, 34);
     	ttable.setParent(34, 9);    	
     	ttable.addItem(new Object[]{"Supplier Quality",  "7", "4"},35);
     	ttable.addItem(new Object[]{"Transparency",  "6", "4"}, 36);

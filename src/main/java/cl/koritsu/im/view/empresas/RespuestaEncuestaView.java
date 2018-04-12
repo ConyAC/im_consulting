@@ -391,7 +391,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernance Dimensions",  "84% / 19%", "","", new TextField()}, 34);
+    	ttable.addItem(new Object[]{"Governance Dimensions",  "84% / 19%", "","", new TextField()}, 34);
     	ttable.setParent(34, 9);
     	ttable.addItem(new Object[]{"Supplier Quality",  "90% / 18%", "","", new TextField()}, 35);
     	ttable.addItem(new Object[]{"Transparency",  "76% / 20%", "","", new TextField()}, 36);
