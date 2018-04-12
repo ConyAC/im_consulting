@@ -167,7 +167,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     		{
     			setSizeFull();
     		}
-    	},"Affinity / Importance Model");
+    	},"Affinity / Weighing Model");
     	
 		return tab;
 	}
@@ -259,12 +259,12 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 
     	// Create the tree nodes and set the hierarchy
     	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", ""}, 0);
-    	ttable.addItem(new Object[]{"Knowledge",  "7", ""}, 1);
-    	ttable.addItem(new Object[]{"Relevance",  "6", ""}, 2);
-    	ttable.addItem(new Object[]{"Personal Regard",  "5", ""}, 3);
+    	ttable.addItem(new Object[]{"Net Awareness",  "7", ""}, 1);
+    	ttable.addItem(new Object[]{"Net Relevance",  "6", ""}, 2);
+    	ttable.addItem(new Object[]{"Net Personal Regard",  "5", ""}, 3);
     	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "7", ""}, 10);
     	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6", ""},11);
-    	ttable.addItem(new Object[]{"Renewal/Repurchase",  "5", ""}, 12);
+    	ttable.addItem(new Object[]{"Net Propensity to Repurchase",  "5", ""}, 12);
     	ttable.addItem(new Object[]{"Differentiation ",  "", ""}, 53);
 
     	ttable.setParent(1, 0);
@@ -275,7 +275,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(12, 0);
     	ttable.setParent(53, 0);
     	
-    	ttable.addItem(new Object[]{"Corporate Reputation Index (IRC)",  "5,48", ""}, 4);
+    	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  "5,48", ""}, 4);
     	ttable.addItem(new Object[]{"Emotional Dimensions",  "6", "4"}, 15);
     	ttable.setParent(15, 4);
     	ttable.addItem(new Object[]{"Esteem",  "5", "3"}, 6);
@@ -292,7 +292,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	
     	ttable.addItem(new Object[]{"Rational Dimensions",  "", ""}, 9);    	
     	ttable.setParent(9, 4);
-    	ttable.addItem(new Object[]{"Economic dimension",  "7", "1"}, 16);
+    	ttable.addItem(new Object[]{"Economic Dimensions",  "7", "1"}, 16);
     	ttable.setParent(16, 9);    	
     	ttable.addItem(new Object[]{"Profitability",  "6", "3"}, 17);
     	ttable.addItem(new Object[]{"Solvency",  "7", "3"}, 18);
@@ -334,7 +334,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernability Dimensions",  "6", "4"}, 34);
+    	ttable.addItem(new Object[]{"Gobernance Dimensions",  "6", "4"}, 34);
     	ttable.setParent(34, 9);    	
     	ttable.addItem(new Object[]{"Supplier Quality",  "7", "4"},35);
     	ttable.addItem(new Object[]{"Transparency",  "6", "4"}, 36);
@@ -362,7 +362,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(44, 40);
     	ttable.setParent(45, 40);
     	
-    	ttable.addItem(new Object[]{"Socially Responsible Dimensions",  "5", "5"}, 46);
+    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  "5", "5"}, 46);
     	ttable.setParent(46, 9);    	
     	ttable.addItem(new Object[]{"Environment Friendly",  "7", "5"}, 47);
     	ttable.addItem(new Object[]{"Energy Savings",  "7", "5"}, 48);

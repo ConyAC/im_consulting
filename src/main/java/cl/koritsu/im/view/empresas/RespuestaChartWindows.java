@@ -112,7 +112,7 @@ public class RespuestaChartWindows extends Window {
 		
 		config.options()
 				.responsive(true)
-				.title().fontColor("#fff").display(true).text("G2 Stak")
+				.title().fontColor("#fff").display(true).text("Corporate Reputation Index (CRI) vs Risk Index (RI)")
 				.and()
 				.zoom().mode(XYMode.XY)
 				.and()
@@ -125,7 +125,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("I. Riesgo")
+									.labelString("Risk Index (RI)")
 									.fontColor("#ffff")
 							.and())
 				.add(Axis.X, 
@@ -137,7 +137,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("IRC")
+									.labelString("Corporate Reputation Index (CRI)")
 									.fontColor("#ffff")
 							.and())
 				.and()
@@ -183,7 +183,7 @@ public class RespuestaChartWindows extends Window {
 			index++;
 		}
 
-		config.options().legend().labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
 
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
@@ -201,7 +201,7 @@ public class RespuestaChartWindows extends Window {
 			.and();
 		}
 		config.options().responsive(true).title().fontColor("#fff")
-				.display(true).text("G1 Stak")
+				.display(true).text("RCI: Emotional vs Rational Dimensions")
 				.and()
 				.zoom().mode(XYMode.XY)
 				.and()
@@ -214,7 +214,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("I. Reputación Corporativa (Racional)")
+									.labelString("Rational Dimensions")
 									.fontColor("#ffff")
 							.and())
 				.add(Axis.X, 
@@ -226,7 +226,7 @@ public class RespuestaChartWindows extends Window {
 									.and()
 								.scaleLabel()
 									.display(true)
-									.labelString("I. Reputación Corporativa (Emocional)")
+									.labelString("Emotional Dimensions")
 									.fontColor("#ffff")
 							.and())
 				.and()
@@ -271,7 +271,7 @@ public class RespuestaChartWindows extends Window {
 			index++;
 		}
 
-		config.options().legend().labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
 
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
@@ -286,9 +286,9 @@ public class RespuestaChartWindows extends Window {
 		config.data()
 				.labels(DummyDataGenerator.getStakeHolderUS()
 						.toArray(new String[DummyDataGenerator.getStakeHolderUS().size()]))
-				.addDataset(new PieDataset().label("Stakeholder Importance")).and();
+				.addDataset(new PieDataset().label("Respondents weight")).and();
 
-		config.options().responsive(true).title().display(true).text("Stakeholder Importance").fontColor("#fff").and()
+		config.options().responsive(true).title().display(true).text("Respondents weight").fontColor("#fff").and()
 				.animation()
 				// .animateScale(true)
 				.animateRotate(true).and().done();
@@ -305,7 +305,7 @@ public class RespuestaChartWindows extends Window {
 			lds.dataAsList(data);
 		}
 
-		config.options().legend().labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
 
 		ChartJs chart = new ChartJs(config);
 		chart.setWidth("60%");
