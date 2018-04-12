@@ -279,7 +279,7 @@ public abstract class DummyDataGenerator {
     	subsegmentos.add(subsegmento);
     	subsegmento = new SubSegmento(); subsegmento.setNombre("Gobierno Regional");subsegmento.setId(5L);
     	subsegmentos.add(subsegmento);
-    	subsegmento = new SubSegmento(); subsegmento.setNombre("SEREMIS");subsegmento.setId(6L);
+    	subsegmento = new SubSegmento(); subsegmento.setNombre("Government Regulatory Institution");subsegmento.setId(6L);
     	subsegmentos.add(subsegmento);
     	subsegmento = new SubSegmento(); subsegmento.setNombre("Ministerios");subsegmento.setId(7L);
     	subsegmentos.add(subsegmento);
@@ -331,7 +331,7 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getSegmentosUS() {
-		return Arrays.asList("Total","Business Comunity Asociations",
+		return Arrays.asList("Business Comunity Asociations",
 				"Trade Unions",
 				"Industrial Asociations",
 				"Professional Asociations",
@@ -369,7 +369,7 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getStakeHolderUS(){
-		return Arrays.asList("Total","Asociations",
+		return Arrays.asList("Asociations",
 				"Authorities",
 				"Politicians",
 				"Customer",
@@ -385,12 +385,12 @@ public abstract class DummyDataGenerator {
 	}
 	
 	public static List<String> getSubsegmentosUS(){
-		return Arrays.asList("Total","Neighborhood meetings",
+		return Arrays.asList("Neighborhood meetings",
 				"Mayors",
 				"Councilors",
 				"Others in Local Government",
 				"Regional Government Authorities",
-				"SEREMIS",
+				"Government Regulatory Institution",
 				"Ministers",
 				"Subministers",
 				"Presidency");
@@ -438,10 +438,10 @@ public abstract class DummyDataGenerator {
 				new Respondente(22L,"Authorities","Local Government","Others in Local Government","Low criticality","Non Problematic"," "),
 				new Respondente(23L,"Authorities","Regional Government","Regional Government Authorities","Black out","Problematic"," "),
 				new Respondente(24L,"Authorities","Regional Government","Regional Government Authorities","Low criticality","Problematic"," "),
-				new Respondente(25L,"Authorities","Regional Government","SEREMIS","Neutral","Problematic"," "),
-				new Respondente(26L,"Authorities","Regional Government","SEREMIS","Neutral","Problematic"," "),
-				new Respondente(27L,"Authorities","Regional Government","SEREMIS","Black out","Problematic"," "),
-				new Respondente(28L,"Authorities","Regional Government","SEREMIS","Neutral","Non Problematic"," "),
+				new Respondente(25L,"Authorities","Regional Government","Government Regulatory Institution","Neutral","Problematic"," "),
+				new Respondente(26L,"Authorities","Regional Government","Government Regulatory Institution","Neutral","Problematic"," "),
+				new Respondente(27L,"Authorities","Regional Government","Government Regulatory Institution","Black out","Problematic"," "),
+				new Respondente(28L,"Authorities","Regional Government","Government Regulatory Institution","Neutral","Non Problematic"," "),
 				new Respondente(29L,"Politicians","Representative","","Neutral","Problematic"," "),
 				new Respondente(30L,"Politicians","Representative","","Non critical","Non Problematic"," "),
 				new Respondente(31L,"Politicians","Political Parties Leaders","","Very critical","Problematic"," "),
@@ -751,7 +751,7 @@ public abstract class DummyDataGenerator {
 				new Respondente(335L,"Authorities","Local Government","Neighborhood meetings","Very critical","Problematic"," "),
 				new Respondente(336L,"Authorities","Local Government","Others in Local Government","Critical","Problematic"," "),
 				new Respondente(337L,"Authorities","Regional Government","Regional Government Authorities","Very critical","Problematic"," "),
-				new Respondente(338L,"Authorities","Regional Government","SEREMIS","Very critical","Non Problematic"," "),
+				new Respondente(338L,"Authorities","Regional Government","Government Regulatory Institution","Very critical","Non Problematic"," "),
 				new Respondente(339L,"Politicians","Representative","","Non critical","Problematic"," "),
 				new Respondente(340L,"Politicians","Political Parties Leaders","","Non critical","Non Problematic"," "),
 				new Respondente(341L,"Politicians","Senators","","Black out","Problematic"," "),

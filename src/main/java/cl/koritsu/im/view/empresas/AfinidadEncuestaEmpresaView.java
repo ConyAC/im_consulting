@@ -102,7 +102,7 @@ public static final String NAME = "afinidad";
         logo.setWidth("70px");
         header.addComponent(logo);   
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Respondent Form");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Affinity Model");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);

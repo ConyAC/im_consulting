@@ -70,17 +70,20 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
 		ComboBox cbStakeholder = new ComboBox("Stakeholder");
 		cbStakeholder.addItems(DummyDataGenerator.getStakeHolderUS());
-		cbStakeholder.select(DummyDataGenerator.getStakeHolderUS().get(0));
+		cbStakeholder.addItems("Total");
+		cbStakeholder.select("Total");
 		glRoot.addComponents(cbStakeholder);
 		
 		ComboBox cbSegmento = new ComboBox("Segment");
 		cbSegmento.addItems(DummyDataGenerator.getSegmentosUS());
-		cbSegmento.select(DummyDataGenerator.getStakeHolderUS().get(0));
+		cbSegmento.addItems("Total");
+		cbSegmento.select("Total");
 		glRoot.addComponents(cbSegmento);
 		
 		ComboBox cbSubsegmento = new ComboBox("Subsegment");
 		cbSubsegmento.addItems(DummyDataGenerator.getSubsegmentosUS());
-		cbSubsegmento.select(DummyDataGenerator.getStakeHolderUS().get(0));
+		cbSubsegmento.addItems("Total");
+		cbSubsegmento.select("Total");
 		glRoot.addComponents(cbSubsegmento);
 		
 
@@ -485,22 +488,24 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		Table table = new Table();
 		table.setWidth("100%");
 		table.addContainerProperty("Citizens",  String.class, null);
-		table.addContainerProperty("Final", String.class, null);
+		table.addContainerProperty("Actual", String.class, null);
+		table.addContainerProperty("Simulated", String.class, null);
     	
-    	table.addItem(new Object[]{"IRE", "16%"}, 1);
-    	table.addItem(new Object[]{"IRR", "9%"}, 2);
-    	table.addItem(new Object[]{"CRI", "13%"}, 3);
+    	table.addItem(new Object[]{"IRE", "8%", "16%"}, 1);
+    	table.addItem(new Object[]{"IRR", "8%", "9%"}, 2);
+    	table.addItem(new Object[]{"CRI", "8%", "13%"}, 3);
     	table.setPageLength(table.size());
     	
     	Table table2 = new Table();
     	table2.setWidth("100%");
 		table2.addContainerProperty("General/Total",  String.class, null);
-		table2.addContainerProperty("Final", String.class, null);
+		table2.addContainerProperty("Actual", String.class, null);
+		table2.addContainerProperty("Simulated", String.class, null);
     	
-    	table2.addItem(new Object[]{"IRE", "34%"}, 1);
-    	table2.addItem(new Object[]{"IRR", "61%"}, 2);
-    	table2.addItem(new Object[]{"CRI", "45%"}, 3);
-    	table2.setPageLength(table.size());
+    	table2.addItem(new Object[]{"IRE", "24%","34%"}, 1);
+    	table2.addItem(new Object[]{"IRR", "60%","61%"}, 2);
+    	table2.addItem(new Object[]{"CRI", "42%","45%"}, 3);
+    	table2.setPageLength(table2.size());
 
 		vl.addComponent(table);
 		vl.addComponent(table2);
