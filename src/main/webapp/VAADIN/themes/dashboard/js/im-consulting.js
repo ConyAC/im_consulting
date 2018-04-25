@@ -74,7 +74,7 @@
 	    {from: 20, to: 29, arrows:'to, from'},
 	    {from: 23, to: 22, arrows:'to, from'},
 	    {from: 23, to: 24, arrows:'to, from'},
-	    {from: 23, to: 25, arrows:'to, from'}}
+	    {from: 23, to: 25, arrows:'to, from'}
 	  ]);
 	
 	  // create a network
