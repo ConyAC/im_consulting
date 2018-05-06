@@ -170,7 +170,7 @@ public class EmpresasView extends CssLayout implements View {
     	btnUsuarios.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Users");
+				UI.getCurrent().getNavigator().navigateTo(UsuariosEmpresaView.NAME);
 			}
 		});
     	hl.addComponent(btnUsuarios);
