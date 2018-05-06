@@ -37,12 +37,6 @@ public class EmpresasView extends CssLayout implements View {
 	
     Table tbEmpresas;
 
-    
-//    @Autowired
-//    ValuedService service;
-//	@Autowired
-//	UserService serviceUser;
-    
     public EmpresasView() {
 	}
 
@@ -50,7 +44,6 @@ public class EmpresasView extends CssLayout implements View {
     public void init() {
         setSizeFull();
         addStyleName("schedule");
-//        ValuedEventBus.register(this);
         
         addComponent(buildToolbar());
         
@@ -101,23 +94,6 @@ public class EmpresasView extends CssLayout implements View {
 			cbIndustria.addItem(sh);
 		hl.addComponent(cbIndustria);	  
 	    
-	    /*
-	     * Se comenta por motivo de presentación
-	     */
-	    /*ComboBox cbRegion = new ComboBox();
-	    cbRegion.setCaption("Región");
-	    for(String b : Constants.REGIONES) {
-	    	cbRegion.addItem(b);
-		}
-	    hl.addComponent(cbRegion);
-	    
-	    ComboBox cbComuna = new ComboBox();
-	    cbComuna.setCaption("Comuna");
-	    for(String b : Constants.COMUNAS) {
-	    	cbComuna.addItem(b);
-		}
-	    hl.addComponent(cbComuna);*/
-	    
 	    Button btnFiltrar = new Button("Search",FontAwesome.SEARCH);
 	    btnFiltrar.addClickListener(new Button.ClickListener() {
 			
@@ -133,7 +109,7 @@ public class EmpresasView extends CssLayout implements View {
 		btnAregar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				;Notification.show("click Add");
+				UI.getCurrent().getNavigator().navigateTo(EmpresaEdit.NAME);
 			}
 		});
 		
@@ -176,7 +152,7 @@ public class EmpresasView extends CssLayout implements View {
     	btnEditar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click Edit");
+				UI.getCurrent().getNavigator().navigateTo(EmpresaEdit.NAME);
 			}
 		});
     	hl.addComponent(btnEditar);

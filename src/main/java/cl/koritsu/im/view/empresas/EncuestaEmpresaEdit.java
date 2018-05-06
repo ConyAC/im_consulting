@@ -51,13 +51,6 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 	public static final String NAME = "editarencuestas";
 	
     Table tbFichas;
-    VerticalLayout vlayout;
-
-    
-//    @Autowired
-//    ValuedService service;
-//	@Autowired
-//	UserService serviceUser;
     
     public EncuestaEmpresaEdit() {
 	}
@@ -65,10 +58,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
     @PostConstruct
     public void init() {
     	
-    	vlayout = new VerticalLayout();
-        setSizeFull();
         addStyleName("schedule");
-//        ValuedEventBus.register(this);
         
         addComponent(buildToolbar());
      	
