@@ -1,20 +1,57 @@
 package cl.koritsu.im.view.empresas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
+import org.tepi.filtertable.FilterTable;
+import org.vaadin.dialogs.ConfirmDialog;
 
 import ru.xpoft.vaadin.VaadinView;
 
+import com.vaadin.data.Validator.InvalidValueException;
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup.CommitEvent;
+import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
+import com.vaadin.data.fieldgroup.FieldGroup.CommitHandler;
+import com.vaadin.data.fieldgroup.FieldGroup.FieldGroupInvalidValueException;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Field;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.domain.Usuario;
+import cl.koritsu.im.domain.enums.EstadoUsuario;
+import cl.koritsu.im.utils.Utils;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -22,16 +59,13 @@ import com.vaadin.ui.themes.ValoTheme;
 @VaadinView(value = UsuariosEmpresaView.NAME, cached = true)
 public class UsuariosEmpresaView extends CssLayout implements View {
 
-	public static final String NAME = "encuestas";
+	public static final String NAME = "usuariosEmpresa";
 	
-    Table tbEmpresas;
+    FilterTable usersTable;
+    FormLayout detailLayout;
+    BeanFieldGroup<Usuario> fieldGroup = new BeanFieldGroup<Usuario>(Usuario.class);
+    BeanItemContainer<Usuario> userContainer = new BeanItemContainer<Usuario>(Usuario.class);
 
-    
-//    @Autowired
-//    ValuedService service;
-//	@Autowired
-//	UserService serviceUser;
-    
     public UsuariosEmpresaView() {
 	}
 
@@ -39,10 +73,20 @@ public class UsuariosEmpresaView extends CssLayout implements View {
     public void init() {
         setSizeFull();
         addStyleName("schedule");
-//        ValuedEventBus.register(this);
         
         addComponent(buildToolbar());
         
+        HorizontalSplitPanel hsp = new HorizontalSplitPanel();
+     	hsp.setSizeFull();
+     	
+     	addComponent(hsp);
+     	
+     	VerticalLayout usersListLayout = drawUsers();
+     	hsp.addComponent(usersListLayout);
+     	
+     	VerticalLayout usersDetailLayout = drawUserDetail();	
+		hsp.addComponent(usersDetailLayout);
+
      
 
     }
@@ -53,7 +97,13 @@ public class UsuariosEmpresaView extends CssLayout implements View {
         header.setSpacing(true);
         Responsive.makeResponsive(header);
 
-        Label title = new Label("Usuarios");
+        Image logo = new Image();
+        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setHeight("76px");
+        logo.setWidth("70px");
+        header.addComponent(logo);
+        
+        Label title = new Label("COEVOLUTION IM CONSULTING > Company > Usuarios");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -61,7 +111,244 @@ public class UsuariosEmpresaView extends CssLayout implements View {
         
         return header;
     }
+    
+    private VerticalLayout drawUsers() {		
+		VerticalLayout vl = new VerticalLayout();
+		vl.setSpacing(true);
+		vl.setMargin(true);
+		vl.setSizeFull();
+		
+		//botones agrega y eliminar
+		HorizontalLayout hl = new HorizontalLayout();
+		hl.setSpacing(true);
+		vl.addComponent(hl);
+		vl.setComponentAlignment(hl, Alignment.BOTTOM_LEFT);
+				
+		Button agregaUsuario = new Button("Agregar Usuario",FontAwesome.PLUS);
+		agregaUsuario.addClickListener(new Button.ClickListener() {
+			
+			private static final long serialVersionUID = 3844920778615955739L;
+
+			public void buttonClick(ClickEvent event) {
+				
+				detailLayout.setEnabled(true);
+				Usuario user = new Usuario();
+				user.setNombres("Nuevo Usuario");
+				user.setApellidoPaterno("");
+				user.setEmail("");
+				user.setEstadoUsuario(EstadoUsuario.HABILITADO);
+				user.setTasador(Boolean.FALSE);
+				
+		        fieldGroup.setItemDataSource(new BeanItem<Usuario>(user));				
+			}
+		});
+		hl.addComponent(agregaUsuario);
+		
+		Button borrarUsuario = new Button(null,FontAwesome.TRASH_O);
+		borrarUsuario.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				//recupera el elemento seleccionado
+				final Usuario user = (Usuario) usersTable.getValue();
+				if(user == null){
+					Notification.show("Debe seleccionar un usuario para eliminarlo");
+					return;
+				}
+				ConfirmDialog.show(UI.getCurrent(), "Confirm Action:", "You are sure to delete the selected user?",
+						"Delete", "Cancel", new ConfirmDialog.Listener() {
+					public void onClose(ConfirmDialog dialog) {
+						if (dialog.isConfirmed()) {
+							if(user.getId() != null ) {
+//								service.deshabilitarUsuario(user);
+								userContainer.removeItem(user);				
+								setUser(userContainer.getItem( userContainer.firstItemId() ));
+							}
+						}
+					}
+				});	
+				
+			}
+		});
+		
+		hl.addComponent(borrarUsuario);
+		
+		usersTable =  drawTableUsers();
+		vl.addComponent(usersTable);
+		vl.setExpandRatio(usersTable, 1.0f);
+		
+		return vl;
+	}
+    
+    private void setUser(BeanItem<Usuario> userItem){		
+		//obtiene el vertical Layout
+		if(userItem == null){
+			detailLayout.setEnabled(false);
+			return;
+		}
+		
+        usersTable.select(userItem.getBean());	
+		detailLayout.setEnabled(true);		
+		userItem.getBean().setContrasena(null);
+		userItem.getBean().setContrasena2(null);
+		// We need an item data source before we create the fields to be able to
+        // find the properties, otherwise we have to specify them by hand
+        fieldGroup.setItemDataSource(userItem);
+		
+	}
+    
+
+    private FilterTable drawTableUsers() {
+		FilterTable usersTable =  new FilterTable();
+		userContainer.addNestedContainerProperty("rol.nombre");		
+		usersTable.setContainerDataSource(userContainer);
+		usersTable.setSizeFull();
+		usersTable.setFilterBarVisible(true);
+		usersTable.setVisibleColumns("nombres","apellidoPaterno","rol.nombre","estadoUsuario");
+		usersTable.setColumnHeaders("Nombre","Apellido","Perfil","Estado");
+		usersTable.setSelectable(true);
+		
+		usersTable.addItemClickListener(new ItemClickListener() {
+			
+			public void itemClick(ItemClickEvent event) {
+				setUser((BeanItem<Usuario>)event.getItem());
+			}
+		});
+		
+		return usersTable;
+	}
+    
+    private VerticalLayout drawUserDetail() {		
+		VerticalLayout vl = new VerticalLayout();
+		vl.setSpacing(true);
+		vl.setMargin(true);
+		vl.setSizeFull();
+		
+        Button btnSave = new Button("Guardar",new Button.ClickListener() {
+
+        	public void buttonClick(ClickEvent event) {
+        		try {
+        			fieldGroup.commit();
+        			Usuario user = fieldGroup.getItemDataSource().getBean();
+        			boolean isNew = user.getId() == null;
+//        			serviceUser.saveUser(user);
+        			
+        			if(isNew){
+	        			BeanItem<Usuario> userItem = userContainer.addBean(user);
+	        			setUser(userItem);
+        			}
+        			
+        			fieldGroup.getField("contrasena").setValue(null);
+        			fieldGroup.getField("contrasena2").setValue(null);
+        			Notification.show("Usuario guardado correctamente",Type.TRAY_NOTIFICATION);
+        		} catch (CommitException e) {
+        			Utils.validateEditor("usuario detail",e);
+        		}
+
+        	}
+        }){{
+        	setIcon(FontAwesome.SAVE);
+        }};
         
+        vl.addComponent(btnSave);
+        vl.setComponentAlignment(btnSave, Alignment.TOP_LEFT);
+		
+		detailLayout = new FormLayout();
+		detailLayout.setEnabled(false);
+		detailLayout.setMargin(true);
+		detailLayout.setSpacing(true);
+		
+		Panel p = new Panel(detailLayout);
+		p.setSizeFull();
+		vl.addComponent(p);
+		vl.setExpandRatio(p, 1.0f);
+        
+        // Loop through the properties, build fields for them and add the fields
+        // to this UI
+        for (Object propertyId : new String[]{"nombres","apellidoPaterno","apellidoMaterno","email","estadoUsuario","rol","contrasena","contrasena2","tasador"}) {
+        	if(propertyId.equals("male"))
+        		;
+        	else if(propertyId.equals("contrasena")){
+        		PasswordField pf = new PasswordField("Contraseña");
+        		pf.setNullRepresentation("");
+        		detailLayout.addComponent(pf);
+        		fieldGroup.bind(pf, propertyId);
+        		pf.setWidth("100%");
+        		pf.setValue(null);
+        	}else if(propertyId.equals("contrasena2")){
+        		PasswordField pf2 = new PasswordField("Confirmar Contraseña");
+        		pf2.setNullRepresentation("");
+        		pf2.setWidth("100%");
+        		detailLayout.addComponent(pf2);
+        		fieldGroup.bind(pf2, propertyId);
+        		pf2.setValue(null);
+        	}else if(propertyId.equals("estadoUsuario")){
+        		ComboBox statusField = new ComboBox("Estado");
+        		for(EstadoUsuario us : EstadoUsuario.values()){
+        			statusField.addItem(us);
+        		}
+        		statusField.setWidth("100%");
+        		detailLayout.addComponent(statusField);
+        		fieldGroup.bind(statusField, "estadoUsuario");
+        	}else if(propertyId.equals("tasador")){
+        		OptionGroup continuarField = new OptionGroup("¿Es Tasador?");
+        		continuarField.addItem(Boolean.TRUE);
+        		continuarField.addItem(Boolean.FALSE);
+        		continuarField.setItemCaption(Boolean.TRUE, "Si");
+        		continuarField.setItemCaption(Boolean.FALSE, "No");        
+        		continuarField.setImmediate(true);
+        		continuarField.addStyleName("horizontal");
+        		continuarField.setWidth("100%");
+        		detailLayout.addComponent(continuarField);
+        		fieldGroup.bind(continuarField, "tasador");
+        	}else{
+        		Field<?> field = fieldGroup.buildAndBind(propertyId);
+        		field.setWidth("100%");
+        		detailLayout.addComponent(field);
+        	}
+        }
+        		
+		fieldGroup.addCommitHandler(new CommitHandler() {
+			
+			public void preCommit(CommitEvent commitEvent) throws CommitException {
+				
+			}
+			
+			public void postCommit(CommitEvent commitEvent) throws CommitException {
+				
+				Long id = fieldGroup.getItemDataSource().getBean().getId();
+				//si es un nuevo usuario, valida que no exista un usuario con el mismo email
+				if( id == null ){
+					Field<?> email = fieldGroup.getField("email");					
+//					Usuario user = service.findUsuarioByUsername((String)email.getValue());
+//					if(user != null ){
+//						Map<Field<?>,InvalidValueException> map = new HashMap<Field<?>,InvalidValueException>();
+//						map.put(email, new InvalidValueException("Ya existe un usuario con el mismo email."));
+//						throw new FieldGroupInvalidValueException(map);
+//					}
+				}
+				
+				//antes de comitear revisa que los passwords sean iguales si alguno es distinto de null
+				Field<?> pf = fieldGroup.getField("contrasena");
+				Field<?> pf2 = fieldGroup.getField("contrasena2");
+				
+				//	creacion debe validar que venga seteado el password y además coincida, en edicion solo deben coincidir
+				if(  id == null && pf.getValue() == null ){
+					Map<Field<?>,InvalidValueException> map = new HashMap<Field<?>,InvalidValueException>();
+					map.put(pf, new InvalidValueException("El password es requerido para crear el usuario."));
+					throw new FieldGroupInvalidValueException(map);
+				}
+				if( pf.getValue() != null || pf2.getValue() != null ){
+					if(!pf.getValue().equals(pf2.getValue())){
+						Map<Field<?>,InvalidValueException> map = new HashMap<Field<?>,InvalidValueException>();
+						map.put(pf, new InvalidValueException("Los passwords deben coincidir"));
+						throw new FieldGroupInvalidValueException(map);
+					}
+				}
+			}
+		});
+				
+		return vl;
+	} 
 
     public void enter(final ViewChangeEvent event) {
 

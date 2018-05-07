@@ -284,6 +284,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>im-consulting</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
