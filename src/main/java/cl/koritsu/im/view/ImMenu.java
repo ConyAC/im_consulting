@@ -171,7 +171,7 @@ public final class ImMenu extends CustomComponent {
 //		            menuItemsLayout.addComponent(menuItemComponent);
 //	            }
 	            
-	            if (view == ImViewType.ADMINISTRATION && SecurityHelper.hasPermission(Permiso.ADMINISTRACION)) {
+	            if (view == ImViewType.ADMINISTRATION) {
 	                administrationBadge = new Label();
 	                administrationBadge.setId(STYLE_VISIBLE);
 	                menuItemComponent = buildBadgeWrapper(menuItemComponent,

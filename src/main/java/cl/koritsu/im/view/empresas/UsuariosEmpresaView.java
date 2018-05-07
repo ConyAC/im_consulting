@@ -42,6 +42,7 @@ import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
@@ -49,6 +50,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
 
+import cl.koritsu.im.domain.Rol;
 import cl.koritsu.im.domain.Usuario;
 import cl.koritsu.im.domain.enums.EstadoUsuario;
 import cl.koritsu.im.utils.Utils;
@@ -59,13 +61,14 @@ import cl.koritsu.im.utils.Utils;
 @VaadinView(value = UsuariosEmpresaView.NAME, cached = true)
 public class UsuariosEmpresaView extends CssLayout implements View {
 
-	public static final String NAME = "usuariosEmpresa";
+	public static final String NAME = "businessusers";
 	
     FilterTable usersTable;
     FormLayout detailLayout;
     BeanFieldGroup<Usuario> fieldGroup = new BeanFieldGroup<Usuario>(Usuario.class);
     BeanItemContainer<Usuario> userContainer = new BeanItemContainer<Usuario>(Usuario.class);
-
+    BeanItemContainer<Rol> rolContainer = new BeanItemContainer<Rol>(Rol.class);
+    
     public UsuariosEmpresaView() {
 	}
 
@@ -103,7 +106,7 @@ public class UsuariosEmpresaView extends CssLayout implements View {
         logo.setWidth("70px");
         header.addComponent(logo);
         
-        Label title = new Label("COEVOLUTION IM CONSULTING > Company > Usuarios");
+        Label title = new Label("COEVOLUTION IM CONSULTING > Company > Users");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H1);
         title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
@@ -124,7 +127,7 @@ public class UsuariosEmpresaView extends CssLayout implements View {
 		vl.addComponent(hl);
 		vl.setComponentAlignment(hl, Alignment.BOTTOM_LEFT);
 				
-		Button agregaUsuario = new Button("Agregar Usuario",FontAwesome.PLUS);
+		Button agregaUsuario = new Button("Add User",FontAwesome.PLUS);
 		agregaUsuario.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
@@ -133,7 +136,7 @@ public class UsuariosEmpresaView extends CssLayout implements View {
 				
 				detailLayout.setEnabled(true);
 				Usuario user = new Usuario();
-				user.setNombres("Nuevo Usuario");
+				user.setNombres("New User");
 				user.setApellidoPaterno("");
 				user.setEmail("");
 				user.setEstadoUsuario(EstadoUsuario.HABILITADO);
@@ -203,8 +206,8 @@ public class UsuariosEmpresaView extends CssLayout implements View {
 		usersTable.setContainerDataSource(userContainer);
 		usersTable.setSizeFull();
 		usersTable.setFilterBarVisible(true);
-		usersTable.setVisibleColumns("nombres","apellidoPaterno","rol.nombre","estadoUsuario");
-		usersTable.setColumnHeaders("Nombre","Apellido","Perfil","Estado");
+		usersTable.setVisibleColumns("rut","apellidoPaterno","email","rol.nombre","estadoUsuario");
+		usersTable.setColumnHeaders("RUT","Name","Email","Profile","Status");
 		usersTable.setSelectable(true);
 		
 		usersTable.addItemClickListener(new ItemClickListener() {
@@ -223,7 +226,7 @@ public class UsuariosEmpresaView extends CssLayout implements View {
 		vl.setMargin(true);
 		vl.setSizeFull();
 		
-        Button btnSave = new Button("Guardar",new Button.ClickListener() {
+        Button btnSave = new Button("Save",new Button.ClickListener() {
 
         	public void buttonClick(ClickEvent event) {
         		try {
@@ -264,47 +267,57 @@ public class UsuariosEmpresaView extends CssLayout implements View {
         
         // Loop through the properties, build fields for them and add the fields
         // to this UI
-        for (Object propertyId : new String[]{"nombres","apellidoPaterno","apellidoMaterno","email","estadoUsuario","rol","contrasena","contrasena2","tasador"}) {
-        	if(propertyId.equals("male"))
-        		;
-        	else if(propertyId.equals("contrasena")){
-        		PasswordField pf = new PasswordField("Contraseña");
-        		pf.setNullRepresentation("");
-        		detailLayout.addComponent(pf);
-        		fieldGroup.bind(pf, propertyId);
-        		pf.setWidth("100%");
-        		pf.setValue(null);
-        	}else if(propertyId.equals("contrasena2")){
-        		PasswordField pf2 = new PasswordField("Confirmar Contraseña");
-        		pf2.setNullRepresentation("");
-        		pf2.setWidth("100%");
-        		detailLayout.addComponent(pf2);
-        		fieldGroup.bind(pf2, propertyId);
-        		pf2.setValue(null);
-        	}else if(propertyId.equals("estadoUsuario")){
-        		ComboBox statusField = new ComboBox("Estado");
-        		for(EstadoUsuario us : EstadoUsuario.values()){
-        			statusField.addItem(us);
-        		}
-        		statusField.setWidth("100%");
-        		detailLayout.addComponent(statusField);
-        		fieldGroup.bind(statusField, "estadoUsuario");
-        	}else if(propertyId.equals("tasador")){
-        		OptionGroup continuarField = new OptionGroup("¿Es Tasador?");
-        		continuarField.addItem(Boolean.TRUE);
-        		continuarField.addItem(Boolean.FALSE);
-        		continuarField.setItemCaption(Boolean.TRUE, "Si");
-        		continuarField.setItemCaption(Boolean.FALSE, "No");        
-        		continuarField.setImmediate(true);
-        		continuarField.addStyleName("horizontal");
-        		continuarField.setWidth("100%");
-        		detailLayout.addComponent(continuarField);
-        		fieldGroup.bind(continuarField, "tasador");
-        	}else{
-        		Field<?> field = fieldGroup.buildAndBind(propertyId);
-        		field.setWidth("100%");
-        		detailLayout.addComponent(field);
-        	}
+		  for (Object propertyId : new String[]{"rut","nombres","rol","email","contrasena","contrasena2","telefonoFijo"}) {
+			  if(propertyId.equals("male"))
+	        		;
+	        	else if(propertyId.equals("nombres")){
+		    		TextField pf2 = new TextField("Name");
+		    		pf2.setNullRepresentation("");
+		    		pf2.setWidth("100%");
+		    		detailLayout.addComponent(pf2);
+		    		fieldGroup.bind(pf2, propertyId);
+		    		pf2.setValue(null);
+	        	}else if(propertyId.equals("rut")){
+	        		TextField pf2 = new TextField("RUT");
+		    		pf2.setNullRepresentation("");
+		    		pf2.setWidth("100%");
+		    		detailLayout.addComponent(pf2);
+		    		fieldGroup.bind(pf2, propertyId);
+		    		pf2.setValue(null);
+	        	}else if(propertyId.equals("rol")){
+	        		ComboBox cb = new ComboBox("Profile",rolContainer);
+	        		cb.setItemCaptionMode(ItemCaptionMode.PROPERTY);
+	        		cb.setItemCaptionPropertyId("nombre");
+	        		cb.setWidth("100%");
+	        		fieldGroup.bind(cb, propertyId);
+					cb.setContainerDataSource(rolContainer);				
+	        		detailLayout.addComponent(cb);
+	        	}else if(propertyId.equals("contrasena")){
+	        		PasswordField pf = new PasswordField("Password");
+	        		pf.setNullRepresentation("");
+	        		detailLayout.addComponent(pf);
+	        		fieldGroup.bind(pf, propertyId);
+	        		pf.setWidth("100%");
+	        		pf.setValue(null);
+	        	}else if(propertyId.equals("contrasena2")){
+	        		PasswordField pf2 = new PasswordField("Confirm Password");
+	        		pf2.setNullRepresentation("");
+	        		pf2.setWidth("100%");
+	        		detailLayout.addComponent(pf2);
+	        		fieldGroup.bind(pf2, propertyId);
+	        		pf2.setValue(null);
+	        	}else if(propertyId.equals("telefonoFijo")){
+	        		TextField pf2 = new TextField("Phone");
+		    		pf2.setNullRepresentation("");
+		    		pf2.setWidth("100%");
+		    		detailLayout.addComponent(pf2);
+		    		fieldGroup.bind(pf2, propertyId);
+		    		pf2.setValue(null);
+	        	}else{
+	        		Field<?> field = fieldGroup.buildAndBind(propertyId);
+	        		field.setWidth("100%");
+	        		detailLayout.addComponent(field);
+	        	}
         }
         		
 		fieldGroup.addCommitHandler(new CommitHandler() {

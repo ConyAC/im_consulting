@@ -55,8 +55,8 @@ public class UserService implements UserDetailsService {
 			Rol role = new Rol();
 			role.setNombre("Super Administrador");
 			Set<Permiso> perm = new HashSet<Permiso>();	
-			perm.add(Permiso.TASAR_BIEN);
-			perm.add(Permiso.VISAR_TASACION);
+//			perm.add(Permiso.TASAR_BIEN);
+//			perm.add(Permiso.VISAR_TASACION);
 			repRol.save(role);
 			logger.debug("guardando role "+role);
 			

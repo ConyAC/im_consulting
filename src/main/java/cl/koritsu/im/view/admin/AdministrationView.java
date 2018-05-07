@@ -9,6 +9,13 @@ import org.springframework.context.annotation.Scope;
 import org.tepi.filtertable.FilterTable;
 import org.vaadin.dialogs.ConfirmDialog;
 
+import ru.xpoft.vaadin.VaadinView;
+import cl.koritsu.im.domain.Rol;
+import cl.koritsu.im.domain.Usuario;
+import cl.koritsu.im.domain.enums.EstadoUsuario;
+import cl.koritsu.im.domain.enums.Permiso;
+import cl.koritsu.im.utils.Utils;
+
 import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitEvent;
@@ -34,8 +41,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TabSheet;
@@ -45,20 +52,13 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-import cl.koritsu.im.domain.Rol;
-import cl.koritsu.im.domain.Usuario;
-import cl.koritsu.im.domain.enums.EstadoUsuario;
-import cl.koritsu.im.domain.enums.Permiso;
-import cl.koritsu.im.utils.Utils;
-import ru.xpoft.vaadin.VaadinView;
-
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(value = AdministrationView.NAME, cached = true)
 public class AdministrationView extends CssLayout implements View {
 
-	public static final String NAME = "administrador";
+	public static final String NAME = "administration";
 	
     BeanFieldGroup<Usuario> fieldGroup = new BeanFieldGroup<Usuario>(Usuario.class);
 	BeanFieldGroup<Rol> rolFieldGroup = new BeanFieldGroup<Rol>(Rol.class);
@@ -91,7 +91,7 @@ public class AdministrationView extends CssLayout implements View {
         
      	HorizontalSplitPanel hsp = new HorizontalSplitPanel();
      	hsp.setSizeFull();
-     	tabs.addTab(hsp,"Usuarios");
+     	tabs.addTab(hsp,"Users");
      		
      	VerticalLayout usersListLayout = drawUsers();
      	hsp.addComponent(usersListLayout);
@@ -101,7 +101,7 @@ public class AdministrationView extends CssLayout implements View {
 
 		hsp = new HorizontalSplitPanel();
 		hsp.setSizeFull();
-		tabs.addTab(hsp,"Perfiles");
+		tabs.addTab(hsp,"Profiles");
 		
 		VerticalLayout roleListLayout = drawRoles();
 		hsp.addComponent(roleListLayout);
@@ -122,7 +122,7 @@ public class AdministrationView extends CssLayout implements View {
 		vl.addComponent(hl);
 		vl.setComponentAlignment(hl, Alignment.BOTTOM_LEFT);
 				
-		Button agregaUsuario = new Button("Agregar Usuario",FontAwesome.PLUS);
+		Button agregaUsuario = new Button("Add User",FontAwesome.PLUS);
 		agregaUsuario.addClickListener(new Button.ClickListener() {
 			
 			private static final long serialVersionUID = 3844920778615955739L;
@@ -131,7 +131,7 @@ public class AdministrationView extends CssLayout implements View {
 				
 				detailLayout.setEnabled(true);
 				Usuario user = new Usuario();
-				user.setNombres("Nuevo Usuario");
+				user.setNombres("New User");
 				user.setApellidoPaterno("");
 				user.setEmail("");
 				user.setEstadoUsuario(EstadoUsuario.HABILITADO);
@@ -183,8 +183,8 @@ public class AdministrationView extends CssLayout implements View {
 		usersTable.setContainerDataSource(userContainer);
 		usersTable.setSizeFull();
 		usersTable.setFilterBarVisible(true);
-		usersTable.setVisibleColumns("nombres","apellidoPaterno","rol.nombre","estadoUsuario");
-		usersTable.setColumnHeaders("Nombre","Apellido","Perfil","Estado");
+		usersTable.setVisibleColumns("rut","apellidoPaterno","email","rol.nombre","estadoUsuario");
+		usersTable.setColumnHeaders("RUT","Name","Email","Profile","Status");
 		usersTable.setSelectable(true);
 		
 		usersTable.addItemClickListener(new ItemClickListener() {
@@ -203,7 +203,7 @@ public class AdministrationView extends CssLayout implements View {
 		vl.setMargin(true);
 		vl.setSizeFull();
 		
-        Button btnSave = new Button("Guardar",new Button.ClickListener() {
+        Button btnSave = new Button("Save",new Button.ClickListener() {
 
         	public void buttonClick(ClickEvent event) {
         		try {
@@ -244,11 +244,25 @@ public class AdministrationView extends CssLayout implements View {
         
         // Loop through the properties, build fields for them and add the fields
         // to this UI
-        for (Object propertyId : new String[]{"nombres","apellidoPaterno","apellidoMaterno","email","estadoUsuario","rol","contrasena","contrasena2","tasador"}) {
+        for (Object propertyId : new String[]{"rut","nombres","rol","email","contrasena","contrasena2","telefonoFijo"}) {
         	if(propertyId.equals("male"))
         		;
-        	else if(propertyId.equals("rol")){
-        		ComboBox cb = new ComboBox("Perfil",rolContainer);
+        	else if(propertyId.equals("nombres")){
+	    		TextField pf2 = new TextField("Name");
+	    		pf2.setNullRepresentation("");
+	    		pf2.setWidth("100%");
+	    		detailLayout.addComponent(pf2);
+	    		fieldGroup.bind(pf2, propertyId);
+	    		pf2.setValue(null);
+        	}else if(propertyId.equals("rut")){
+        		TextField pf2 = new TextField("RUT");
+	    		pf2.setNullRepresentation("");
+	    		pf2.setWidth("100%");
+	    		detailLayout.addComponent(pf2);
+	    		fieldGroup.bind(pf2, propertyId);
+	    		pf2.setValue(null);
+        	}else if(propertyId.equals("rol")){
+        		ComboBox cb = new ComboBox("Profile",rolContainer);
         		cb.setItemCaptionMode(ItemCaptionMode.PROPERTY);
         		cb.setItemCaptionPropertyId("nombre");
         		cb.setWidth("100%");
@@ -256,38 +270,26 @@ public class AdministrationView extends CssLayout implements View {
 				cb.setContainerDataSource(rolContainer);				
         		detailLayout.addComponent(cb);
         	}else if(propertyId.equals("contrasena")){
-        		PasswordField pf = new PasswordField("Contraseña");
+        		PasswordField pf = new PasswordField("Password");
         		pf.setNullRepresentation("");
         		detailLayout.addComponent(pf);
         		fieldGroup.bind(pf, propertyId);
         		pf.setWidth("100%");
         		pf.setValue(null);
         	}else if(propertyId.equals("contrasena2")){
-        		PasswordField pf2 = new PasswordField("Confirmar Contraseña");
+        		PasswordField pf2 = new PasswordField("Confirm Password");
         		pf2.setNullRepresentation("");
         		pf2.setWidth("100%");
         		detailLayout.addComponent(pf2);
         		fieldGroup.bind(pf2, propertyId);
         		pf2.setValue(null);
-        	}else if(propertyId.equals("estadoUsuario")){
-        		ComboBox statusField = new ComboBox("Estado");
-        		for(EstadoUsuario us : EstadoUsuario.values()){
-        			statusField.addItem(us);
-        		}
-        		statusField.setWidth("100%");
-        		detailLayout.addComponent(statusField);
-        		fieldGroup.bind(statusField, "estadoUsuario");
-        	}else if(propertyId.equals("tasador")){
-        		OptionGroup continuarField = new OptionGroup("¿Es Tasador?");
-        		continuarField.addItem(Boolean.TRUE);
-        		continuarField.addItem(Boolean.FALSE);
-        		continuarField.setItemCaption(Boolean.TRUE, "Si");
-        		continuarField.setItemCaption(Boolean.FALSE, "No");        
-        		continuarField.setImmediate(true);
-        		continuarField.addStyleName("horizontal");
-        		continuarField.setWidth("100%");
-        		detailLayout.addComponent(continuarField);
-        		fieldGroup.bind(continuarField, "tasador");
+        	}else if(propertyId.equals("telefonoFijo")){
+        		TextField pf2 = new TextField("Phone");
+	    		pf2.setNullRepresentation("");
+	    		pf2.setWidth("100%");
+	    		detailLayout.addComponent(pf2);
+	    		fieldGroup.bind(pf2, propertyId);
+	    		pf2.setValue(null);
         	}else{
         		Field<?> field = fieldGroup.buildAndBind(propertyId);
         		field.setWidth("100%");
@@ -377,7 +379,7 @@ public class AdministrationView extends CssLayout implements View {
 		vl.addComponent(hl);
 		vl.setComponentAlignment(hl, Alignment.BOTTOM_LEFT);
 				
-		Button btnAddRole = new Button("Agregar Perfil",FontAwesome.PLUS);
+		Button btnAddRole = new Button("Add Profile",FontAwesome.PLUS);
 		btnAddRole.addClickListener(new Button.ClickListener() {
 
 			private static final long serialVersionUID = 3844920778615955739L;
@@ -385,7 +387,7 @@ public class AdministrationView extends CssLayout implements View {
 			public void buttonClick(ClickEvent event) {
 				rolDetailLayout.setEnabled(true);
 				Rol rol = new Rol();
-				rol.setNombre("Nuevo Perfil");				
+				rol.setNombre("New Profile");				
 		        rolFieldGroup.setItemDataSource(new BeanItem<Rol>(rol));				
 			}
 		});
@@ -516,7 +518,7 @@ public class AdministrationView extends CssLayout implements View {
         	if(propertyId.equals("id")){
         		;
         	} else if(propertyId.equals("descripcion")){
-        		TextArea txArea = new TextArea("Descripción");
+        		TextArea txArea = new TextArea("Description");
         		txArea.setWidth("100%");
         		txArea.setNullRepresentation("");
         		rolFieldGroup.bind(txArea, propertyId);
@@ -530,7 +532,7 @@ public class AdministrationView extends CssLayout implements View {
         	}
         }
         
-        tcsPermissions = new TwinColSelect("Asignar Permisos");
+        tcsPermissions = new TwinColSelect("Assign Permissions");
         for(Permiso per : Permiso.values())
         	tcsPermissions.addItem(per);
         tcsPermissions.setNullSelectionAllowed(true);
