@@ -4,15 +4,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 import org.vaadin.dialogs.ConfirmDialog;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-
+import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
@@ -21,6 +20,8 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -31,16 +32,19 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Upload.Receiver;
 import com.vaadin.ui.Upload.SucceededEvent;
 import com.vaadin.ui.Upload.SucceededListener;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -51,6 +55,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 	public static final String NAME = "editarencuestas";
 	
     Table tbFichas;
+    CompartirEncuestaWindow compartirWindow = new CompartirEncuestaWindow();
     
     public EncuestaEmpresaEdit() {
 	}
@@ -58,10 +63,47 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
     @PostConstruct
     public void init() {
     	
+    	setSizeFull();
         addStyleName("schedule");
         
         addComponent(buildToolbar());
-     	
+        
+        addComponent(new Panel("Study",buildInformacionEncuesta()) {
+        	{
+        		setSizeFull();
+        	}
+        });
+        
+        addComponent(buildFooter());
+		
+    }
+    
+    private Component buildFooter() {
+        HorizontalLayout footer = new HorizontalLayout();
+        
+        Button btnGuardar = new Button("Save");
+        btnGuardar.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				Notification.show("click Save");
+			}
+		});
+        footer.addComponent(btnGuardar);
+        
+        Button btnCancelar = new Button("Cancel");
+        btnCancelar.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
+			}
+		});
+        footer.addComponent(btnCancelar); 
+        return footer;
+
+	}
+
+	private Component buildInformacionEncuesta() {
+
      	GridLayout glRoot = new GridLayout(3,10);
      	addComponent(glRoot);
      	glRoot.setSpacing(true);
@@ -74,29 +116,6 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 				setSpacing(true);
 				TextField tf = new TextField();
 				addComponents(tf);
-			}
-		});
-		glRoot.addComponent(new Label(""));
-		
-		glRoot.addComponents(new Label("Models"));
-		glRoot.addComponent(new HorizontalLayout(){
-			{
-				setSpacing(true);
-				OptionGroup og = new OptionGroup();
-				og.addItem("Reputation");
-				og.addItem("Risk");
-				og.addItem("Affinty");
-				og.addItem("Other Questions");
-				addComponent(og);
-				
-				og.addValueChangeListener(new ValueChangeListener() {
-					
-					@Override
-					public void valueChange(ValueChangeEvent event) {
-						String opcion= (String)event.getProperty().getValue();
-						System.out.println("opcion: "+opcion);
-					}
-				});
 			}
 		});
 		glRoot.addComponent(new Label(""));
@@ -127,6 +146,81 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		Label lb2 = new Label();
 		glRoot.addComponent(lb2);
 		
+		glRoot.addComponents(new Label("Access level"));
+		glRoot.addComponents(new Label(""));
+		glRoot.addComponents(new Label(""));
+
+		//nivel de acceso
+		CheckBox checkAuth = new CheckBox("Private study");
+		glRoot.addComponent(checkAuth);
+		
+		final Button btnCompartir = new Button("Share to users",FontAwesome.SHARE);
+		btnCompartir.setVisible(false);
+		btnCompartir.addClickListener(new Button.ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+					UI.getCurrent().addWindow(compartirWindow);
+			}
+		});
+		glRoot.addComponent(btnCompartir);
+		
+		checkAuth.addValueChangeListener(new ValueChangeListener() {
+			
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				btnCompartir.setVisible((boolean) event.getProperty().getValue());
+			}
+		});
+		
+		glRoot.addComponents(new Label(""));
+
+		glRoot.addComponents(new Label("Models"));
+		glRoot.addComponent(new VerticalLayout(){
+			{
+				setSpacing(true);
+				OptionGroup og1 = new OptionGroup();
+				og1.setMultiSelect(true);
+				og1.addItem("Reputation");
+				
+				addComponent(og1);
+
+				final HorizontalLayout hl = new HorizontalLayout();
+				hl.setVisible(false);
+				Upload fileUpload1 = new  Upload();
+				fileUpload1.setCaption("Examinar");
+				hl.addComponent(fileUpload1);
+				hl.addComponent(new Button("Resetear resultados") {{addStyleName("link");}});
+				hl.addComponent(new Button("Descargar resultados") {{addStyleName("link");}});
+				
+				og1.addValueChangeListener(new Property.ValueChangeListener() {
+					
+					@Override
+					public void valueChange(ValueChangeEvent event) {
+						hl.setVisible( event.getProperty().getValue().equals("Reputation") );
+					}
+				});
+				addComponent(hl);
+				
+				OptionGroup og = new OptionGroup();
+				og.setMultiSelect(true);
+				og.addItem("Risk");
+				og.addItem("Affinty");
+				og.addItem("Other Questions");
+				addComponent(og);
+				
+				og.addValueChangeListener(new ValueChangeListener() {
+					
+					@Override
+					public void valueChange(ValueChangeEvent event) {
+						Set opcion= (Set)event.getProperty().getValue();
+						System.out.println("opcion: "+opcion);
+					}
+				});
+			}
+		});
+		glRoot.addComponent(new Label(""));
+		
 		glRoot.addComponents(new Label("State"));
 		glRoot.addComponent(new HorizontalLayout(){
 			{
@@ -148,41 +242,20 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			}
 		});
 		glRoot.addComponent(new Label(""));
-		
-        HorizontalLayout footer = new HorizontalLayout();
-        glRoot.addComponent(footer);
-        
-        Button btnGuardar = new Button("Save");
-        btnGuardar.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				Notification.show("click Save");
-			}
-		});
-        footer.addComponent(btnGuardar);
-        
-        Button btnCancelar = new Button("Cancel");
-        btnCancelar.addClickListener(new Button.ClickListener() {
-			
-			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().getNavigator().navigateTo(EncuestasEmpresaView.NAME);
-			}
-		});
-        footer.addComponent(btnCancelar);       
+		return glRoot;
+	}
 
-    }
-    
-    private Component buildToolbar() {
+	private Component buildToolbar() {
         HorizontalLayout header = new HorizontalLayout();
         header.addStyleName("viewheader");
         header.setSpacing(true);
         Responsive.makeResponsive(header);
-        
+
         Image logo = new Image();
         logo.setSource(new ThemeResource("img/logo_im_gris.png"));
         logo.setHeight("76px");
         logo.setWidth("70px");
-        header.addComponent(logo);   
+        header.addComponent(logo);
         
         Label title = new Label("COEVOLUTION IM CONSULTING > Edit Survey");
         title.setSizeUndefined();

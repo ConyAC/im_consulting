@@ -25,7 +25,7 @@ public class Usuario {
     private String apellidoPaterno = "";
     private String apellidoMaterno = "";
     private boolean male;
-    @Email(message="El email es inv�lido.")
+    @Email(message="El email es inválido.")
     private String email = "";
     private String rut ;
     
