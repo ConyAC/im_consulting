@@ -59,7 +59,7 @@ public class EmpresaEdit extends CssLayout implements View {
 		hl.setWidth("100%");
 		hl.setMargin(true);
 		
-		Button btn1 = new Button("Aceptar");
+		final Button btn1 = new Button("Aceptar");
 		btn1.addClickListener(new ClickListener() {
 			
 			@Override
@@ -68,7 +68,7 @@ public class EmpresaEdit extends CssLayout implements View {
 			}
 		});
 		
-		Button btn2 = new Button("Cancelar");
+		final Button btn2 = new Button("Cancelar");
 		btn2.addClickListener(new ClickListener() {
 			
 			@Override
@@ -113,7 +113,7 @@ public class EmpresaEdit extends CssLayout implements View {
 	 
 	 
     private Component buildContactoEmpresa() {
-    	GridLayout glLayout = new GridLayout(4,2);
+    	final GridLayout glLayout = new GridLayout(4,2);
 		glLayout.setWidth("100%");
 		glLayout.setMargin(true);
 		glLayout.setSpacing(true);
@@ -170,7 +170,7 @@ public class EmpresaEdit extends CssLayout implements View {
 
 
 	private Component buildDatosEmpresa() {
-		GridLayout glLayout = new GridLayout(4,3);
+		final GridLayout glLayout = new GridLayout(4,3);
 		
 		glLayout.setWidth("100%");
 		glLayout.setMargin(true);

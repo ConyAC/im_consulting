@@ -169,7 +169,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				btnCompartir.setVisible((boolean) event.getProperty().getValue());
+				btnCompartir.setVisible((Boolean) event.getProperty().getValue());
 			}
 		});
 		
