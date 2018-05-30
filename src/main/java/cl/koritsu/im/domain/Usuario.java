@@ -25,8 +25,9 @@ public class Usuario {
     private String apellidoPaterno = "";
     private String apellidoMaterno = "";
     private boolean male;
-    @Email(message="El email es inv·lido.")
+    @Email(message="El email es inv√°lido.")
     private String email = "";
+    private String rut ;
     
     @Convert(converter = EstadoUsuarioConverter.class)
     @Column(name = "estadoUsuario", nullable=false)
@@ -169,6 +170,14 @@ public class Usuario {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public String getRut() {
+		return rut;
+	}
+
+	public void setRut(String rut) {
+		this.rut = rut;
 	}
 
 	public String getFullname(){

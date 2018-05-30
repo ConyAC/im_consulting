@@ -8,12 +8,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.domain.Segmento;
-import cl.koritsu.im.domain.Stakeholder;
-import cl.koritsu.im.domain.SubSegmento;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -41,6 +35,9 @@ import com.vaadin.ui.Upload.SucceededListener;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component

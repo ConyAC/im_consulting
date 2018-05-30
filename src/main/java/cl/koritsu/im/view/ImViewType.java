@@ -11,9 +11,9 @@ import com.vaadin.server.Resource;
 
 public enum ImViewType {
     /*DASHBOARD(DashboardView.NAME, DashboardView.class, FontAwesome.PIE_CHART, true), */
-    ADMINISTRATION(AdministrationView.NAME/*"Administración"*/, AdministrationView.class, FontAwesome.GEAR, false),
     EMPRESAS(EmpresasView.NAME/*"Empresas"*/, EmpresasView.class, FontAwesome.BUILDING, false),
-    ESTUDIOS(EncuestasEmpresaView.NAME/*"Encuestas"*/, EncuestasEmpresaView.class, FontAwesome.FILE, false);
+    ESTUDIOS(EncuestasEmpresaView.NAME/*"Encuestas"*/, EncuestasEmpresaView.class, FontAwesome.FILE, false),
+    ADMINISTRATION(AdministrationView.NAME/*"Administración"*/, AdministrationView.class, FontAwesome.GEAR, false);
     
     private final String viewName;
     private final Class<? extends View> viewClass;
