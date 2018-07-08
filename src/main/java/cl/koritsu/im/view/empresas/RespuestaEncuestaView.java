@@ -1,11 +1,15 @@
 package cl.koritsu.im.view.empresas;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
 import ru.xpoft.vaadin.VaadinView;
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
 import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
 
 import com.vaadin.navigator.View;
@@ -24,6 +28,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
@@ -161,6 +166,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     		}
     	},"Affinity / Weighing Model");
     	
+    	VerticalLayout brand = buildBrand();
+    	tab.addTab(new Panel(brand) {
+    		{
+    			setSizeFull();
+    		}
+    	}, "Brand Asset & Loyalty Model");
+    	
 		return tab;
 	}
     
@@ -171,6 +183,8 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	TreeTable ttable = new TreeTable();
     	
     	ttable.setStyleName("treetable-resultado-afinidad");
+    	
+    	ttable.setColumnCollapsingAllowed(true);
     	
     	ttable.setSizeFull();
     	ttable.addContainerProperty("Index/Question", String.class, null);
@@ -224,6 +238,49 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		vl.setExpandRatio(respondenteTable, 1.0f);
 		return vl;
 	}
+	
+	private VerticalLayout buildBrand() {
+		VerticalLayout vl = new VerticalLayout();
+    	vl.setSizeFull();
+    	
+    	Table table = new Table();
+    	
+    	table.setStyleName("treetable-resultado");
+    	
+    	table.setColumnCollapsingAllowed(true);
+    	
+    	table.setSizeFull();
+    	table.addContainerProperty("Index/Question", String.class, null);
+    	table.addContainerProperty("2018 Performance / Important", ProgressBar.class, null);
+    	table.addContainerProperty("2017 Performance / Important", String.class, null);
+    	table.addContainerProperty("2016 Performance / Important", String.class, null);
+    	table.addContainerProperty("Simulate", TextField.class, null);
+    	
+    	Map<String, ProgressBar> items = new LinkedHashMap<String, ProgressBar>();
+    	items.put("Net Awareness", new ProgressBar(0.91f));
+    	items.put("Net Relevance", new ProgressBar(0.83f));
+    	items.put("Net Personal Regard", new ProgressBar(0.38f));
+    	items.put("Net Promoter Score (NPS)", new ProgressBar(0.18f));
+    	items.put("Net Effort Score (NES)", new ProgressBar(0.06f));
+    	items.put("Net Propensity to Repurchase", new ProgressBar(0.09f));
+    	items.put("Differentiation", null);
+    	
+    	int i = 1;
+    	for (Map.Entry<String, ProgressBar> item : items.entrySet()) {
+    		ProgressBar progressBar = item.getValue();
+    		
+    		if(progressBar != null) {
+    			progressBar.setSizeFull();
+    			progressBar.setImmediate(true);
+    			progressBar.setVisible(true);
+    		}
+    		
+            table.addItem(new Object[]{item.getKey(), progressBar, "","", new TextField()}, i++);
+    	}
+    	
+    	vl.addComponents(table);
+		return vl;
+	}
 
 	private VerticalLayout buildRiesgos() {
 		VerticalLayout vl = new VerticalLayout();
@@ -232,6 +289,8 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	TreeTable ttable = new TreeTable();
     	
     	ttable.setStyleName("treetable-resultado-riesgos");
+    	
+    	ttable.setColumnCollapsingAllowed(true);
     	
     	ttable.setSizeFull();
     	ttable.addContainerProperty("Index/Question", String.class, null);
@@ -302,6 +361,8 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	TreeTable ttable = new TreeTable();
     	
     	ttable.setStyleName("treetable-resultado");
+    	
+    	ttable.setColumnCollapsingAllowed(true);
 		
 //    	ttable.setWidth("100%");
     	ttable.setSizeFull();
@@ -312,24 +373,6 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("2016 Performance&nbsp;/&nbsp;Important", String.class, null);
     	ttable.addContainerProperty("Simulate", TextField.class, null);
  //   	ttable.addContainerProperty("Simulated Result", String.class, null);
-
-    	// Create the tree nodes and set the hierarchy
-    	ttable.addItem(new Object[]{"Brand Asset & Loyalty Model",  "", "","", new TextField()}, 0);
-    	ttable.addItem(new Object[]{"Net Awareness",  "91%", "","", new TextField()}, 1);
-    	ttable.addItem(new Object[]{"Net Relevance",  "83%", "","", new TextField()}, 2);
-    	ttable.addItem(new Object[]{"Net Personal Regard",  "38%", "","", new TextField()}, 3);
-    	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "18%", "","", new TextField()}, 10);
-    	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6%", "","", new TextField()},11);
-    	ttable.addItem(new Object[]{"Net Propensity to Repurchase",  "9%", "","", new TextField()}, 12);
-    	ttable.addItem(new Object[]{"Differentiation",  "", "","", new TextField()}, 53);
-
-    	ttable.setParent(1, 0);
-    	ttable.setParent(2, 0);
-    	ttable.setParent(3, 0);
-    	ttable.setParent(10, 0);
-    	ttable.setParent(11, 0);
-    	ttable.setParent(12, 0);
-    	ttable.setParent(53, 0);
     	
     	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  "", "","", new TextField()}, 4);
     	ttable.addItem(new Object[]{"Emotional Dimensions",  "16% / 50%", "","", new TextField()}, 5);
@@ -459,7 +502,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
         Responsive.makeResponsive(header);
         
         Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
         logo.setHeight("76px");
         logo.setWidth("70px");
         header.addComponent(logo);   

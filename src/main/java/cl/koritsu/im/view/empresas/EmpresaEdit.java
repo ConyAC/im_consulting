@@ -26,6 +26,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 
+import cl.koritsu.im.utils.Constants;
 import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
@@ -97,7 +98,7 @@ public class EmpresaEdit extends CssLayout implements View {
 	        Responsive.makeResponsive(header);
 
 	        Image logo = new Image();
-	        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+	        logo.setSource(new ThemeResource(Constants.LOGO_URL));
 	        logo.setHeight("76px");
 	        logo.setWidth("70px");
 	        header.addComponent(logo);

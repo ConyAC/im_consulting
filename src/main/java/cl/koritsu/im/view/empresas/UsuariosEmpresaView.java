@@ -53,6 +53,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import cl.koritsu.im.domain.Rol;
 import cl.koritsu.im.domain.Usuario;
 import cl.koritsu.im.domain.enums.EstadoUsuario;
+import cl.koritsu.im.utils.Constants;
 import cl.koritsu.im.utils.Utils;
 
 @SuppressWarnings("serial")
@@ -101,7 +102,7 @@ public class UsuariosEmpresaView extends CssLayout implements View {
         Responsive.makeResponsive(header);
 
         Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
         logo.setHeight("76px");
         logo.setWidth("70px");
         header.addComponent(logo);

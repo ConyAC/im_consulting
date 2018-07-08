@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 
 import ru.xpoft.vaadin.VaadinView;
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -389,7 +390,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
         Responsive.makeResponsive(header);
         
         Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
         logo.setHeight("76px");
         logo.setWidth("70px");
         header.addComponent(logo);   
