@@ -243,6 +243,27 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			}
 		});
 		glRoot.addComponent(new Label(""));
+		
+		glRoot.addComponents(new Label("First Percentage"));
+		glRoot.addComponent(new HorizontalLayout(){
+			{
+				setSpacing(true);
+				TextField tf = new TextField();
+				addComponents(tf);
+			}
+		});
+		glRoot.addComponent(new Label(""));
+		
+		glRoot.addComponents(new Label("Second Percentage"));
+		glRoot.addComponent(new HorizontalLayout(){
+			{
+				setSpacing(true);
+				TextField tf = new TextField();
+				addComponents(tf);
+			}
+		});
+		glRoot.addComponent(new Label(""));
+		
 		return glRoot;
 	}
 
