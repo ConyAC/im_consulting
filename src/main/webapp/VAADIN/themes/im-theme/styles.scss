@@ -1,0 +1,26 @@
+@import "im-theme.scss";
+
+.im-theme {
+  @include im-theme;
+}
+
+.v-progressbar.first-range .v-progressbar-indicator {
+	background-color: #DF013A;
+	background-image: -webkit-linear-gradient(top, #DF013A 2%, #DF013A 98%);
+	background-image: linear, to bottom, #DF013A 2%, #DF013A 98%;
+	border-color: #DF013A;
+}
+
+.v-progressbar.second-range .v-progressbar-indicator {
+	background-color: #F7FE2E;
+	background-image: -webkit-linear-gradient(top, #F7FE2E 2%, #F7FE2E 98%);
+	background-image: linear, to bottom, #F7FE2E 2%, #F7FE2E 98%;
+	border-color: #F7FE2E;
+}
+
+.v-progressbar.third-range .v-progressbar-indicator {
+	background-color: #31B404;
+	background-image: -webkit-linear-gradient(top, #31B404 2%, #31B404 98%);
+	background-image: linear, to bottom, #31B404 2%, #31B404 98%;
+	border-color: #31B404;
+}

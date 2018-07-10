@@ -44,6 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
 import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
@@ -242,6 +243,27 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			}
 		});
 		glRoot.addComponent(new Label(""));
+		
+		glRoot.addComponents(new Label("First Percentage"));
+		glRoot.addComponent(new HorizontalLayout(){
+			{
+				setSpacing(true);
+				TextField tf = new TextField();
+				addComponents(tf);
+			}
+		});
+		glRoot.addComponent(new Label(""));
+		
+		glRoot.addComponents(new Label("Second Percentage"));
+		glRoot.addComponent(new HorizontalLayout(){
+			{
+				setSpacing(true);
+				TextField tf = new TextField();
+				addComponents(tf);
+			}
+		});
+		glRoot.addComponent(new Label(""));
+		
 		return glRoot;
 	}
 
@@ -252,7 +274,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
         Responsive.makeResponsive(header);
 
         Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
         logo.setHeight("76px");
         logo.setWidth("70px");
         header.addComponent(logo);

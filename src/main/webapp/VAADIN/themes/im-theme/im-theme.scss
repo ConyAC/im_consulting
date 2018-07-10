@@ -1,0 +1,5 @@
+@import "../valo/valo.scss";
+
+@mixin im-theme {
+  @include valo;
+}

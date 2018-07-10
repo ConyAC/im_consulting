@@ -104,5 +104,9 @@ public final class Constants {
 		"Magallanes Y De La Antártica Chilena",
 		"Metropolitana De Santiago"
 	};
-
+	
+	public static final String LOGO_URL = "img/logo_im.png";
+	
+	public static final float FIRST_RANGE_TOP = 0.7f;
+	public static final float SECOND_RANGE_TOP = 0.9f;
 }

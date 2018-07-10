@@ -48,7 +48,7 @@ import cl.koritsu.im.view.empresas.EmpresasView;
 
 @org.springframework.stereotype.Component
 @Scope("prototype")
-@Theme("dashboard")
+@Theme("im-theme")
 @Widgetset("cl.koritsu.im.ImWidgetSet")
 @Title("Stakeholder Managment TI")
 @SuppressWarnings("serial")

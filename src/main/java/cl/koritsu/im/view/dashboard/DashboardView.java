@@ -32,6 +32,7 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.component.SparklineChart;
+import cl.koritsu.im.utils.Constants;
 import cl.koritsu.im.view.dashboard.DashboardEdit.DashboardEditListener;
 import ru.xpoft.vaadin.VaadinView;
 
@@ -117,7 +118,7 @@ public final class DashboardView extends Panel implements View,
         header.setSpacing(true);
         
         Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_im_gris.png"));
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
         logo.setHeight("76px");
         logo.setWidth("70px");
         header.addComponent(logo);
