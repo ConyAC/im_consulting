@@ -179,10 +179,10 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 		tableFichas.setContainerDataSource(ds);
 
 		tableFichas.setVisibleColumns("id", "stakeholder", "segmento", "subsegmento", "criticidad", "actitud",
-				"observacion", "actions");
+				"type","observacion", "actions");
 
 		tableFichas.setColumnHeaders("ID Respondent", "Stakeholder", "Segment", "Subsegment", "Criticality",
-				"Personal contact attitude", "Observation", "Actions");
+				"Personal contact attitude","Type", "Observation", "Actions");
 		// Add a few other rows using shorthand addItem()
 		// tableFichas.addItem(new Object[]{"1", "Customer", "Priority Customer",
 		// "Councilors", "Critical", "Non Problematic","Respondent entered for...", hl},
