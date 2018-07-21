@@ -11,7 +11,10 @@ import ru.xpoft.vaadin.VaadinView;
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
 import cl.koritsu.im.utils.Constants;
 import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
+import cl.koritsu.im.view.empresas.RespuestaChartWindows.STAKEHOLDER;
 
+import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -30,6 +33,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
@@ -48,6 +52,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 	
     Table tbFichas;
     Button btnChart = new Button("Chart",FontAwesome.AREA_CHART);
+    TabSheet tab = null;
     
     public RespuestaEncuestaView() {
 	}
@@ -74,12 +79,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		//cbEstudios.addItem("Importance");
 		//glRoot.addComponents(cbEstudios);
 		
+		tab = buildTab(STAKEHOLDER.OTHERS);
+				
 		ComboBox cbStakeholder = new ComboBox("Stakeholder");
 		cbStakeholder.addItems(DummyDataGenerator.getStakeHolderUS());
 		cbStakeholder.addItems("Total");
 		cbStakeholder.select("Total");
 		glRoot.addComponents(cbStakeholder);
-		
+				
 		ComboBox cbSegmento = new ComboBox("Segment");
 		cbSegmento.addItems(DummyDataGenerator.getSegmentosUS());
 		cbSegmento.addItems("Total");
@@ -91,10 +98,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		cbSubsegmento.addItems("Total");
 		cbSubsegmento.select("Total");
 		glRoot.addComponents(cbSubsegmento);
-		
-
-		final TabSheet tab = buildTab();
-		
+				
 		glRoot.addComponents(new Button("Search",FontAwesome.SEARCH));
 		
 		btnChart.addClickListener(new Button.ClickListener() {
@@ -107,6 +111,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 				//dependiendo de la pestaña activa, pide el grafico de un modelo u otro
 				MODELO modelo = MODELO.REPUTACION;
 				int position = tab.getTabPosition( tab.getTab( tab.getSelectedTab() ) );
+				 System.out.println("sdsdsdsd "+position);
 				if( position == 0 ) {
 					modelo = MODELO.REPUTACION;
 				}else if (position == 1 ) {
@@ -124,6 +129,23 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
 		glRoot.addComponent(btnChart);
 		
+		cbStakeholder.addValueChangeListener(new ValueChangeListener() {
+			
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				glRoot.removeComponent(tab);
+				
+				if(event.getProperty().getValue().equals("Citizens")){
+					tab = buildTab(STAKEHOLDER.CITIZENS);
+				}else if(event.getProperty().getValue().equals("Priority Customer")){
+					tab = buildTab(STAKEHOLDER.PRIORITYCUSTOMER);
+				}else{
+					tab = buildTab(STAKEHOLDER.OTHERS);
+				}
+				glRoot.addComponent(tab,0,1,5,1);
+			}
+		});	
+
 		glRoot.addComponents(new Button("Calculate",FontAwesome.CALCULATOR) {
 			{
 				addClickListener(new ClickListener() {
@@ -141,14 +163,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		glRoot.setRowExpandRatio(1, 1.0f);
 		
 		addComponent(glRoot);
-
+		
     }
     
-    private TabSheet buildTab() {
+    private TabSheet buildTab(STAKEHOLDER stakeholder) {
     	TabSheet tab = new TabSheet();
     	tab.setSizeFull();
     	
-    	VerticalLayout reputacion = buildReputacionTable();
+    	VerticalLayout reputacion = buildReputacionTable(stakeholder);
     	tab.addTab(new Panel(reputacion) {
     		{
     			setSizeFull();
@@ -186,6 +208,16 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	}, "Results Simulation");
     	
     	
+    	tab.addSelectedTabChangeListener(
+    	        new TabSheet.SelectedTabChangeListener() {
+    	    public void selectedTabChange(SelectedTabChangeEvent event) {    	    	
+    	    	int position = event.getTabSheet().getTabPosition( tab.getTab( tab.getSelectedTab() ) );
+    	        if(position == 3)
+    	        	btnChart.setEnabled(false);
+    	        else
+    	        	btnChart.setEnabled(true);
+    	    }
+    	});    	
     	
 		return tab;
 	}
@@ -456,11 +488,256 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		return vl;
 	}
 
-	private VerticalLayout buildReputacionTable() {
-		VerticalLayout vl = new VerticalLayout();
-    	vl.setSizeFull();
+	private TreeTable tableCitizens(){
+		TreeTable ttable = new TreeTable();    	
+    	ttable.setStyleName("treetable-resultado");
     	
-    	TreeTable ttable = new TreeTable();
+    	ttable.setColumnCollapsingAllowed(true);
+		
+    	ttable.setSizeFull();
+    	ttable.addContainerProperty("Index/Question", String.class, null);
+    	ttable.addContainerProperty("2018 Performance", ProgressBar.class, null);
+    	ttable.addContainerProperty("2018 Important", ProgressBar.class, null);
+    	ttable.addContainerProperty("2017 Performance", String.class, null);
+    	ttable.addContainerProperty("2017 Important", String.class, null);
+    	ttable.addContainerProperty("2016 Performance", String.class, null);
+    	ttable.addContainerProperty("2016 Important", String.class, null);
+    	ttable.addContainerProperty("Simulate", TextField.class, null);
+    	
+    	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  null, null, "", "", "", "", new TextField()}, 4);
+    	
+    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(0.05f), getProgressBar(0.51f), "", "", "", "", new TextField()}, 5);
+    	ttable.setParent(5, 4);
+    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.10f), getProgressBar(0.19f), "","","","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.10f), getProgressBar(0.21f), "","","","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(0.0f), getProgressBar(0.19f), "","","","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Identification",  getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 13);
+    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.20f), getProgressBar(0.20f), "","","","", new TextField()}, 14);
+
+    	ttable.setParent(6, 5);
+    	ttable.setParent(7, 5);
+    	ttable.setParent(8, 5);
+    	ttable.setParent(13, 5);
+    	ttable.setParent(14, 5);
+    	
+    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 9);    	
+    	ttable.setParent(9, 4);
+     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(-0.05f), getProgressBar(0.08f), "","","","", new TextField()}, 16);
+     	ttable.setParent(16, 9);   
+    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(0.10f), getProgressBar(0.25f), "","","","", new TextField()}, 17);
+    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(-0.05f), getProgressBar(0.23f), "","","","", new TextField()}, 18);
+    	ttable.addItem(new Object[]{"Growth",  getProgressBar(0.35f), getProgressBar(0.27f), "","","","", new TextField()}, 19);
+    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(0.05f), getProgressBar(0.25f), "","","","", new TextField()}, 20);
+    	
+       	ttable.setParent(17, 16);
+    	ttable.setParent(18, 16);
+    	ttable.setParent(19, 16);
+    	ttable.setParent(20, 16);    	
+    	
+    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.05f), getProgressBar(0.20f), "","","","", new TextField()}, 21);
+    	ttable.setParent(21, 9); 
+    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.05f), getProgressBar(0.19f), "","","","", new TextField()}, 22);
+    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.15f), getProgressBar(0.20f), "","","","", new TextField()}, 23);
+    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), getProgressBar(0.21f), "","","","", new TextField()}, 24);
+    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.20f), getProgressBar(0.20f), "","","","", new TextField()}, 25);
+    	ttable.addItem(new Object[]{"Innovation", getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 26);
+    	
+    	ttable.setParent(22, 21);
+    	ttable.setParent(23, 21);
+    	ttable.setParent(24, 21);
+    	ttable.setParent(25, 21);
+    	ttable.setParent(26, 21);
+    	
+    	
+    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.0f), getProgressBar(0.16f), "","","","", new TextField()}, 27);
+    	ttable.setParent(27, 9); 
+    	ttable.addItem(new Object[]{"Talent", getProgressBar(-0.15f), getProgressBar(0.17f), "","","","", new TextField()}, 28);
+    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.10f), getProgressBar(0.17f), "","","","", new TextField()}, 29);
+    	ttable.addItem(new Object[]{"Wellness", getProgressBar(-0.20f), getProgressBar(0.17f), "","","","", new TextField()}, 30);
+    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.15f), getProgressBar(0.16f), "","","","", new TextField()}, 31);
+    	ttable.addItem(new Object[]{"Equality", getProgressBar(-0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 32);
+    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.20f), getProgressBar(0.16f), "","","","", new TextField()}, 33);
+    	
+    	ttable.setParent(28, 27);
+    	ttable.setParent(29, 27);
+    	ttable.setParent(30, 27);
+    	ttable.setParent(31, 27);
+    	ttable.setParent(32, 27);
+    	ttable.setParent(33, 27);
+    	
+    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.05f), getProgressBar(0.20f), "","","","", new TextField()}, 34);
+    	ttable.setParent(34, 9);
+    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(-0.05f), getProgressBar(0.16f), "","","","", new TextField()}, 35);
+    	ttable.addItem(new Object[]{"Transparency", getProgressBar(0.05f), getProgressBar(0.21f), "","","","", new TextField()}, 36);
+    	ttable.addItem(new Object[]{"Ethics", getProgressBar(0.0f), getProgressBar(0.21f), "","","","", new TextField()}, 37);
+    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(0.10f), getProgressBar(0.21f), "","","","", new TextField()}, 38);
+    	ttable.addItem(new Object[]{"Respect", getProgressBar(0.05f), getProgressBar(0.21f), "","","","", new TextField()}, 39);
+    	
+    	ttable.setParent(35, 34);
+    	ttable.setParent(36, 34);
+    	ttable.setParent(37, 34);
+    	ttable.setParent(38, 34);
+    	ttable.setParent(39, 34);
+    	
+    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(0.20f), getProgressBar(0.18f), "","","","", new TextField()}, 40);
+    	ttable.setParent(40, 9);
+    	ttable.addItem(new Object[]{"Leadership", getProgressBar(0.40f), getProgressBar(0.19f), "","","","", new TextField()},41);
+    	ttable.addItem(new Object[]{"Faireness", getProgressBar(-0.15f), getProgressBar(0.20f), "","","","", new TextField()}, 42);
+    	ttable.addItem(new Object[]{"Management", getProgressBar(0.30f), getProgressBar(0.20f), "","","","", new TextField()}, 43);
+    	ttable.addItem(new Object[]{"Vision", getProgressBar(-0.10f), getProgressBar(0.20f), "","","","", new TextField()}, 44);
+    	ttable.addItem(new Object[]{"Comunications", getProgressBar(0.15f), getProgressBar(0.21f), "","","","", new TextField()}, 45);
+    	
+    	ttable.setParent(41, 40);
+    	ttable.setParent(42, 40);
+    	ttable.setParent(43, 40);
+    	ttable.setParent(44, 40);
+    	ttable.setParent(45, 40);
+    	
+    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(-0.05f), getProgressBar(0.18f), "","","","", new TextField()}, 46);
+    	ttable.setParent(46, 9);
+    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.25f), getProgressBar(0.16f), "","","","", new TextField()}, 47);
+    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.30f), getProgressBar(0.17f), "","","","", new TextField()}, 48);
+    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 49);
+    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 50);
+    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.15f), getProgressBar(0.17f), "","","","", new TextField()}, 51);
+    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.05f), getProgressBar(0.16f), "","","","", new TextField()}, 52);
+    	
+    	ttable.setParent(47, 46);
+    	ttable.setParent(48, 46);
+    	ttable.setParent(49, 46);
+    	ttable.setParent(50, 46);
+    	ttable.setParent(51, 46);
+    	ttable.setParent(52, 46);
+    	
+    	return ttable;
+	}
+	
+	private TreeTable tableCustomer(){
+		TreeTable ttable = new TreeTable();    	
+    	ttable.setStyleName("treetable-resultado");
+    	
+    	ttable.setColumnCollapsingAllowed(true);
+		
+    	ttable.setSizeFull();
+    	ttable.addContainerProperty("Index/Question", String.class, null);
+    	ttable.addContainerProperty("2018 Performance", ProgressBar.class, null);
+    	ttable.addContainerProperty("2018 Important", ProgressBar.class, null);
+    	ttable.addContainerProperty("2017 Performance", String.class, null);
+    	ttable.addContainerProperty("2017 Important", String.class, null);
+    	ttable.addContainerProperty("2016 Performance", String.class, null);
+    	ttable.addContainerProperty("2016 Important", String.class, null);
+    	ttable.addContainerProperty("Simulate", TextField.class, null);
+    	
+    	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  null, null, "", "", "", "", new TextField()}, 4);
+    	
+    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(-0.17f), getProgressBar(0.51f), "", "", "", "", new TextField()}, 5);
+    	ttable.setParent(5, 4);
+    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.17f), getProgressBar(0.21f), "","","","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.39f), getProgressBar(0.20f), "","","","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(-0.06f), getProgressBar(0.19f), "","","","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Identification",  getProgressBar(-0.11f), getProgressBar(0.21f), "","","","", new TextField()}, 13);
+    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.22f), getProgressBar(0.19f), "","","","", new TextField()}, 14);
+
+    	ttable.setParent(6, 5);
+    	ttable.setParent(7, 5);
+    	ttable.setParent(8, 5);
+    	ttable.setParent(13, 5);
+    	ttable.setParent(14, 5);
+    	
+    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 9);    	
+    	ttable.setParent(9, 4);
+     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(0.92f), getProgressBar(0.1f), "","","","", new TextField()}, 16);
+     	ttable.setParent(16, 9);   
+    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(100f), getProgressBar(0.26f), "","","","", new TextField()}, 17);
+    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(100f), getProgressBar(0.27f), "","","","", new TextField()}, 18);
+    	ttable.addItem(new Object[]{"Growth",  getProgressBar(100f), getProgressBar(0.22f), "","","","", new TextField()}, 19);
+    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(100f), getProgressBar(0.25f), "","","","", new TextField()}, 20);
+    	
+       	ttable.setParent(17, 16);
+    	ttable.setParent(18, 16);
+    	ttable.setParent(19, 16);
+    	ttable.setParent(20, 16);    	
+    	
+    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.29f), getProgressBar(0.18f), "","","","", new TextField()}, 21);
+    	ttable.setParent(21, 9); 
+    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.06f), getProgressBar(0.20f), "","","","", new TextField()}, 22);
+    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 23);
+    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 24);
+    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.11f), getProgressBar(0.20f), "","","","", new TextField()}, 25);
+    	ttable.addItem(new Object[]{"Innovation", getProgressBar(-0.28f), getProgressBar(0.20f), "","","","", new TextField()}, 26);
+    	
+    	ttable.setParent(22, 21);
+    	ttable.setParent(23, 21);
+    	ttable.setParent(24, 21);
+    	ttable.setParent(25, 21);
+    	ttable.setParent(26, 21);
+    	
+    	
+    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.58f), getProgressBar(0.17f), "","","","", new TextField()}, 27);
+    	ttable.setParent(27, 9); 
+    	ttable.addItem(new Object[]{"Talent", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 28);
+    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 29);
+    	ttable.addItem(new Object[]{"Wellness", getProgressBar(0.67f), getProgressBar(0.16f), "","","","", new TextField()}, 30);
+    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.83f), getProgressBar(0.17f), "","","","", new TextField()}, 31);
+    	ttable.addItem(new Object[]{"Equality", getProgressBar(0.83f), getProgressBar(0.16f), "","","","", new TextField()}, 32);
+    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.22f), getProgressBar(0.17f), "","","","", new TextField()}, 33);
+    	
+    	ttable.setParent(28, 27);
+    	ttable.setParent(29, 27);
+    	ttable.setParent(30, 27);
+    	ttable.setParent(31, 27);
+    	ttable.setParent(32, 27);
+    	ttable.setParent(33, 27);
+    	
+    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.84f), getProgressBar(0.19f), "","","","", new TextField()}, 34);
+    	ttable.setParent(34, 9);
+    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(100f), getProgressBar(0.16f), "","","","", new TextField()}, 35);
+    	ttable.addItem(new Object[]{"Transparency", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 36);
+    	ttable.addItem(new Object[]{"Ethics", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 37);
+    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 38);
+    	ttable.addItem(new Object[]{"Respect", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 39);
+    	
+    	ttable.setParent(35, 34);
+    	ttable.setParent(36, 34);
+    	ttable.setParent(37, 34);
+    	ttable.setParent(38, 34);
+    	ttable.setParent(39, 34);
+    	
+    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(100f), getProgressBar(0.16f), "","","","", new TextField()}, 40);
+    	ttable.setParent(40, 9);
+    	ttable.addItem(new Object[]{"Leadership", getProgressBar(100f), getProgressBar(0.20f), "","","","", new TextField()},41);
+    	ttable.addItem(new Object[]{"Faireness", getProgressBar(100f), getProgressBar(0.19f), "","","","", new TextField()}, 42);
+    	ttable.addItem(new Object[]{"Management", getProgressBar(100f), getProgressBar(0.19f), "","","","", new TextField()}, 43);
+    	ttable.addItem(new Object[]{"Vision", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 44);
+    	ttable.addItem(new Object[]{"Comunications", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 45);
+    	
+    	ttable.setParent(41, 40);
+    	ttable.setParent(42, 40);
+    	ttable.setParent(43, 40);
+    	ttable.setParent(44, 40);
+    	ttable.setParent(45, 40);
+    	
+    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(0.17f), getProgressBar(0.20f), "","","","", new TextField()}, 46);
+    	ttable.setParent(46, 9);
+    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.17f), getProgressBar(0.17f), "","","","", new TextField()}, 47);
+    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.39f), getProgressBar(0.17f), "","","","", new TextField()}, 48);
+    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.11f), getProgressBar(0.16f), "","","","", new TextField()}, 49);
+    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.61f), getProgressBar(0.18f), "","","","", new TextField()}, 50);
+    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.44f), getProgressBar(0.17f), "","","","", new TextField()}, 51);
+    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.11f), getProgressBar(0.17f), "","","","", new TextField()}, 52);
+    	
+    	ttable.setParent(47, 46);
+    	ttable.setParent(48, 46);
+    	ttable.setParent(49, 46);
+    	ttable.setParent(50, 46);
+    	ttable.setParent(51, 46);
+    	ttable.setParent(52, 46);
+    	
+    	return ttable;
+	}
+	
+	private TreeTable tableOthers(){
+		TreeTable ttable = new TreeTable();
     	
     	ttable.setStyleName("treetable-resultado");
     	
@@ -583,6 +860,21 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(50, 46);
     	ttable.setParent(51, 46);
     	ttable.setParent(52, 46);
+    	
+    	return ttable;
+	}
+	
+	private VerticalLayout buildReputacionTable(STAKEHOLDER stakeholder) {
+		VerticalLayout vl = new VerticalLayout();
+    	vl.setSizeFull();
+    	
+    	TreeTable ttable = new TreeTable();
+    	if(stakeholder.equals(STAKEHOLDER.CITIZENS))
+    		ttable = tableCitizens();
+    	else if(stakeholder.equals(STAKEHOLDER.PRIORITYCUSTOMER))
+    		ttable = tableCustomer();
+    	else
+    		ttable = tableOthers();
     	
 		Table respondenteTable = new Table();
 		respondenteTable.setWidth("100%");

@@ -372,7 +372,7 @@ public abstract class DummyDataGenerator {
 		return Arrays.asList("Asociations",
 				"Authorities",
 				"Politicians",
-				"Customer",
+				"Priority Customer",
 				"Employees",
 				"Competitors",
 				"Communities",

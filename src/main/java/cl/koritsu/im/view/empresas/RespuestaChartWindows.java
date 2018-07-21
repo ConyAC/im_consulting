@@ -35,6 +35,10 @@ public class RespuestaChartWindows extends Window {
 	public enum MODELO {
 		REPUTACION, RIESGO, IMPORTANCIA, RESUMEN
 	}
+	
+	public enum STAKEHOLDER {
+		CITIZENS, PRIORITYCUSTOMER, OTHERS
+	}
 
 	public RespuestaChartWindows(MODELO modelo) {
 		super();
