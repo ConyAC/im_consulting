@@ -70,7 +70,7 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
         logo.setWidth(Constants.LOGO_WIDTH);
 		header.addComponent(logo);
 
-		Label title = new Label("COEVOLUTION IM CONSULTING Fichas > Respondent Form");
+		Label title = new Label("COEVOLUTION IM CONSULTING Forms > Respondent Form");
 		title.setSizeUndefined();
 		title.addStyleName(ValoTheme.LABEL_H1);
 		title.addStyleName(ValoTheme.LABEL_NO_MARGIN);
