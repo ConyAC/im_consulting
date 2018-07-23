@@ -8,10 +8,11 @@ public class Respondente {
 	String subsegmento;
 	String criticidad;
 	String actitud;
+	String type;
 	String observacion;
 	
 	public Respondente(Long id, String stakeholder, String segmento, String subsegmento, String criticidad,
-			String actitud, String observacion) {
+			String actitud, String type, String observacion) {
 		super();
 		this.id = id;
 		this.stakeholder = stakeholder;
@@ -19,6 +20,7 @@ public class Respondente {
 		this.subsegmento = subsegmento;
 		this.criticidad = criticidad;
 		this.actitud = actitud;
+		this.type = type;
 		this.observacion = observacion;
 	}
 	public Long getId() {
@@ -56,6 +58,13 @@ public class Respondente {
 	}
 	public void setActitud(String actitud) {
 		this.actitud = actitud;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getObservacion() {
 		return observacion;

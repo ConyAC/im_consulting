@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import org.springframework.context.annotation.Scope;
 
-
 //import com.google.common.eventbus.Subscribe;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;

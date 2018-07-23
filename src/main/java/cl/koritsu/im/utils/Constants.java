@@ -109,4 +109,12 @@ public final class Constants {
 	
 	public static final float FIRST_RANGE_TOP = 0.7f;
 	public static final float SECOND_RANGE_TOP = 0.9f;
+	public static final float FIRST_RANGE_RISK_TOP = 0.25f;
+	public static final float SECOND_RANGE_RISK_TOP = 0.5f;
+	
+	public static final String LOGO_HEIGHT = "120px";
+	public static final String LOGO_WIDTH = "115px";
+	
+	public static final String CHART_FONT_COLOR = "#000";
+	public static final String CUSTOMER = "Priority Customer";	
 }

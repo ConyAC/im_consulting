@@ -1,12 +1,12 @@
 package cl.koritsu.im.view;
 
-import cl.koritsu.im.view.admin.AdministrationView;
-import cl.koritsu.im.view.empresas.EmpresasView;
-import cl.koritsu.im.view.empresas.EncuestasEmpresaView;
-
 import com.vaadin.navigator.View;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
+
+import cl.koritsu.im.view.admin.AdministrationView;
+import cl.koritsu.im.view.empresas.EmpresasView;
+import cl.koritsu.im.view.empresas.EncuestasEmpresaView;
 
 
 public enum ImViewType {

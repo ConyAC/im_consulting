@@ -24,3 +24,18 @@
 	background-image: linear, to bottom, #31B404 2%, #31B404 98%;
 	border-color: #31B404;
 }
+
+.progress-bar-customized .v-slot:first-child {
+	width: 70% !important;
+}
+
+.progress-bar-customized .v-slot:nth-child(2) {
+	width: 30% !important;
+	font-size: 13px;
+	position: relative;
+	top: -2px;
+}
+
+.progress-bar-customized .v-slot:nth-child(2) .v-label {
+	text-align: right;
+}

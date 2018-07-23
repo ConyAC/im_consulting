@@ -4,10 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.utils.Constants;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
@@ -30,6 +26,10 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -98,9 +98,15 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		cbActitud.setValue(DummyDataGenerator.getActitudesUS().get(1));
 		glRoot.addComponent(cbActitud,0,5);
 		
+		ComboBox cbTipo = new ComboBox("Type");
+		for(String sh : DummyDataGenerator.getTypesUS())
+			cbTipo.addItem(sh);
+		cbTipo.setValue(DummyDataGenerator.getTypesUS().get(1));
+		glRoot.addComponent(cbTipo,0,6);
+		
 		TextArea taObservacion = new TextArea("Observation");
 		taObservacion.setValue("Respondent admitted for the beginning of January survey, sponsoring area Management Studies.");
-		glRoot.addComponent(taObservacion,0,6);
+		glRoot.addComponent(taObservacion,0,7);
 		
 		
 		//tab con los resultado
@@ -116,7 +122,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		
 		Button agregarContacto = new Button("Add Contact");
 		agregarContacto.setIcon(FontAwesome.PLUS);
-		glRoot.addComponent(agregarContacto,0,7,1,7);
+		glRoot.addComponent(agregarContacto,0,8,1,8);
 		glRoot.setComponentAlignment(agregarContacto, Alignment.MIDDLE_RIGHT);
 		
 		Table table = new Table();
@@ -138,7 +144,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		table.addItem(new Object[]{"Contact 2", "1-8","Commercial Manager", "a@a.com","33423232", "Approver","Innovative", "Neutral","In deep",new Button(FontAwesome.EDIT)}, 2);
 		table.addItem(new Object[]{"Contact 3", "1-7","General Manager", "a@a.com","22323555", "Approver","Innovative", "Neutral","In deep",new Button(FontAwesome.EDIT)}, 3);
 		
-		glRoot.addComponent(table,0,8,1,8);
+		glRoot.addComponent(table,0,9,1,9);
 		glRoot.setRowExpandRatio(8, 1.0f);
 
     }
@@ -266,7 +272,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.addItem(new Object[]{"Net Promoter Score (NPS)",  "7", ""}, 10);
     	ttable.addItem(new Object[]{"Net Effort Score (NES)",  "6", ""},11);
     	ttable.addItem(new Object[]{"Net Propensity to Repurchase",  "5", ""}, 12);
-    	ttable.addItem(new Object[]{"Differentiation ",  "", ""}, 53);
+    	ttable.addItem(new Object[]{"Differentiation",  "4", ""}, 53);
 
     	ttable.setParent(1, 0);
     	ttable.setParent(2, 0);
@@ -276,7 +282,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(12, 0);
     	ttable.setParent(53, 0);
     	
-    	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  "5,48", ""}, 4);
+    	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  "6", ""}, 4);
     	ttable.addItem(new Object[]{"Emotional Dimensions",  "6", "4"}, 15);
     	ttable.setParent(15, 4);
     	ttable.addItem(new Object[]{"Esteem",  "5", "3"}, 6);
@@ -291,7 +297,7 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
     	ttable.setParent(13, 15);
     	ttable.setParent(14, 15);
     	
-    	ttable.addItem(new Object[]{"Rational Dimensions",  "", ""}, 9);    	
+    	ttable.addItem(new Object[]{"Rational Dimensions",  "6", "4"}, 9);    	
     	ttable.setParent(9, 4);
     	ttable.addItem(new Object[]{"Economic Dimensions",  "7", "1"}, 16);
     	ttable.setParent(16, 9);    	
@@ -391,8 +397,8 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
         
         Image logo = new Image();
         logo.setSource(new ThemeResource(Constants.LOGO_URL));
-        logo.setHeight("76px");
-        logo.setWidth("70px");
+        logo.setHeight(Constants.LOGO_HEIGHT);
+        logo.setWidth(Constants.LOGO_WIDTH);
         header.addComponent(logo);   
         
         Label title = new Label("COEVOLUTION IM CONSULTING > Respondent Form");

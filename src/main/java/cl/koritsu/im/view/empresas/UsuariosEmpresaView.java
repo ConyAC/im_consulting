@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Scope;
 import org.tepi.filtertable.FilterTable;
 import org.vaadin.dialogs.ConfirmDialog;
 
-import ru.xpoft.vaadin.VaadinView;
-
 import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitEvent;
@@ -26,8 +24,10 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -38,16 +38,12 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.domain.Rol;
@@ -55,6 +51,7 @@ import cl.koritsu.im.domain.Usuario;
 import cl.koritsu.im.domain.enums.EstadoUsuario;
 import cl.koritsu.im.utils.Constants;
 import cl.koritsu.im.utils.Utils;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
@@ -103,8 +100,8 @@ public class UsuariosEmpresaView extends CssLayout implements View {
 
         Image logo = new Image();
         logo.setSource(new ThemeResource(Constants.LOGO_URL));
-        logo.setHeight("76px");
-        logo.setWidth("70px");
+        logo.setHeight(Constants.LOGO_HEIGHT);
+        logo.setWidth(Constants.LOGO_WIDTH);
         header.addComponent(logo);
         
         Label title = new Label("COEVOLUTION IM CONSULTING > Company > Users");

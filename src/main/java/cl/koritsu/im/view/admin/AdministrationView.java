@@ -9,13 +9,6 @@ import org.springframework.context.annotation.Scope;
 import org.tepi.filtertable.FilterTable;
 import org.vaadin.dialogs.ConfirmDialog;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.domain.Rol;
-import cl.koritsu.im.domain.Usuario;
-import cl.koritsu.im.domain.enums.EstadoUsuario;
-import cl.koritsu.im.domain.enums.Permiso;
-import cl.koritsu.im.utils.Utils;
-
 import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitEvent;
@@ -41,16 +34,23 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.TwinColSelect;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.domain.Rol;
+import cl.koritsu.im.domain.Usuario;
+import cl.koritsu.im.domain.enums.EstadoUsuario;
+import cl.koritsu.im.domain.enums.Permiso;
+import cl.koritsu.im.utils.Utils;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component

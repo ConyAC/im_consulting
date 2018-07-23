@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 
-import com.google.gwt.thirdparty.guava.common.eventbus.Subscribe;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Widgetset;
@@ -33,7 +32,6 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.domain.Usuario;
@@ -43,7 +41,6 @@ import cl.koritsu.im.view.LoginView;
 import cl.koritsu.im.view.MainView;
 import cl.koritsu.im.view.MainView2;
 import cl.koritsu.im.view.admin.AdministrationView;
-import cl.koritsu.im.view.dashboard.DashboardView;
 import cl.koritsu.im.view.empresas.EmpresasView;
 
 @org.springframework.stereotype.Component
