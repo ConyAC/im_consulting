@@ -397,8 +397,8 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
         
         Image logo = new Image();
         logo.setSource(new ThemeResource(Constants.LOGO_URL));
-        logo.setHeight("76px");
-        logo.setWidth("70px");
+        logo.setHeight(Constants.LOGO_HEIGHT);
+        logo.setWidth(Constants.LOGO_WIDTH);
         header.addComponent(logo);   
         
         Label title = new Label("COEVOLUTION IM CONSULTING > Respondent Form");
