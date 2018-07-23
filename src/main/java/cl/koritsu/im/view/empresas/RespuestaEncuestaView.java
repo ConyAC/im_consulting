@@ -517,11 +517,11 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setStyleName("treetable-resultado");
     	
     	ttable.setColumnCollapsingAllowed(true);
-		
+
     	ttable.setSizeFull();
     	ttable.addContainerProperty("Index/Question", String.class, null);
-    	ttable.addContainerProperty("2018 Performance", ProgressBar.class, null);
-    	ttable.addContainerProperty("2018 Important", ProgressBar.class, null);
+    	ttable.addContainerProperty("2018 Performance", HorizontalLayout.class, null);
+    	ttable.addContainerProperty("2018 Important", String.class, null);
     	ttable.addContainerProperty("2017 Performance", String.class, null);
     	ttable.addContainerProperty("2017 Important", String.class, null);
     	ttable.addContainerProperty("2016 Performance", String.class, null);
@@ -530,13 +530,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	
     	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  null, null, "", "", "", "", new TextField()}, 4);
     	
-    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(0.05f), getProgressBar(0.51f), "", "", "", "", new TextField()}, 5);
+    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(0.16f), "50%", "", "", "", "", new TextField()}, 5);
+    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(0.05f), "51%", "", "", "", "", new TextField()}, 5);
     	ttable.setParent(5, 4);
-    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.10f), getProgressBar(0.19f), "","","","", new TextField()}, 6);
-    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.10f), getProgressBar(0.21f), "","","","", new TextField()}, 7);
-    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(0.0f), getProgressBar(0.19f), "","","","", new TextField()}, 8);
-    	ttable.addItem(new Object[]{"Identification",  getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 13);
-    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.20f), getProgressBar(0.20f), "","","","", new TextField()}, 14);
+    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.10f), "19%", "","","","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.10f), "21%", "","","","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(0.0f), "19%", "","","","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Identification",  getProgressBar(0.0f), "20%", "","","","", new TextField()}, 13);
+    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.20f), "20%", "","","","", new TextField()}, 14);
 
     	ttable.setParent(6, 5);
     	ttable.setParent(7, 5);
@@ -544,27 +545,27 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(13, 5);
     	ttable.setParent(14, 5);
     	
-    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 9);    	
+    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), "17%", "","","","", new TextField()}, 9);    	
     	ttable.setParent(9, 4);
-     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(-0.05f), getProgressBar(0.08f), "","","","", new TextField()}, 16);
+     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(-0.05f), "8%", "","","","", new TextField()}, 16);
      	ttable.setParent(16, 9);   
-    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(0.10f), getProgressBar(0.25f), "","","","", new TextField()}, 17);
-    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(-0.05f), getProgressBar(0.23f), "","","","", new TextField()}, 18);
-    	ttable.addItem(new Object[]{"Growth",  getProgressBar(0.35f), getProgressBar(0.27f), "","","","", new TextField()}, 19);
-    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(0.05f), getProgressBar(0.25f), "","","","", new TextField()}, 20);
+    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(0.10f), "25%", "","","","", new TextField()}, 17);
+    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(-0.05f), "23%", "","","","", new TextField()}, 18);
+    	ttable.addItem(new Object[]{"Growth",  getProgressBar(0.35f), "27%", "","","","", new TextField()}, 19);
+    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(0.05f), "25%", "","","","", new TextField()}, 20);
     	
        	ttable.setParent(17, 16);
     	ttable.setParent(18, 16);
     	ttable.setParent(19, 16);
     	ttable.setParent(20, 16);    	
     	
-    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.05f), getProgressBar(0.20f), "","","","", new TextField()}, 21);
+    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.05f), "20%", "","","","", new TextField()}, 21);
     	ttable.setParent(21, 9); 
-    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.05f), getProgressBar(0.19f), "","","","", new TextField()}, 22);
-    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.15f), getProgressBar(0.20f), "","","","", new TextField()}, 23);
-    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), getProgressBar(0.21f), "","","","", new TextField()}, 24);
-    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.20f), getProgressBar(0.20f), "","","","", new TextField()}, 25);
-    	ttable.addItem(new Object[]{"Innovation", getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 26);
+    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.05f),"19%", "","","","", new TextField()}, 22);
+    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.15f), "20%", "","","","", new TextField()}, 23);
+    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), "21%", "","","","", new TextField()}, 24);
+    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.20f), "20%", "","","","", new TextField()}, 25);
+    	ttable.addItem(new Object[]{"Innovation", getProgressBar(0.0f), "20%", "","","","", new TextField()}, 26);
     	
     	ttable.setParent(22, 21);
     	ttable.setParent(23, 21);
@@ -573,14 +574,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(26, 21);
     	
     	
-    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.0f), getProgressBar(0.16f), "","","","", new TextField()}, 27);
+    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.0f), "16%", "","","","", new TextField()}, 27);
     	ttable.setParent(27, 9); 
-    	ttable.addItem(new Object[]{"Talent", getProgressBar(-0.15f), getProgressBar(0.17f), "","","","", new TextField()}, 28);
-    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.10f), getProgressBar(0.17f), "","","","", new TextField()}, 29);
-    	ttable.addItem(new Object[]{"Wellness", getProgressBar(-0.20f), getProgressBar(0.17f), "","","","", new TextField()}, 30);
-    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.15f), getProgressBar(0.16f), "","","","", new TextField()}, 31);
-    	ttable.addItem(new Object[]{"Equality", getProgressBar(-0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 32);
-    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.20f), getProgressBar(0.16f), "","","","", new TextField()}, 33);
+    	ttable.addItem(new Object[]{"Talent", getProgressBar(-0.15f), "17%", "","","","", new TextField()}, 28);
+    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.10f), "17%", "","","","", new TextField()}, 29);
+    	ttable.addItem(new Object[]{"Wellness", getProgressBar(-0.20f), "17%", "","","","", new TextField()}, 30);
+    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.15f), "16%", "","","","", new TextField()}, 31);
+    	ttable.addItem(new Object[]{"Equality", getProgressBar(-0.05f), "17%", "","","","", new TextField()}, 32);
+    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.20f), "16%", "","","","", new TextField()}, 33);
     	
     	ttable.setParent(28, 27);
     	ttable.setParent(29, 27);
@@ -589,13 +590,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.05f), getProgressBar(0.20f), "","","","", new TextField()}, 34);
+    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.05f), "20%", "","","","", new TextField()}, 34);
     	ttable.setParent(34, 9);
-    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(-0.05f), getProgressBar(0.16f), "","","","", new TextField()}, 35);
-    	ttable.addItem(new Object[]{"Transparency", getProgressBar(0.05f), getProgressBar(0.21f), "","","","", new TextField()}, 36);
-    	ttable.addItem(new Object[]{"Ethics", getProgressBar(0.0f), getProgressBar(0.21f), "","","","", new TextField()}, 37);
-    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(0.10f), getProgressBar(0.21f), "","","","", new TextField()}, 38);
-    	ttable.addItem(new Object[]{"Respect", getProgressBar(0.05f), getProgressBar(0.21f), "","","","", new TextField()}, 39);
+    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(-0.05f), "16%", "","","","", new TextField()}, 35);
+    	ttable.addItem(new Object[]{"Transparency", getProgressBar(0.05f), "21%", "","","","", new TextField()}, 36);
+    	ttable.addItem(new Object[]{"Ethics", getProgressBar(0.0f), "21%", "","","","", new TextField()}, 37);
+    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(0.10f), "21%", "","","","", new TextField()}, 38);
+    	ttable.addItem(new Object[]{"Respect", getProgressBar(0.05f), "21%", "","","","", new TextField()}, 39);
     	
     	ttable.setParent(35, 34);
     	ttable.setParent(36, 34);
@@ -603,13 +604,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(38, 34);
     	ttable.setParent(39, 34);
     	
-    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(0.20f), getProgressBar(0.18f), "","","","", new TextField()}, 40);
+    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(0.20f), "18%", "","","","", new TextField()}, 40);
     	ttable.setParent(40, 9);
-    	ttable.addItem(new Object[]{"Leadership", getProgressBar(0.40f), getProgressBar(0.19f), "","","","", new TextField()},41);
-    	ttable.addItem(new Object[]{"Faireness", getProgressBar(-0.15f), getProgressBar(0.20f), "","","","", new TextField()}, 42);
-    	ttable.addItem(new Object[]{"Management", getProgressBar(0.30f), getProgressBar(0.20f), "","","","", new TextField()}, 43);
-    	ttable.addItem(new Object[]{"Vision", getProgressBar(-0.10f), getProgressBar(0.20f), "","","","", new TextField()}, 44);
-    	ttable.addItem(new Object[]{"Comunications", getProgressBar(0.15f), getProgressBar(0.21f), "","","","", new TextField()}, 45);
+    	ttable.addItem(new Object[]{"Leadership", getProgressBar(0.40f),"19%", "","","","", new TextField()},41);
+    	ttable.addItem(new Object[]{"Faireness", getProgressBar(-0.15f), "20%", "","","","", new TextField()}, 42);
+    	ttable.addItem(new Object[]{"Management", getProgressBar(0.30f), "20%", "","","","", new TextField()}, 43);
+    	ttable.addItem(new Object[]{"Vision", getProgressBar(-0.10f), "20%", "","","","", new TextField()}, 44);
+    	ttable.addItem(new Object[]{"Comunications", getProgressBar(0.15f), "21%", "","","","", new TextField()}, 45);
     	
     	ttable.setParent(41, 40);
     	ttable.setParent(42, 40);
@@ -617,14 +618,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(44, 40);
     	ttable.setParent(45, 40);
     	
-    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(-0.05f), getProgressBar(0.18f), "","","","", new TextField()}, 46);
+    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(-0.05f), "18%", "","","","", new TextField()}, 46);
     	ttable.setParent(46, 9);
-    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.25f), getProgressBar(0.16f), "","","","", new TextField()}, 47);
-    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.30f), getProgressBar(0.17f), "","","","", new TextField()}, 48);
-    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 49);
-    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.05f), getProgressBar(0.17f), "","","","", new TextField()}, 50);
-    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.15f), getProgressBar(0.17f), "","","","", new TextField()}, 51);
-    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.05f), getProgressBar(0.16f), "","","","", new TextField()}, 52);
+    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.25f), "16%", "","","","", new TextField()}, 47);
+    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.30f), "17%", "","","","", new TextField()}, 48);
+    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.05f), "17%", "","","","", new TextField()}, 49);
+    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.05f), "17%", "","","","", new TextField()}, 50);
+    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.15f), "17%", "","","","", new TextField()}, 51);
+    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.05f), "16%", "","","","", new TextField()}, 52);
     	
     	ttable.setParent(47, 46);
     	ttable.setParent(48, 46);
@@ -644,8 +645,8 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
     	ttable.setSizeFull();
     	ttable.addContainerProperty("Index/Question", String.class, null);
-    	ttable.addContainerProperty("2018 Performance", ProgressBar.class, null);
-    	ttable.addContainerProperty("2018 Important", ProgressBar.class, null);
+    	ttable.addContainerProperty("2018 Performance", HorizontalLayout.class, null);
+    	ttable.addContainerProperty("2018 Important", String.class, null);
     	ttable.addContainerProperty("2017 Performance", String.class, null);
     	ttable.addContainerProperty("2017 Important", String.class, null);
     	ttable.addContainerProperty("2016 Performance", String.class, null);
@@ -654,13 +655,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	
     	ttable.addItem(new Object[]{"Corporate Reputation Index (CRI)",  null, null, "", "", "", "", new TextField()}, 4);
     	
-    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(-0.17f), getProgressBar(0.51f), "", "", "", "", new TextField()}, 5);
+    	ttable.addItem(new Object[]{"Emotional Dimensions", getProgressBar(-0.17f), "51%", "", "", "", "", new TextField()}, 5);
     	ttable.setParent(5, 4);
-    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.17f), getProgressBar(0.21f), "","","","", new TextField()}, 6);
-    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.39f), getProgressBar(0.20f), "","","","", new TextField()}, 7);
-    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(-0.06f), getProgressBar(0.19f), "","","","", new TextField()}, 8);
-    	ttable.addItem(new Object[]{"Identification",  getProgressBar(-0.11f), getProgressBar(0.21f), "","","","", new TextField()}, 13);
-    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.22f), getProgressBar(0.19f), "","","","", new TextField()}, 14);
+    	ttable.addItem(new Object[]{"Esteem",  getProgressBar(0.17f), "21%", "","","","", new TextField()}, 6);
+    	ttable.addItem(new Object[]{"Trust",  getProgressBar(0.39f), "20%", "","","","", new TextField()}, 7);
+    	ttable.addItem(new Object[]{"Admiration",  getProgressBar(-0.06f), "19%", "","","","", new TextField()}, 8);
+    	ttable.addItem(new Object[]{"Identification",  getProgressBar(-0.11f), "21%", "","","","", new TextField()}, 13);
+    	ttable.addItem(new Object[]{"Empathy", getProgressBar(0.22f), "19%", "","","","", new TextField()}, 14);
 
     	ttable.setParent(6, 5);
     	ttable.setParent(7, 5);
@@ -668,27 +669,27 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(13, 5);
     	ttable.setParent(14, 5);
     	
-    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 9);    	
+    	ttable.addItem(new Object[]{"Rational Dimensions", getProgressBar(0.61f), "17%", "","","","", new TextField()}, 9);    	
     	ttable.setParent(9, 4);
-     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(0.92f), getProgressBar(0.1f), "","","","", new TextField()}, 16);
+     	ttable.addItem(new Object[]{"Economic Dimensions",  getProgressBar(0.92f), "1%", "","","","", new TextField()}, 16);
      	ttable.setParent(16, 9);   
-    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(100f), getProgressBar(0.26f), "","","","", new TextField()}, 17);
-    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(100f), getProgressBar(0.27f), "","","","", new TextField()}, 18);
-    	ttable.addItem(new Object[]{"Growth",  getProgressBar(100f), getProgressBar(0.22f), "","","","", new TextField()}, 19);
-    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(100f), getProgressBar(0.25f), "","","","", new TextField()}, 20);
+    	ttable.addItem(new Object[]{"Profitability",  getProgressBar(100f), "26%", "","","","", new TextField()}, 17);
+    	ttable.addItem(new Object[]{"Solvency",  getProgressBar(100f), "27%", "","","","", new TextField()}, 18);
+    	ttable.addItem(new Object[]{"Growth",  getProgressBar(100f), "22%", "","","","", new TextField()}, 19);
+    	ttable.addItem(new Object[]{"Market Cap", getProgressBar(100f), "25%", "","","","", new TextField()}, 20);
     	
        	ttable.setParent(17, 16);
     	ttable.setParent(18, 16);
     	ttable.setParent(19, 16);
     	ttable.setParent(20, 16);    	
     	
-    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.29f), getProgressBar(0.18f), "","","","", new TextField()}, 21);
+    	ttable.addItem(new Object[]{"Service Dimensions", getProgressBar(0.29f), "18%", "","","","", new TextField()}, 21);
     	ttable.setParent(21, 9); 
-    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.06f), getProgressBar(0.20f), "","","","", new TextField()}, 22);
-    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 23);
-    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), getProgressBar(0.20f), "","","","", new TextField()}, 24);
-    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.11f), getProgressBar(0.20f), "","","","", new TextField()}, 25);
-    	ttable.addItem(new Object[]{"Innovation", getProgressBar(-0.28f), getProgressBar(0.20f), "","","","", new TextField()}, 26);
+    	ttable.addItem(new Object[]{"Quality", getProgressBar(0.06f), "20%", "","","","", new TextField()}, 22);
+    	ttable.addItem(new Object[]{"Price",  getProgressBar(0.0f), "20%", "","","","", new TextField()}, 23);
+    	ttable.addItem(new Object[]{"Customer Service", getProgressBar(0.0f), "20%", "","","","", new TextField()}, 24);
+    	ttable.addItem(new Object[]{"Custormer Satisfaction", getProgressBar(0.11f), "20%", "","","","", new TextField()}, 25);
+    	ttable.addItem(new Object[]{"Innovation", getProgressBar(-0.28f), "20%", "","","","", new TextField()}, 26);
     	
     	ttable.setParent(22, 21);
     	ttable.setParent(23, 21);
@@ -697,14 +698,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(26, 21);
     	
     	
-    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.58f), getProgressBar(0.17f), "","","","", new TextField()}, 27);
+    	ttable.addItem(new Object[]{"People Dimensions", getProgressBar(0.58f), "17%", "","","","", new TextField()}, 27);
     	ttable.setParent(27, 9); 
-    	ttable.addItem(new Object[]{"Talent", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 28);
-    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.61f), getProgressBar(0.17f), "","","","", new TextField()}, 29);
-    	ttable.addItem(new Object[]{"Wellness", getProgressBar(0.67f), getProgressBar(0.16f), "","","","", new TextField()}, 30);
-    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.83f), getProgressBar(0.17f), "","","","", new TextField()}, 31);
-    	ttable.addItem(new Object[]{"Equality", getProgressBar(0.83f), getProgressBar(0.16f), "","","","", new TextField()}, 32);
-    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.22f), getProgressBar(0.17f), "","","","", new TextField()}, 33);
+    	ttable.addItem(new Object[]{"Talent", getProgressBar(0.61f), "17%", "","","","", new TextField()}, 28);
+    	ttable.addItem(new Object[]{"Job stability", getProgressBar(0.61f), "17%", "","","","", new TextField()}, 29);
+    	ttable.addItem(new Object[]{"Wellness", getProgressBar(0.67f), "16%", "","","","", new TextField()}, 30);
+    	ttable.addItem(new Object[]{"Personal incentives and compensation", getProgressBar(0.83f), "17%", "","","","", new TextField()}, 31);
+    	ttable.addItem(new Object[]{"Equality", getProgressBar(0.83f), "16%", "","","","", new TextField()}, 32);
+    	ttable.addItem(new Object[]{"Meritocracy", getProgressBar(0.22f), "17%", "","","","", new TextField()}, 33);
     	
     	ttable.setParent(28, 27);
     	ttable.setParent(29, 27);
@@ -713,13 +714,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(32, 27);
     	ttable.setParent(33, 27);
     	
-    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.84f), getProgressBar(0.19f), "","","","", new TextField()}, 34);
+    	ttable.addItem(new Object[]{"Gobernance Dimensions", getProgressBar(0.84f), "19%", "","","","", new TextField()}, 34);
     	ttable.setParent(34, 9);
-    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(100f), getProgressBar(0.16f), "","","","", new TextField()}, 35);
-    	ttable.addItem(new Object[]{"Transparency", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 36);
-    	ttable.addItem(new Object[]{"Ethics", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 37);
-    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 38);
-    	ttable.addItem(new Object[]{"Respect", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 39);
+    	ttable.addItem(new Object[]{"Supplier Quality", getProgressBar(100f), "16%", "","","","", new TextField()}, 35);
+    	ttable.addItem(new Object[]{"Transparency", getProgressBar(100f), "21%", "","","","", new TextField()}, 36);
+    	ttable.addItem(new Object[]{"Ethics", getProgressBar(100f), "21%", "","","","", new TextField()}, 37);
+    	ttable.addItem(new Object[]{"Antibribery", getProgressBar(100f), "21%", "","","","", new TextField()}, 38);
+    	ttable.addItem(new Object[]{"Respect", getProgressBar(100f), "21%", "","","","", new TextField()}, 39);
     	
     	ttable.setParent(35, 34);
     	ttable.setParent(36, 34);
@@ -727,13 +728,13 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(38, 34);
     	ttable.setParent(39, 34);
     	
-    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(100f), getProgressBar(0.16f), "","","","", new TextField()}, 40);
+    	ttable.addItem(new Object[]{"Leadership Dimension", getProgressBar(100f), "16%", "","","","", new TextField()}, 40);
     	ttable.setParent(40, 9);
-    	ttable.addItem(new Object[]{"Leadership", getProgressBar(100f), getProgressBar(0.20f), "","","","", new TextField()},41);
-    	ttable.addItem(new Object[]{"Faireness", getProgressBar(100f), getProgressBar(0.19f), "","","","", new TextField()}, 42);
-    	ttable.addItem(new Object[]{"Management", getProgressBar(100f), getProgressBar(0.19f), "","","","", new TextField()}, 43);
-    	ttable.addItem(new Object[]{"Vision", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 44);
-    	ttable.addItem(new Object[]{"Comunications", getProgressBar(100f), getProgressBar(0.21f), "","","","", new TextField()}, 45);
+    	ttable.addItem(new Object[]{"Leadership", getProgressBar(100f), "20%", "","","","", new TextField()},41);
+    	ttable.addItem(new Object[]{"Faireness", getProgressBar(100f), "19%", "","","","", new TextField()}, 42);
+    	ttable.addItem(new Object[]{"Management", getProgressBar(100f), "19%", "","","","", new TextField()}, 43);
+    	ttable.addItem(new Object[]{"Vision", getProgressBar(100f), "21%", "","","","", new TextField()}, 44);
+    	ttable.addItem(new Object[]{"Comunications", getProgressBar(100f), "21%", "","","","", new TextField()}, 45);
     	
     	ttable.setParent(41, 40);
     	ttable.setParent(42, 40);
@@ -741,14 +742,14 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.setParent(44, 40);
     	ttable.setParent(45, 40);
     	
-    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(0.17f), getProgressBar(0.20f), "","","","", new TextField()}, 46);
+    	ttable.addItem(new Object[]{"Social Responsability Dimensions",  getProgressBar(0.17f), "20%", "","","","", new TextField()}, 46);
     	ttable.setParent(46, 9);
-    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.17f), getProgressBar(0.17f), "","","","", new TextField()}, 47);
-    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.39f), getProgressBar(0.17f), "","","","", new TextField()}, 48);
-    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.11f), getProgressBar(0.16f), "","","","", new TextField()}, 49);
-    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.61f), getProgressBar(0.18f), "","","","", new TextField()}, 50);
-    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.44f), getProgressBar(0.17f), "","","","", new TextField()}, 51);
-    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.11f), getProgressBar(0.17f), "","","","", new TextField()}, 52);
+    	ttable.addItem(new Object[]{"Environment Friendly", getProgressBar(0.17f), "17%", "","","","", new TextField()}, 47);
+    	ttable.addItem(new Object[]{"Energy Savings", getProgressBar(0.39f), "17%", "","","","", new TextField()}, 48);
+    	ttable.addItem(new Object[]{"Comunity Engagement", getProgressBar(0.11f), "16%", "","","","", new TextField()}, 49);
+    	ttable.addItem(new Object[]{"Country Engagement", getProgressBar(0.61f), "18%", "","","","", new TextField()}, 50);
+    	ttable.addItem(new Object[]{"Inclusion", getProgressBar(0.44f), "17%", "","","","", new TextField()}, 51);
+    	ttable.addItem(new Object[]{"Good Causes", getProgressBar(0.11f), "17%", "","","","", new TextField()}, 52);
     	
     	ttable.setParent(47, 46);
     	ttable.setParent(48, 46);
