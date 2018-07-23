@@ -191,8 +191,8 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 				Upload fileUpload1 = new  Upload();
 				fileUpload1.setCaption("Examinar");
 				hl.addComponent(fileUpload1);
-				hl.addComponent(new Button("Resetear resultados") {{addStyleName("link");}});
-				hl.addComponent(new Button("Descargar resultados") {{addStyleName("link");}});
+				hl.addComponent(new Button("Reset results") {{addStyleName("link");}});
+				hl.addComponent(new Button("Download results") {{addStyleName("link");}});
 				
 				og1.addValueChangeListener(new Property.ValueChangeListener() {
 					
@@ -295,25 +295,25 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		
 		vl.addComponent(uploadFile());
 		
-		Button btnAdm = new Button("Administrar Riesgos");
+		Button btnAdm = new Button("Risks Admin");
 		btnAdm.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
-				Notification.show("click administrar");
+				Notification.show("click admin");
 			}
 		});
 		vl.addComponent(btnAdm);
 		
 		Table tbCarga = new Table();
-		tbCarga.addContainerProperty("Riesgo", String.class, null);
+		tbCarga.addContainerProperty("Risks", String.class, null);
 		tbCarga.addContainerProperty("Factor",  String.class, null);
-		tbCarga.addContainerProperty("Acciones",  HorizontalLayout.class, null);    	
+		tbCarga.addContainerProperty("Actions",  HorizontalLayout.class, null);    	
     	
     	HorizontalLayout hl2 = new HorizontalLayout();
     	hl2.setSpacing(true);
     	
     	Button btnEliminar = new Button(null,FontAwesome.TRASH);
-    	btnEliminar.setDescription("Eliminar");
+    	btnEliminar.setDescription("Delete");
     	btnEliminar.addClickListener(new Button.ClickListener() {
 			
 			public void buttonClick(ClickEvent event) {
@@ -321,7 +321,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 						"Delete", "Cancel", new ConfirmDialog.Listener() {
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
-							Notification.show("Pregunta sobre riesgo eliminada");
+							Notification.show("Deleted");
 						}
 					}
 				});	
@@ -329,7 +329,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 		});
     	hl2.addComponent(btnEliminar);
     	
-    	tbCarga.addItem(new Object[]{"1", "Cliente", "Cliente prioritario", "C1", "Critico", "xx", hl2}, 1);
+    	tbCarga.addItem(new Object[]{"1", "Client", "Client", "C1", "Critical", "xx", hl2}, 1);
     	tbCarga.setPageLength(tbCarga.size());
     	vl.addComponent(tbCarga);
 		
@@ -337,8 +337,8 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
     }
 
     private Upload uploadFile(){
-    	Upload upload = new Upload("Seleccionar Archivo", null);
-		upload.setButtonCaption("Iniciar Carga");
+    	Upload upload = new Upload("Select File", null);
+		upload.setButtonCaption("Upload");
 		
 		class fileUploader implements Receiver, SucceededListener {
 		    /**
@@ -368,7 +368,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 			@Override
 			public void uploadSucceeded(SucceededEvent event) {
 		    
-				Notification.show("click Iniciar Carga...");					
+				Notification.show("click uploading...");					
 			}
 		};
 		

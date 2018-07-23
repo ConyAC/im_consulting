@@ -116,7 +116,7 @@ public final class Constants {
 	public static final float SECOND_RANGE_REPUTATION_TOP = 0.75f;
 	
 	public static final String LOGO_HEIGHT = "120px";
-	public static final String LOGO_WIDTH = "115px";
+	public static final String LOGO_WIDTH = "125px";
 	
 	public static final String CHART_FONT_COLOR = "#000";
 	public static final String CUSTOMER = "Priority Customer";	
