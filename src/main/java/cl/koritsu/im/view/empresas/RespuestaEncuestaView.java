@@ -52,6 +52,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 	
     Table tbFichas;
     Button btnChart = new Button("Chart",FontAwesome.AREA_CHART);
+    ComboBox cbStakeholder;
     TabSheet tab = null;
     
     public RespuestaEncuestaView() {
@@ -81,7 +82,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
 		tab = buildTab(STAKEHOLDER.OTHERS);
 				
-		ComboBox cbStakeholder = new ComboBox("Stakeholder");
+		cbStakeholder = new ComboBox("Stakeholder");
 		cbStakeholder.addItems(DummyDataGenerator.getStakeHolderUS());
 		cbStakeholder.addItems("Total");
 		cbStakeholder.select("Total");
@@ -957,9 +958,17 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		table.addContainerProperty("Actual", String.class, null);
 		table.addContainerProperty("Simulated", String.class, null);
     	
-    	table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
-    	table.addItem(new Object[]{"Rational Dimension Index", "8%", "9%"}, 2);
-    	table.addItem(new Object[]{"Corporate Reputation Index", "8%", "13%"}, 3);
+		String selectedItem = (String) cbStakeholder.getValue();
+		
+		if( selectedItem.compareToIgnoreCase(Constants.CUSTOMER) != 0 ) {
+	    	table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
+	    	table.addItem(new Object[]{"Rational Dimension Index", "8%", "9%"}, 2);
+	    	table.addItem(new Object[]{"Corporate Reputation Index", "8%", "13%"}, 3);
+		}else {
+			table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
+	    	table.addItem(new Object[]{"Rational Dimension Index", "59%", "9%"}, 2);
+	    	table.addItem(new Object[]{"Corporate Reputation Index", "33%", "13%"}, 3);
+		}
     	table.setPageLength(table.size());
     	
     	Table table2 = new Table();
@@ -967,10 +976,17 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		table2.addContainerProperty("General/Total",  String.class, null);
 		table2.addContainerProperty("Actual", String.class, null);
 		table2.addContainerProperty("Simulated", String.class, null);
-    	
-    	table2.addItem(new Object[]{"Emocional Dimesión Index", "24%","34%"}, 1);
-    	table2.addItem(new Object[]{"Rational Dimension Index", "60%","61%"}, 2);
-    	table2.addItem(new Object[]{"Corporate Reputation Index", "42%","45%"}, 3);
+
+		if( selectedItem.compareToIgnoreCase(Constants.CUSTOMER) != 0 ) {
+		
+	    	table2.addItem(new Object[]{"Emocional Dimesión Index", "24%","34%"}, 1);
+	    	table2.addItem(new Object[]{"Rational Dimension Index", "60%","61%"}, 2);
+	    	table2.addItem(new Object[]{"Corporate Reputation Index", "42%","45%"}, 3);
+		}else {
+			table2.addItem(new Object[]{"Emocional Dimesión Index", "24%","24%"}, 1);
+	    	table2.addItem(new Object[]{"Rational Dimension Index", "60%","63%"}, 2);
+	    	table2.addItem(new Object[]{"Corporate Reputation Index", "42%","47%"}, 3);
+		}
     	table2.setPageLength(table2.size());
 
 		vl.addComponent(table);

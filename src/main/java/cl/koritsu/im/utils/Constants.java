@@ -116,4 +116,5 @@ public final class Constants {
 	public static final String LOGO_WIDTH = "115px";
 	
 	public static final String CHART_FONT_COLOR = "#000";
+	public static final String CUSTOMER = "Priority Customer";	
 }
