@@ -21,7 +21,6 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import cl.koritsu.im.ImUI;
 import cl.koritsu.im.domain.Usuario;
-import cl.koritsu.im.domain.enums.Permiso;
 import cl.koritsu.im.utils.SecurityHelper;
 
 

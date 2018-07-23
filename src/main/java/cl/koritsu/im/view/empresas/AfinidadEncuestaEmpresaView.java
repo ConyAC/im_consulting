@@ -4,10 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.utils.Constants;
-
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -23,6 +19,10 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component

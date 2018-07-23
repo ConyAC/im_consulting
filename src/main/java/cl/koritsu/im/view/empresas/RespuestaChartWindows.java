@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-
 import com.byteowls.vaadin.chartjs.ChartJs;
 import com.byteowls.vaadin.chartjs.config.BubbleChartConfig;
 import com.byteowls.vaadin.chartjs.config.PieChartConfig;
@@ -22,6 +20,8 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
 
 public class RespuestaChartWindows extends Window {
 

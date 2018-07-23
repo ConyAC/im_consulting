@@ -7,12 +7,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
-import ru.xpoft.vaadin.VaadinView;
-import cl.koritsu.im.data.dummy.DummyDataGenerator;
-import cl.koritsu.im.utils.Constants;
-import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
-import cl.koritsu.im.view.empresas.RespuestaChartWindows.STAKEHOLDER;
-
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
@@ -41,6 +35,12 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
+
+import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
+import cl.koritsu.im.view.empresas.RespuestaChartWindows.MODELO;
+import cl.koritsu.im.view.empresas.RespuestaChartWindows.STAKEHOLDER;
+import ru.xpoft.vaadin.VaadinView;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
