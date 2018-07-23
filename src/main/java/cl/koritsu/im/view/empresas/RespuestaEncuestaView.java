@@ -206,7 +206,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     		{
     			setSizeFull();
     		}
-    	}, "Results Simulation");
+    	}, "Resume");
     	
     	
     	tab.addSelectedTabChangeListener(
@@ -268,7 +268,22 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addItem(new Object[]{"Distributors/Retailers","79%","58%","37%","53%","11%","5%","15%","62%","38%","21%","114","19","5%","3%","62%"}, 18);
     	ttable.addItem(new Object[]{"Prospects","82%","59%","41%","47%","24%","18%","15%","62%","38%","19%","117","20","4%","3%","62%"}, 19);
     	ttable.addItem(new Object[]{"KAM and back office supporters","100%","100%","100%","NA","NA","NA","80%","67%","74%","19%","155","25","1%","4%","67%"}, 20);
-    	ttable.addItem(new Object[]{"Managers","100%","100%","80%","NA","NA","NA","68%","56%","","","","","","",""}, 21);
+    	ttable.addItem(new Object[]{"Managers","100%","100%","80%","NA","NA","NA","68%","56%","62%","19%","105","18","1%","3%","56%"}, 21);    	
+    	ttable.addItem(new Object[]{"Operational personnel","100%","100%","17%","NA","NA","NA","7%","50%","28%","20%","150","26","2%","4%","50%"}, 22);
+    	ttable.addItem(new Object[]{"Unions	100%","100%	","25%","NA","NA","NA","26%","42%","34%","25%","184","33","1%","5%","42%"}, 23);
+    	ttable.addItem(new Object[]{"Third party personnel","100%","100%","20%","NA","NA","NA","7%","51%","28%","20%","149","27","1%","4%","51%"}, 24);
+    	ttable.addItem(new Object[]{"Community 2","85%","10%","30%","NA","NA","NA","6%","42%","23%","20%","48","9","5%","1%","42%"}, 25);
+    	ttable.addItem(new Object[]{"Community 3","65%","35%","13%","NA","NA","NA","16%","46%","30%	19%","48","9","6%","1%","46%"}, 26);
+    	ttable.addItem(new Object[]{"Community 1","86%","71%","57%","NA","NA","NA","12%","41%","27%	19%","49","9","4%","1%","41%"}, 27);
+    	ttable.addItem(new Object[]{"Board Directors","100%","100%","100%","NA","NA","NA","97%","94%","95%","19%","75","12","2%","2%","94%"}, 28);
+    	ttable.addItem(new Object[]{"Shareholders","100%","100%	100%","NA","NA","NA","93%","96%","95%","22%","61","9","1%","2%","96%"}, 29);
+    	ttable.addItem(new Object[]{"Investors","100%","100%","100%","NA","NA","NA","94%","93%","93%","19%","66","10","1%","2%","93%"}, 30);
+    	ttable.addItem(new Object[]{"R&D centers","100%","100%","100%","NA","NA","NA","54%","63%","59%","26%","51","9","1%","1%","63%"}, 31);
+    	ttable.addItem(new Object[]{"Institutes","100%","100%","100%","NA","NA","NA","24%","55%","39%","19%","50","8","1%","1%","55%"}, 32);
+    	ttable.addItem(new Object[]{"Universities","100%","100%","67%","NA","NA","NA","14%","47%","29%","29%","48","9","1%","1%","47%"}, 33);
+    	ttable.addItem(new Object[]{"Critical suppliers","100%","100%","80%","NA","NA","NA","55%","54%","55%","20%","18","3","1%","0%","54%"}, 34);
+    	ttable.addItem(new Object[]{"Non critical suppliers","100%","100%","75%","NA","NA","NA","84%","68%","75%","18%","22","4","1%","1%","68%"}, 35);
+    	ttable.addItem(new Object[]{"General","91%","83%","38%","18%","6%","9%","24%","60%","42%","20%","104","18","100%","0%","0%"}, 36);    	
     	
 //    	ttable.setParent(6, 5);
 //    	ttable.setParent(7, 5);
