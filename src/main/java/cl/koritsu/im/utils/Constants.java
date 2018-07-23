@@ -112,6 +112,9 @@ public final class Constants {
 	public static final float FIRST_RANGE_RISK_TOP = 0.25f;
 	public static final float SECOND_RANGE_RISK_TOP = 0.5f;
 	
+	public static final float FIRST_RANGE_REPUTATION_TOP = 0.50f;
+	public static final float SECOND_RANGE_REPUTATION_TOP = 0.75f;
+	
 	public static final String LOGO_HEIGHT = "120px";
 	public static final String LOGO_WIDTH = "125px";
 	
