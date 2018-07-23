@@ -249,7 +249,7 @@ public class RespuestaChartWindows extends Window {
 		
 		config.options()
 				.responsive(true)
-				.title().fontColor("#fff").display(true).text("Corporate Reputation Index (CRI) vs Risk Index (RI)")
+				.title().fontColor(Constants.CHART_FONT_COLOR).display(true).text("Corporate Reputation Index (CRI) vs Risk Index (RI)")
 				.and()
 				.zoom().mode(XYMode.XY)
 				.and()
@@ -258,24 +258,24 @@ public class RespuestaChartWindows extends Window {
 								.display(true)
 								.ticks()
 									.display(true)
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 									.and()
 								.scaleLabel()
 									.display(true)
 									.labelString("Risk Index (RI)")
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 							.and())
 				.add(Axis.X, 
 						new DefaultScale()
 								.display(true)
 								.ticks()
 									.display(true)
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 									.and()
 								.scaleLabel()
 									.display(true)
 									.labelString("Corporate Reputation Index (CRI)")
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 							.and())
 				.and()
 				.pan().enabled(true)
@@ -320,7 +320,7 @@ public class RespuestaChartWindows extends Window {
 			index++;
 		}
 
-		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor(Constants.CHART_FONT_COLOR);
 
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
@@ -425,7 +425,7 @@ public class RespuestaChartWindows extends Window {
 						.toArray(new String[DummyDataGenerator.getStakeHolderUS().size()]))
 				.addDataset(new PieDataset().label("Respondents weight")).and();
 
-		config.options().responsive(true).title().display(true).text("Respondents weight").fontColor("#fff").and()
+		config.options().responsive(true).title().display(true).text("Respondents weight").fontColor(Constants.CHART_FONT_COLOR).and()
 				.animation()
 				// .animateScale(true)
 				.animateRotate(true).and().done();
@@ -442,7 +442,7 @@ public class RespuestaChartWindows extends Window {
 			lds.dataAsList(data);
 		}
 
-		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor(Constants.CHART_FONT_COLOR);
 
 		ChartJs chart = new ChartJs(config);
 		chart.setWidth("60%");
