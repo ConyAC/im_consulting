@@ -66,7 +66,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
         
         addComponent(buildToolbar());
      	
-     	GridLayout glRoot = new GridLayout(7,10);
+     	final GridLayout glRoot = new GridLayout(7,10);
      	glRoot.setSpacing(true);
 		glRoot.setMargin(true);
 		glRoot.setSizeFull();
@@ -168,7 +168,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     }
     
     private TabSheet buildTab(STAKEHOLDER stakeholder) {
-    	TabSheet tab = new TabSheet();
+    	final TabSheet tab = new TabSheet();
     	tab.setSizeFull();
     	
     	VerticalLayout reputacion = buildReputacionTable(stakeholder);
