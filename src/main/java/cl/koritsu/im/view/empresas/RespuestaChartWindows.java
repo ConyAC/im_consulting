@@ -24,6 +24,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import cl.koritsu.im.data.dummy.DummyDataGenerator;
+import cl.koritsu.im.utils.Constants;
 
 public class RespuestaChartWindows extends Window {
 
@@ -200,7 +201,7 @@ public class RespuestaChartWindows extends Window {
 			.addDataset(new BubbleDataset().label(string))
 			.and();
 		}
-		config.options().responsive(true).title().fontColor("#fff")
+		config.options().responsive(true).title().fontColor(Constants.CHART_FONT_COLOR)
 				.display(true).text("RCI: Emotional vs Rational Dimensions")
 				.and()
 				.zoom().mode(XYMode.XY)
@@ -210,24 +211,24 @@ public class RespuestaChartWindows extends Window {
 								.display(true)
 								.ticks()
 									.display(true)
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 									.and()
 								.scaleLabel()
 									.display(true)
 									.labelString("Rational Dimensions")
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 							.and())
 				.add(Axis.X, 
 						new DefaultScale()
 								.display(true)
 								.ticks()
 									.display(true)
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 									.and()
 								.scaleLabel()
 									.display(true)
 									.labelString("Emotional Dimensions")
-									.fontColor("#ffff")
+									.fontColor(Constants.CHART_FONT_COLOR)
 							.and())
 				.and()
 				.pan().enabled(true)
@@ -271,7 +272,7 @@ public class RespuestaChartWindows extends Window {
 			index++;
 		}
 
-		config.options().legend().position(Position.RIGHT).labels().fontColor("#fff");
+		config.options().legend().position(Position.RIGHT).labels().fontColor(Constants.CHART_FONT_COLOR);
 
 		ChartJs chart = new ChartJs(config);
 		chart.setJsLoggingEnabled(true);
