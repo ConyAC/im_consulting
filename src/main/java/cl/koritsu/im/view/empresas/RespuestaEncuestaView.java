@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
@@ -227,7 +228,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		VerticalLayout vl = new VerticalLayout();
     	vl.setSizeFull();
     	
-    	TreeTable ttable = new TreeTable();
+    	final Table ttable = new Table();
     	
     	ttable.setStyleName("treetable-resultado-resumen");
     	
@@ -283,7 +284,28 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addItem(new Object[]{"Universities","100%","100%","67%","NA","NA","NA","14%","47%","29%","29%","48","9","1%","1%","47%"}, 33);
     	ttable.addItem(new Object[]{"Critical suppliers","100%","100%","80%","NA","NA","NA","55%","54%","55%","20%","18","3","1%","0%","54%"}, 34);
     	ttable.addItem(new Object[]{"Non critical suppliers","100%","100%","75%","NA","NA","NA","84%","68%","75%","18%","22","4","1%","1%","68%"}, 35);
-    	ttable.addItem(new Object[]{"General","91%","83%","38%","18%","6%","9%","24%","60%","42%","20%","104","18","100%","0%","0%"}, 36);    	
+    	ttable.addItem(new Object[]{"General","91%","83%","38%","18%","6%","9%","24%","60%","42%","20%","104","18","100%","0%","0%"}, 36);
+    	
+    	ttable.setCellStyleGenerator(new TreeTable.CellStyleGenerator() {
+    		
+			@Override
+			public String getStyle(Table source, Object itemId, Object propertyId) {
+				if (propertyId == null) {
+					Item item = ttable.getItem(itemId);
+      	          	System.out.println("item "+item);
+      	          	String firstName = (String) item.getItemProperty("Segments").getValue();
+      	          	System.out.println("firstName "+firstName);
+      	          	if (firstName.toLowerCase().startsWith("g")) {
+      	          		return "highlight-yellow";
+      	          	} else {
+      	          		return null;
+      	          	}
+      	        } else {
+      	          // styling for column propertyId
+      	          return null;
+      	        }
+			}
+    	 });
     	
 //    	ttable.setParent(6, 5);
 //    	ttable.setParent(7, 5);

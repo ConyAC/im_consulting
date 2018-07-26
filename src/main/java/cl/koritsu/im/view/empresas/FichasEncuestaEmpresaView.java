@@ -130,8 +130,9 @@ public class FichasEncuestaEmpresaView extends CssLayout implements View {
 		vl.addComponent(buildFiltro());
 
 		tbFichas = drawTableFichas();
+		tbFichas.setHeight("20%");
 		vl.addComponent(tbFichas);
-		vl.setExpandRatio(tbFichas, 1.0f);
+		//vl.setExpandRatio(tbFichas, 1.0f);
 
 		return vl;
 	}
