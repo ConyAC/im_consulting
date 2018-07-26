@@ -402,7 +402,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	items.put("Net Promoter Score (NPS)", getProgressBar(0.18f));
     	items.put("Net Effort Score (NES)", getProgressBar(0.06f));
     	items.put("Net Propensity to Repurchase", getProgressBar(0.09f));
-    	items.put("Differentiation", null);
+    	items.put("Differentiation", getProgressBar(0.15f));
     	
     	int i = 1;
     	for (Map.Entry<String, HorizontalLayout> item : items.entrySet())
@@ -477,7 +477,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("2018 Weight (Probability)", HorizontalLayout.class, null);
     	ttable.addContainerProperty("2017 Severity", String.class, null);
     	ttable.addContainerProperty("2017 Weight (Probability)", String.class, null);
-    	ttable.addContainerProperty("2016 Severity / Weight (Probability)", String.class, null);
+    	ttable.addContainerProperty("2016 Severity", String.class, null);
     	ttable.addContainerProperty("2016 Weight (Probability)", String.class, null);
     	ttable.addContainerProperty("Simulate", TextField.class, null);
  //   	ttable.addContainerProperty("Simulated Result", String.class, null);
@@ -976,17 +976,20 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
 		Table table = new Table();
 		table.setWidth("100%");
-		table.addContainerProperty("Citizens",  String.class, null);
-		table.addContainerProperty("Actual", String.class, null);
-		table.addContainerProperty("Simulated", String.class, null);
     	
 		String selectedItem = (String) cbStakeholder.getValue();
-		
+
 		if( selectedItem.compareToIgnoreCase(Constants.CUSTOMER) != 0 ) {
+			table.addContainerProperty("Citizens",  String.class, null);
+			table.addContainerProperty("Actual", String.class, null);
+			table.addContainerProperty("Simulated", String.class, null);
 	    	table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
 	    	table.addItem(new Object[]{"Rational Dimension Index", "8%", "9%"}, 2);
 	    	table.addItem(new Object[]{"Corporate Reputation Index", "8%", "13%"}, 3);
 		}else {
+			table.addContainerProperty("Priority Customer",  String.class, null);
+			table.addContainerProperty("Actual", String.class, null);
+			table.addContainerProperty("Simulated", String.class, null);
 			table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
 	    	table.addItem(new Object[]{"Rational Dimension Index", "59%", "9%"}, 2);
 	    	table.addItem(new Object[]{"Corporate Reputation Index", "33%", "13%"}, 3);

@@ -18,6 +18,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -25,6 +26,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
@@ -207,7 +209,13 @@ public class LoginView extends VerticalLayout implements View {
     private Component buildLabels() {
         CssLayout labels = new CssLayout();
         labels.addStyleName("labels");
-
+        
+        Image logo = new Image();
+        logo.setSource(new ThemeResource(Constants.LOGO_URL));
+        logo.setHeight(Constants.LOGO_HEIGHT);
+        logo.setWidth(Constants.LOGO_WIDTH);
+        labels.addComponent(logo);
+        
         Label welcome = new Label("Welcome");
         welcome.setSizeUndefined();
         welcome.addStyleName(ValoTheme.LABEL_H4);
