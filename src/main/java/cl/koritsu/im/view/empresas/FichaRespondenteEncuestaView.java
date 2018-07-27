@@ -87,9 +87,9 @@ public class FichaRespondenteEncuestaView extends CssLayout implements View {
 		glRoot.addComponent(tfSubsegmento,0,3);
 		
 		ComboBox cbCriticidad = new ComboBox("Criticity");
-		for(String sh : DummyDataGenerator.getCriticidades())
+		for(String sh : DummyDataGenerator.getCriticidadesUS())
 			cbCriticidad.addItem(sh);
-		cbCriticidad.setValue(DummyDataGenerator.getCriticidades().get(1));
+		cbCriticidad.setValue(DummyDataGenerator.getCriticidadesUS().get(1));
 		glRoot.addComponent(cbCriticidad,0,4);
 		
 		ComboBox cbActitud = new ComboBox("Actitude");

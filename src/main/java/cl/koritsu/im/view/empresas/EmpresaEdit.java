@@ -60,7 +60,7 @@ public class EmpresaEdit extends CssLayout implements View {
 		hl.setWidth("100%");
 		hl.setMargin(true);
 		
-		final Button btn1 = new Button("Aceptar");
+		final Button btn1 = new Button("Ok");
 		btn1.addClickListener(new ClickListener() {
 			
 			@Override
@@ -69,7 +69,7 @@ public class EmpresaEdit extends CssLayout implements View {
 			}
 		});
 		
-		final Button btn2 = new Button("Cancelar");
+		final Button btn2 = new Button("Cancel");
 		btn2.addClickListener(new ClickListener() {
 			
 			@Override
@@ -120,49 +120,49 @@ public class EmpresaEdit extends CssLayout implements View {
 		glLayout.setSpacing(true);
     	
     	//Nombre 1
-    	TextField nombre1Field = new TextField("Nombre Contacto Principal");
+    	TextField nombre1Field = new TextField("Principal Contact");
     	nombre1Field.setWidth("100%");
     	glLayout.addComponent(nombre1Field,0,0,0,0);
     	
     	//Cargo
-    	ComboBox cargo1Field = new ComboBox("Cargo");
+    	ComboBox cargo1Field = new ComboBox("Position");
     	cargo1Field.setWidth("100%");
     	glLayout.addComponent(cargo1Field,1,0,1,0);
     	
     	//correo   	
-    	TextField correoField = new TextField("Correo electrónico");
+    	TextField correoField = new TextField("Email");
     	correoField.setWidth("100%");
     	glLayout.addComponent(correoField,2,0,2,0);
     	
     	//telefono celular
-    	TextField telefonoField = new TextField("Telefono / Celular");
+    	TextField telefonoField = new TextField("Phone");
     	telefonoField.setWidth("100%");
     	glLayout.addComponent(telefonoField,3,0,3,0);
     	
     	
     	//Nombre 1
-    	TextField nombre2Field = new TextField("Nombre Contacto Principal");
+    	TextField nombre2Field = new TextField("Secondary Contact");
     	nombre2Field.setWidth("100%");
     	glLayout.addComponent(nombre2Field,0,1,0,1);
     	
     	//Cargo
-    	ComboBox cargo2Field = new ComboBox("Cargo");
+    	ComboBox cargo2Field = new ComboBox("Position");
     	cargo2Field.setWidth("100%");
     	glLayout.addComponent(cargo2Field,1,1,1,1);
     	
     	//correo   	
-    	TextField correo2Field = new TextField("Correo electrónico");
+    	TextField correo2Field = new TextField("Email");
     	correo2Field.setWidth("100%");
     	glLayout.addComponent(correo2Field,2,1,2,1);
     	
     	//telefono celular
-    	TextField telefono2Field = new TextField("Telefono / Celular");
+    	TextField telefono2Field = new TextField("Phone");
     	telefono2Field.setWidth("100%");
     	glLayout.addComponent(telefono2Field,3,1,3,1);
     	
 		return new Panel() {
 			{
-				setCaption("Contacto Empresa");
+				setCaption("Company Personal Contact");
 				setWidth("100%");
 				setContent(glLayout);
 			}
@@ -183,7 +183,7 @@ public class EmpresaEdit extends CssLayout implements View {
     	glLayout.addComponent(logoField,0,0,1,0);
     	
     	//boton examinar
-    	Button btnExaminar = new Button("Examinar");
+    	Button btnExaminar = new Button("Examine");
     	glLayout.addComponent(btnExaminar,2,0,2,0);
     	glLayout.setComponentAlignment(btnExaminar, Alignment.BOTTOM_LEFT);
     	
@@ -193,27 +193,27 @@ public class EmpresaEdit extends CssLayout implements View {
     	glLayout.addComponent(rutField,0,1,0,1);
     	
     	//razon social
-    	TextField razonSocialField = new TextField("Razón Social");
+    	TextField razonSocialField = new TextField("Name");
     	razonSocialField.setWidth("100%");
     	glLayout.addComponent(razonSocialField,1,1,1,1);
     	
     	//industria
-    	ComboBox industriaField = new ComboBox("Industria");
+    	ComboBox industriaField = new ComboBox("Industry");
     	industriaField.setWidth("100%");
     	glLayout.addComponent(industriaField,2,1,2,1);
     	
     	//Region
-    	ComboBox regionField = new ComboBox("Región");
+    	ComboBox regionField = new ComboBox("Region");
     	regionField.setWidth("100%");
     	glLayout.addComponent(regionField,0,2,0,2);
     	
     	//Comuna
-    	ComboBox comunaField = new ComboBox("Comuna");
+    	ComboBox comunaField = new ComboBox("Country");
     	comunaField.setWidth("100%");
     	glLayout.addComponent(comunaField,1,2,1,2);
     	
     	//dirección
-    	TextField direccionField = new TextField("Dirección");
+    	TextField direccionField = new TextField("Address");
     	direccionField.setWidth("100%");
     	glLayout.addComponent(direccionField,2,2,2,2);
     	
@@ -225,7 +225,7 @@ public class EmpresaEdit extends CssLayout implements View {
     	
 		return new Panel() {
 			{
-				setCaption("Datos Empresa");
+				setCaption("Company Data");
 				setWidth("100%");
 				setContent(glLayout);
 			}

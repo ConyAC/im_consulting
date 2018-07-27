@@ -207,7 +207,7 @@ public class EncuestaEmpresaEdit extends CssLayout implements View {
 				og.setMultiSelect(true);
 				og.addItem("Risk");
 				og.addItem("Affinty");
-				og.addItem("Other Questions");
+				og.addItem("Brand & Loyalty");
 				addComponent(og);
 				
 				og.addValueChangeListener(new ValueChangeListener() {

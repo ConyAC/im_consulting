@@ -264,7 +264,7 @@ public class AdministrationView extends CssLayout implements View {
         	}else if(propertyId.equals("rol")){
         		ComboBox cb = new ComboBox("Profile",rolContainer);
         		cb.setItemCaptionMode(ItemCaptionMode.PROPERTY);
-        		cb.setItemCaptionPropertyId("nombre");
+        		cb.setItemCaptionPropertyId("name");
         		cb.setWidth("100%");
         		fieldGroup.bind(cb, propertyId);
 				cb.setContainerDataSource(rolContainer);				
@@ -399,11 +399,11 @@ public class AdministrationView extends CssLayout implements View {
 				//recupera el elemento seleccionado
 				final Rol rol = (Rol) rolesTable.getValue();
 				if(rol == null){
-					Notification.show("Debe seleccionar un perfil para eliminarlo");
+					Notification.show("You must select a profile to delete it");
 					return;
 				}
-				ConfirmDialog.show(UI.getCurrent(), "Confirmar Acción:", "¿Está seguro de eliminar el perfil seleccionado?",
-						"Eliminar", "Cancelar", new ConfirmDialog.Listener() {
+				ConfirmDialog.show(UI.getCurrent(), "Confirmar Acción:", "Are you sure to delete the selected profile?",
+						"Delete", "Cancel", new ConfirmDialog.Listener() {
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
 							if(rol.getId() != null ) {
@@ -438,7 +438,7 @@ public class AdministrationView extends CssLayout implements View {
 		rolesTable.setSizeFull();
 		rolesTable.setFilterBarVisible(true);
 		rolesTable.setVisibleColumns("nombre","descripcion");
-		rolesTable.setColumnHeaders("Nombre","Descripción");
+		rolesTable.setColumnHeaders("Name","Description");
 		rolesTable.setSelectable(true);
 		
 		rolesTable.addItemClickListener(new ItemClickListener() {
@@ -475,7 +475,7 @@ public class AdministrationView extends CssLayout implements View {
 		vl.setSizeFull();
 		
         //agrega un boton que hace el commit
-        Button btnSave = new Button("Guardar",new Button.ClickListener() {
+        Button btnSave = new Button("Save",new Button.ClickListener() {
 
         	public void buttonClick(ClickEvent event) {
         		try {
@@ -528,6 +528,9 @@ public class AdministrationView extends CssLayout implements View {
         		field.setWidth("100%");
         		if(field instanceof AbstractTextField)
         			((AbstractTextField) field).setNullRepresentation("");
+        		if(propertyId.equals("nombre")){
+        			field.setCaption("Name");
+        		}
         		rolDetailLayout.addComponent(field);
         	}
         }

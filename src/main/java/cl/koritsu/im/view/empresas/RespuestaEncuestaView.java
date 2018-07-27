@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Scope;
 
+import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.navigator.View;
@@ -227,7 +228,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		VerticalLayout vl = new VerticalLayout();
     	vl.setSizeFull();
     	
-    	TreeTable ttable = new TreeTable();
+    	final Table ttable = new Table();
     	
     	ttable.setStyleName("treetable-resultado-resumen");
     	
@@ -283,7 +284,28 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addItem(new Object[]{"Universities","100%","100%","67%","NA","NA","NA","14%","47%","29%","29%","48","9","1%","1%","47%"}, 33);
     	ttable.addItem(new Object[]{"Critical suppliers","100%","100%","80%","NA","NA","NA","55%","54%","55%","20%","18","3","1%","0%","54%"}, 34);
     	ttable.addItem(new Object[]{"Non critical suppliers","100%","100%","75%","NA","NA","NA","84%","68%","75%","18%","22","4","1%","1%","68%"}, 35);
-    	ttable.addItem(new Object[]{"General","91%","83%","38%","18%","6%","9%","24%","60%","42%","20%","104","18","100%","0%","0%"}, 36);    	
+    	ttable.addItem(new Object[]{"General","91%","83%","38%","18%","6%","9%","24%","60%","42%","20%","104","18","100%","0%","0%"}, 36);
+    	
+    	ttable.setCellStyleGenerator(new TreeTable.CellStyleGenerator() {
+    		
+			@Override
+			public String getStyle(Table source, Object itemId, Object propertyId) {
+				if (propertyId == null) {
+					Item item = ttable.getItem(itemId);
+      	          	System.out.println("item "+item);
+      	          	String firstName = (String) item.getItemProperty("Segments").getValue();
+      	          	System.out.println("firstName "+firstName);
+      	          	if (firstName.toLowerCase().startsWith("g")) {
+      	          		return "highlight-yellow";
+      	          	} else {
+      	          		return null;
+      	          	}
+      	        } else {
+      	          // styling for column propertyId
+      	          return null;
+      	        }
+			}
+    	 });
     	
 //    	ttable.setParent(6, 5);
 //    	ttable.setParent(7, 5);
@@ -402,7 +424,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	items.put("Net Promoter Score (NPS)", getProgressBar(0.18f));
     	items.put("Net Effort Score (NES)", getProgressBar(0.06f));
     	items.put("Net Propensity to Repurchase", getProgressBar(0.09f));
-    	items.put("Differentiation", null);
+    	items.put("Differentiation", getProgressBar(0.15f));
     	
     	int i = 1;
     	for (Map.Entry<String, HorizontalLayout> item : items.entrySet())
@@ -477,7 +499,7 @@ public class RespuestaEncuestaView extends CssLayout implements View {
     	ttable.addContainerProperty("2018 Weight (Probability)", HorizontalLayout.class, null);
     	ttable.addContainerProperty("2017 Severity", String.class, null);
     	ttable.addContainerProperty("2017 Weight (Probability)", String.class, null);
-    	ttable.addContainerProperty("2016 Severity / Weight (Probability)", String.class, null);
+    	ttable.addContainerProperty("2016 Severity", String.class, null);
     	ttable.addContainerProperty("2016 Weight (Probability)", String.class, null);
     	ttable.addContainerProperty("Simulate", TextField.class, null);
  //   	ttable.addContainerProperty("Simulated Result", String.class, null);
@@ -976,17 +998,20 @@ public class RespuestaEncuestaView extends CssLayout implements View {
 		
 		Table table = new Table();
 		table.setWidth("100%");
-		table.addContainerProperty("Citizens",  String.class, null);
-		table.addContainerProperty("Actual", String.class, null);
-		table.addContainerProperty("Simulated", String.class, null);
     	
 		String selectedItem = (String) cbStakeholder.getValue();
-		
+
 		if( selectedItem.compareToIgnoreCase(Constants.CUSTOMER) != 0 ) {
+			table.addContainerProperty("Citizens",  String.class, null);
+			table.addContainerProperty("Actual", String.class, null);
+			table.addContainerProperty("Simulated", String.class, null);
 	    	table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
 	    	table.addItem(new Object[]{"Rational Dimension Index", "8%", "9%"}, 2);
 	    	table.addItem(new Object[]{"Corporate Reputation Index", "8%", "13%"}, 3);
 		}else {
+			table.addContainerProperty("Priority Customer",  String.class, null);
+			table.addContainerProperty("Actual", String.class, null);
+			table.addContainerProperty("Simulated", String.class, null);
 			table.addItem(new Object[]{"Emocional Dimesión Index", "8%", "16%"}, 1);
 	    	table.addItem(new Object[]{"Rational Dimension Index", "59%", "9%"}, 2);
 	    	table.addItem(new Object[]{"Corporate Reputation Index", "33%", "13%"}, 3);
