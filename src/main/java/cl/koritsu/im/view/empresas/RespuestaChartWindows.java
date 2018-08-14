@@ -38,7 +38,7 @@ public class RespuestaChartWindows extends Window {
 	}
 	
 	public enum STAKEHOLDER {
-		CITIZENS, PRIORITYCUSTOMER, OTHERS
+		CITIZENS, PRIORITYCUSTOMER, OTHERS, TOTAL
 	}
 
 	public RespuestaChartWindows(MODELO modelo) {
